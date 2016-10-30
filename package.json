@@ -1,0 +1,24 @@
+{
+  "name": "react-forms-state",
+  "version": "1.0.0",
+  "description": "React helpers to quickly make forms",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "react",
+    "form",
+    "forms",
+    "state"
+  ],
+  "author": "alanzanattadev",
+  "license": "ISC",
+  "devDependencies": {
+    "enzyme": "^2.5.1",
+    "jest": "^16.0.2"
+  },
+  "dependencies": {
+    "react": "^15.3.2"
+  }
+}
