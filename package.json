@@ -1,10 +1,11 @@
 {
   "name": "react-forms-state",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "React helpers to quickly make forms",
-  "main": "lib/index.js",
+  "main": "dist/bundle.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack"
   },
   "keywords": [
     "react",
@@ -15,14 +16,17 @@
   "author": "alanzanattadev",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.23.1",
     "babel-jest": "^16.0.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
     "enzyme": "^2.5.1",
     "immutable": "^3.8.1",
     "jest": "^16.0.2",
     "react-addons-test-utils": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "webpack": "^2.2.1"
   },
   "dependencies": {
     "immutable": "^3.8.1",
