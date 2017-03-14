@@ -5090,8 +5090,6 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _immutable = __webpack_require__(0);
-
 var _StateValue = __webpack_require__(3);
 
 var _lodash = __webpack_require__(6);
@@ -5295,8 +5293,15 @@ function getValue(state, path) {
 
 function setValue(state, path, value) {
   if (path == '') return value;else {
+    console.log("-------------------");
+    console.log(Date.now());
     var immutState = (0, _immutable.fromJS)(state);
-    return immutState ? immutState.setIn(getImmutPath(path), value).toJS() : immutState;
+    console.log(Date.now());
+    console.log(Date.now());
+    var newState = immutState ? immutState.setIn(getImmutPath(path), value).toJS() : immutState;
+    console.log(Date.now());
+    console.log("-------------------");
+    return newState;
   }
 }
 
@@ -5356,7 +5361,9 @@ function FormController() {
 
   var _ref = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {},
       _ref$checkIfModified = _ref.checkIfModified,
-      checkIfModified = _ref$checkIfModified === undefined ? true : _ref$checkIfModified;
+      checkIfModified = _ref$checkIfModified === undefined ? true : _ref$checkIfModified,
+      _ref$immutableInitial = _ref.immutableInitial,
+      immutableInitial = _ref$immutableInitial === undefined ? false : _ref$immutableInitial;
 
   return function (WrappedComponent) {
     var Controller = function (_React$Component) {
@@ -5375,7 +5382,15 @@ function FormController() {
       _createClass(Controller, [{
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
-          if (!(0, _immutable.is)((0, _immutable.fromJS)(this._getInitialValue(nextProps)), (0, _immutable.fromJS)(this._getInitialValue(this.props)))) this.setState(this._getInitialValue(nextProps));
+          var newInitial = this._getInitialValue(nextProps);
+          var oldInitial = this._getInitialValue(this.props);
+          if (oldInitial != null && 'toJS' in oldInitial && newInitial != null && 'toJS' in newInitial || immutableInitial) {
+            if (newInitial !== oldInitial) this.setState(newInitial);
+          } else if (oldInitial == null && newInitial != null) {
+            this.setState(newInitial);
+          } else if (oldInitial != null && newInitial != null) {
+            if (!(0, _immutable.is)((0, _immutable.fromJS)(newInitial), (0, _immutable.fromJS)(oldInitial))) this.setState(this._getInitialValue(nextProps));
+          }
         }
       }, {
         key: '_getInitialValue',
@@ -5512,7 +5527,7 @@ function StateDispatcher() {
       }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevProps) {
-          if (!(0, _immutable.is)((0, _immutable.fromJS)(this.props.value), (0, _immutable.fromJS)(prevProps.value))) {
+          if (this.props.value !== prevProps.value) {
             this.dispatchUncontrolledValues(prevProps);
           }
         }
@@ -5522,7 +5537,7 @@ function StateDispatcher() {
           var _this3 = this;
 
           (0, _immutable.fromJS)(this.handlers).keySeq().forEach(function (statePath) {
-            if (prevProps === undefined || !(0, _immutable.is)((0, _immutable.fromJS)((0, _StateValue.getValue)(convertIn(_this3.props.value, _this3.props), statePath)), (0, _immutable.fromJS)((0, _StateValue.getValue)(convertIn(prevProps.value, prevProps), statePath)))) _this3.handlers[statePath].set((0, _StateValue.getValue)(convertIn(_this3.props.value, _this3.props), statePath));
+            if (prevProps === undefined || (0, _StateValue.getValue)(convertIn(_this3.props.value, _this3.props), statePath) !== (0, _StateValue.getValue)(convertIn(prevProps.value, prevProps), statePath)) _this3.handlers[statePath].set((0, _StateValue.getValue)(convertIn(_this3.props.value, _this3.props), statePath));
           });
         }
       }, {
