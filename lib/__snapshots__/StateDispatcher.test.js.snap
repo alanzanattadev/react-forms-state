@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StateDispatcher Controlled should stop propagation when another dispatcher is encountered 1`] = `
+Array [
+  Object {
+    "month": "2",
+    "year": "17",
+  },
+  "birthday",
+]
+`;
