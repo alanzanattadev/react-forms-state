@@ -1,6 +1,6 @@
 {
   "name": "react-forms-state",
-  "version": "1.1.5",
+  "version": "2.1.0",
   "description": "React helpers to quickly make forms",
   "main": "dist/bundle.js",
   "scripts": {
@@ -23,14 +23,17 @@
     "babel-preset-react": "^6.23.0",
     "enzyme": "^2.5.1",
     "immutable": "^3.8.1",
-    "jest": "^16.0.2",
+    "jest": "^19.0.2",
+    "jest-cli": "^19.0.2",
     "react-addons-test-utils": "^15.3.2",
     "react-dom": "^15.3.2",
     "webpack": "^2.2.1"
   },
   "dependencies": {
     "immutable": "^3.8.1",
+    "jest-cli": "^19.0.2",
     "lodash": "^4.16.6",
-    "react": "^15.3.2"
+    "react": "^15.3.2",
+    "rxjs": "^5.2.0"
   }
 }

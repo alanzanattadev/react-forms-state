@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StateInjector should accept a function as watchPath taking current statePath as parameter 1`] = `
+Object {
+  "calls": Array [
+    Array [
+      null,
+      Object {
+        "children": [Function],
+        "watchPath": [Function],
+      },
+      Object {
+        "watchedStatePath": "test.newPath",
+      },
+    ],
+  ],
+  "instances": Array [
+    Object {
+      "children": [Function],
+      "watchPath": [Function],
+    },
+  ],
+}
+`;
+
+exports[`StateInjector should accept a function as watchPath taking current statePath as parameter 2`] = `
+Object {
+  "calls": Array [
+    Array [
+      "test",
+    ],
+  ],
+  "instances": Array [
+    Object {
+      "children": [Function],
+      "watchPath": [Function],
+    },
+  ],
+}
+`;
+
+exports[`StateInjector should handle initial change 1`] = `
+Object {
+  "calls": Array [
+    Array [
+      null,
+      Object {
+        "children": [Function],
+        "watchPath": "infos",
+      },
+      Object {
+        "watchedStatePath": "infos",
+      },
+    ],
+    Array [
+      "salut",
+      Object {
+        "children": [Function],
+        "watchPath": "infos",
+      },
+      Object {
+        "watchedStatePath": "infos",
+      },
+    ],
+  ],
+  "instances": Array [
+    Object {
+      "children": [Function],
+      "watchPath": "infos",
+    },
+    Object {
+      "children": [Function],
+      "watchPath": "infos",
+    },
+  ],
+}
+`;
+
+exports[`StateInjector should not update when statePath is "infos.name" and watchPath "name" 1`] = `
+Object {
+  "calls": Array [
+    Array [
+      null,
+      Object {
+        "children": [Function],
+        "watchPath": "name",
+      },
+      Object {
+        "watchedStatePath": "name",
+      },
+    ],
+  ],
+  "instances": Array [
+    Object {
+      "children": [Function],
+      "watchPath": "name",
+    },
+  ],
+}
+`;
+
+exports[`StateInjector should throw if children isn't a function 1`] = `"children of StateInjector must be a function of type (stateValue, props) => React$element"`;
+
+exports[`StateInjector should update when statePath is "infos" and watchPath "infos.name" 1`] = `
+Object {
+  "calls": Array [
+    Array [
+      null,
+      Object {
+        "children": [Function],
+        "watchPath": "infos.name",
+      },
+      Object {
+        "watchedStatePath": "infos.name",
+      },
+    ],
+    Array [
+      "salut",
+      Object {
+        "children": [Function],
+        "watchPath": "infos.name",
+      },
+      Object {
+        "watchedStatePath": "infos.name",
+      },
+    ],
+  ],
+  "instances": Array [
+    Object {
+      "children": [Function],
+      "watchPath": "infos.name",
+    },
+    Object {
+      "children": [Function],
+      "watchPath": "infos.name",
+    },
+  ],
+}
+`;
+
+exports[`StateInjector should update when statePath is "infos.name" and watchPath "infos" 1`] = `
+Object {
+  "calls": Array [
+    Array [
+      null,
+      Object {
+        "children": [Function],
+        "watchPath": "infos",
+      },
+      Object {
+        "watchedStatePath": "infos",
+      },
+    ],
+    Array [
+      "salut",
+      Object {
+        "children": [Function],
+        "watchPath": "infos",
+      },
+      Object {
+        "watchedStatePath": "infos",
+      },
+    ],
+  ],
+  "instances": Array [
+    Object {
+      "children": [Function],
+      "watchPath": "infos",
+    },
+    Object {
+      "children": [Function],
+      "watchPath": "infos",
+    },
+  ],
+}
+`;
