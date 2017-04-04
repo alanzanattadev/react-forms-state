@@ -2532,7 +2532,7 @@ function StateProxy() {
               return root ? _this2.child.dispatchUncontrolledValues({ value: value }) : uncontrolledConfig.setValue(_this2.child, value);
             });
           }
-          if (this.valueChangeObs && this.isControlled()) this.unsubscribeObs = this.valueChangeObs.subscribe({
+          if (this.valueChangeObs && this.isControlled()) this.subscription = this.valueChangeObs.subscribe({
             next: function next(e) {
               return root ? _this2.value = e.value : _this2.setState({
                 value: e.value
@@ -2543,7 +2543,7 @@ function StateProxy() {
       }, {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
-          if (this.unsubscribeObs) this.valueChangeObs.unsubscribe();
+          if (this.subscription) this.subscription.unsubscribe();
         }
       }, {
         key: "getNewPathPart",
