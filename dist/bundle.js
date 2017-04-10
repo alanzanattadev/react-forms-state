@@ -7,7 +7,7 @@
 		exports["ReactFormsState"] = factory(require("react"));
 	else
 		root["ReactFormsState"] = factory(root["React"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_31__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_32__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -84,7 +84,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 var root_1 = __webpack_require__(7);
 var toSubscriber_1 = __webpack_require__(351);
-var observable_1 = __webpack_require__(23);
+var observable_1 = __webpack_require__(24);
 /**
  * A representation of any set of values over any amount of time. This the most basic building block
  * of RxJS.
@@ -232,10 +232,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isFunction_1 = __webpack_require__(29);
+var isFunction_1 = __webpack_require__(30);
 var Subscription_1 = __webpack_require__(4);
 var Observer_1 = __webpack_require__(45);
-var rxSubscriber_1 = __webpack_require__(24);
+var rxSubscriber_1 = __webpack_require__(25);
 /**
  * Implements the {@link Observer} interface and extends the
  * {@link Subscription} class. While the {@link Observer} is the public API for
@@ -534,9 +534,9 @@ var isArrayLike_1 = __webpack_require__(69);
 var isPromise_1 = __webpack_require__(71);
 var isObject_1 = __webpack_require__(70);
 var Observable_1 = __webpack_require__(0);
-var iterator_1 = __webpack_require__(18);
+var iterator_1 = __webpack_require__(19);
 var InnerSubscriber_1 = __webpack_require__(78);
-var observable_1 = __webpack_require__(23);
+var observable_1 = __webpack_require__(24);
 function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
     var destination = new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex);
     if (destination.closed) {
@@ -615,7 +615,7 @@ exports.subscribeToResult = subscribeToResult;
 
 var isArray_1 = __webpack_require__(11);
 var isObject_1 = __webpack_require__(70);
-var isFunction_1 = __webpack_require__(29);
+var isFunction_1 = __webpack_require__(30);
 var tryCatch_1 = __webpack_require__(8);
 var errorObject_1 = __webpack_require__(6);
 var UnsubscriptionError_1 = __webpack_require__(67);
@@ -820,9 +820,9 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Observable_1 = __webpack_require__(0);
 var Subscriber_1 = __webpack_require__(1);
 var Subscription_1 = __webpack_require__(4);
-var ObjectUnsubscribedError_1 = __webpack_require__(27);
+var ObjectUnsubscribedError_1 = __webpack_require__(28);
 var SubjectSubscription_1 = __webpack_require__(46);
-var rxSubscriber_1 = __webpack_require__(24);
+var rxSubscriber_1 = __webpack_require__(25);
 /**
  * @class SubjectSubscriber<T>
  */
@@ -1008,7 +1008,7 @@ if (!exports.root) {
     throw new Error('RxJS could not find any global context (window, self, global)');
 }
 //# sourceMappingURL=root.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)))
 
 /***/ }),
 /* 8 */
@@ -1041,8 +1041,8 @@ exports.tryCatch = tryCatch;
 
 "use strict";
 
-var AsyncAction_1 = __webpack_require__(16);
-var AsyncScheduler_1 = __webpack_require__(17);
+var AsyncAction_1 = __webpack_require__(17);
+var AsyncScheduler_1 = __webpack_require__(18);
 /**
  *
  * Async Scheduler
@@ -1100,7 +1100,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var ScalarObservable_1 = __webpack_require__(36);
+var ScalarObservable_1 = __webpack_require__(37);
 var EmptyObservable_1 = __webpack_require__(13);
 var isScheduler_1 = __webpack_require__(12);
 /**
@@ -1389,6 +1389,33 @@ exports.MulticastOperator = MulticastOperator;
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1521,7 +1548,7 @@ exports.Notification = Notification;
 //# sourceMappingURL=Notification.js.map
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1669,7 +1696,7 @@ exports.AsyncAction = AsyncAction;
 //# sourceMappingURL=AsyncAction.js.map
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1726,7 +1753,7 @@ exports.AsyncScheduler = AsyncScheduler;
 //# sourceMappingURL=AsyncScheduler.js.map
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1766,17 +1793,16 @@ exports.$$iterator = symbolIteratorPonyfill(root_1.root);
 //# sourceMappingURL=iterator.js.map
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(global) {
 "use babel";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.SUBMIT_EVENT_TYPE = exports.INITIAL_CHANGE_EVENT_TYPE = exports.VALUE_CHANGE_EVENT_TYPE = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -1784,17 +1810,21 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports.default = FormController;
 
-var _react = __webpack_require__(31);
+var _react = __webpack_require__(32);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _immutable = __webpack_require__(33);
+var _immutable = __webpack_require__(34);
 
-var _rxjs = __webpack_require__(35);
+var _rxjs = __webpack_require__(36);
 
 var _rxjs2 = _interopRequireDefault(_rxjs);
 
-var _StateValue = __webpack_require__(20);
+var _FormEvents = __webpack_require__(357);
+
+var _StateValueHelpers = __webpack_require__(356);
+
+var _ValidationHelpers = __webpack_require__(358);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1803,31 +1833,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function createValueChangeEvent(newValue, statePath) {
-  return {
-    type: VALUE_CHANGE_EVENT_TYPE,
-    newValue: newValue,
-    statePath: statePath
-  };
-}
-
-function createInitialChangeEvent(newInitial) {
-  return {
-    type: INITIAL_CHANGE_EVENT_TYPE,
-    newValue: newInitial
-  };
-}
-
-function createSubmitChangeEvent() {
-  return {
-    type: SUBMIT_EVENT_TYPE
-  };
-}
-
-var VALUE_CHANGE_EVENT_TYPE = exports.VALUE_CHANGE_EVENT_TYPE = "VALUE_CHANGE";
-var INITIAL_CHANGE_EVENT_TYPE = exports.INITIAL_CHANGE_EVENT_TYPE = "INITIAL_CHANGE";
-var SUBMIT_EVENT_TYPE = exports.SUBMIT_EVENT_TYPE = "SUBMIT";
 
 function FormController() {
   var applyControl = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (state) {
@@ -1846,6 +1851,10 @@ function FormController() {
       _ref$immutableInitial = _ref.immutableInitial,
       immutableInitial = _ref$immutableInitial === undefined ? false : _ref$immutableInitial;
 
+  var validate = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : function (value, props) {
+    return true;
+  };
+
   return function (WrappedComponent) {
     var Controller = function (_React$Component) {
       _inherits(Controller, _React$Component);
@@ -1857,41 +1866,55 @@ function FormController() {
 
         _this.subject = new _rxjs2.default.Subject().scan(function (acc, e) {
           switch (e.type) {
-            case VALUE_CHANGE_EVENT_TYPE:
-              var newState = (0, _StateValue.setValue)(acc.value, e.statePath, e.newValue);
+            case _FormEvents.VALUE_CHANGE_EVENT_TYPE:
+              var newState = (0, _StateValueHelpers.setValue)(acc.value, e.statePath, e.newValue);
+              var newValidation = (0, _StateValueHelpers.setValue)(acc.validation, e.statePath, e.validation);
               var controlledNewState = applyControl(newState, _this.props);
               return {
-                type: VALUE_CHANGE_EVENT_TYPE,
+                type: _FormEvents.VALUE_CHANGE_EVENT_TYPE,
                 value: controlledNewState,
                 oldValue: acc.value,
-                statePath: e.statePath
+                statePath: e.statePath,
+                validation: newValidation
               };
-            case SUBMIT_EVENT_TYPE:
-              return { type: SUBMIT_EVENT_TYPE, value: acc.value };
-            case INITIAL_CHANGE_EVENT_TYPE:
+            case _FormEvents.SUBMIT_EVENT_TYPE:
               return {
-                type: INITIAL_CHANGE_EVENT_TYPE,
+                type: _FormEvents.SUBMIT_EVENT_TYPE,
+                value: acc.value,
+                validation: acc.validation
+              };
+            case _FormEvents.INITIAL_CHANGE_EVENT_TYPE:
+              return {
+                type: _FormEvents.INITIAL_CHANGE_EVENT_TYPE,
                 value: e.newValue,
-                oldValue: acc.value
+                oldValue: acc.value,
+                validation: e.validation
+              };
+            case _FormEvents.VALIDATION_FAILED_EVENT_TYPE:
+              return {
+                type: _FormEvents.VALIDATION_FAILED_EVENT_TYPE,
+                value: acc.value,
+                validation: e.validation
               };
             default:
               return acc;
           }
         }, { value: _this._getInitialValue(props) }).do(function (e) {
-          return console.log("FormController event:\n", e);
+          return global.process && global.process.env && global.process.env.FORMALIZR_ENV === "DEBUG" && console.log("FormController event:\n", e);
         }).share();
-        _this.unsubscribeSubmitObs = _this.subject.filter(function (e) {
-          return e.type == SUBMIT_EVENT_TYPE;
+        _this.subject.filter(function (e) {
+          return e.type == _FormEvents.SUBMIT_EVENT_TYPE;
         }).subscribe({
           next: function next(e) {
             return _this._submit(e.value);
           }
         });
         _this.valueChangeObs = _this.subject.filter(function (e) {
-          return e.type == VALUE_CHANGE_EVENT_TYPE || e.type == INITIAL_CHANGE_EVENT_TYPE;
+          return e.type == _FormEvents.VALUE_CHANGE_EVENT_TYPE || e.type == _FormEvents.INITIAL_CHANGE_EVENT_TYPE || e.type == _FormEvents.VALIDATION_FAILED_EVENT_TYPE;
         }).publishBehavior({
-          type: INITIAL_CHANGE_EVENT_TYPE,
-          value: _this._getInitialValue(props)
+          type: _FormEvents.INITIAL_CHANGE_EVENT_TYPE,
+          value: _this._getInitialValue(props),
+          validation: {}
         }).refCount();
         _this.rootDispatcherGetter = null;
         return _this;
@@ -1903,11 +1926,11 @@ function FormController() {
           var newInitial = this._getInitialValue(nextProps);
           var oldInitial = this._getInitialValue(this.props);
           if (oldInitial != null && "toJS" in oldInitial && newInitial != null && "toJS" in newInitial || immutableInitial) {
-            if (newInitial !== oldInitial) this.subject.next(createInitialChangeEvent(newInitial));
+            if (newInitial !== oldInitial) this.subject.next((0, _FormEvents.createInitialChangeEvent)(newInitial));
           } else if (oldInitial == null && newInitial != null) {
-            this.subject.next(createInitialChangeEvent(newInitial));
+            this.subject.next((0, _FormEvents.createInitialChangeEvent)(newInitial));
           } else if (oldInitial != null && newInitial != null) {
-            if (!(0, _immutable.is)((0, _immutable.fromJS)(newInitial), (0, _immutable.fromJS)(oldInitial))) this.subject.next(createInitialChangeEvent(newInitial));
+            if (!(0, _immutable.is)((0, _immutable.fromJS)(newInitial), (0, _immutable.fromJS)(oldInitial))) this.subject.next((0, _FormEvents.createInitialChangeEvent)(newInitial));
           }
         }
       }, {
@@ -1931,7 +1954,12 @@ function FormController() {
         value: function _submit(value) {
           var newValue = this._mergeValues(value);
           if (checkIfModified === false || !(0, _immutable.is)(newValue, (0, _immutable.fromJS)(this._getInitialValue(this.props)))) {
-            this.props.onSubmit(convertOut(newValue.toJS(), this.props));
+            var validation = validate(newValue.toJS(), this.props);
+            if (validation === true) {
+              this.props.onSubmit(convertOut(newValue.toJS(), this.props));
+            } else {
+              this.subject.next((0, _FormEvents.createValidationFailedEvent)(new _ValidationHelpers.Validation(validation)));
+            }
           }
         }
       }, {
@@ -1951,12 +1979,12 @@ function FormController() {
           var _this3 = this;
 
           return _react2.default.createElement(WrappedComponent, _extends({}, this.props, {
-            onChange: function onChange(value, statePath) {
-              return _this3.subject.next(createValueChangeEvent(value, statePath));
+            onChange: function onChange(value, statePath, validation) {
+              return _this3.subject.next((0, _FormEvents.createValueChangeEvent)(value, statePath, validation));
             },
             valueChangeObs: this.valueChangeObs,
             onSubmit: function onSubmit() {
-              return _this3.subject.next({ type: SUBMIT_EVENT_TYPE });
+              return _this3.subject.next((0, _FormEvents.createSubmitChangeEvent)());
             }
           }));
         }
@@ -1972,78 +2000,11 @@ function FormController() {
     return Controller;
   };
 }
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)))
 
 /***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-exports.getValue = getValue;
-exports.setValue = setValue;
-exports.getNewPath = getNewPath;
-
-var _immutable = __webpack_require__(33);
-
-function getImmutPath(path) {
-  if (path == '') return [];
-  return path.split('.').map(function (p) {
-    return isNaN(p) ? p : parseInt(p);
-  });
-}
-
-function getJavascriptEntity(obj) {
-  if (obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == "object" && obj.toJS) return obj.toJS();else return obj;
-}
-
-function getImmutableEntity(obj) {
-  if (obj && (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == "object" && obj.toJS) return obj;else if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == 'object') return (0, _immutable.fromJS)(obj);else return obj;
-}
-
-function getValue(state, path) {
-  if (path == '') return getJavascriptEntity(state);else {
-    if ((typeof state === 'undefined' ? 'undefined' : _typeof(state)) == 'object') {
-      var valuePath = getImmutPath(path);
-      return valuePath.reduce(function (red, value, i) {
-        if (red !== undefined && red !== null) {
-          return red[value];
-        } else {
-          return red;
-        }
-      }, state);
-    } else return state;
-  }
-}
-
-function setValue(state, path, value) {
-  if (path == '') return value;else {
-    var immutState = (0, _immutable.fromJS)(state);
-    console.log(state, path, value, immutState);
-    var newState = immutState ? immutState.setIn(getImmutPath(path), value).toJS() : immutState;
-    return newState;
-  }
-}
-
-function getNewPath(immutState, statePath, name) {
-  if (isArray(getValue(immutState, statePath))) {
-    var index = getValue(immutState, statePath).findIndex(function (obj) {
-      return obj.id == name;
-    });
-    return '' + statePath + (statePath.length > 0 ? '.' : '') + index + '.value';
-  } else {
-    return '' + statePath + (statePath.length > 0 ? '.' : '') + name;
-  }
-}
-
-/***/ }),
-/* 21 */
+/* 21 */,
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2102,7 +2063,7 @@ exports.AsyncSubject = AsyncSubject;
 //# sourceMappingURL=AsyncSubject.js.map
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2219,7 +2180,7 @@ exports.MergeAllSubscriber = MergeAllSubscriber;
 //# sourceMappingURL=mergeAll.js.map
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2247,7 +2208,7 @@ exports.$$observable = getSymbolObservable(root_1.root);
 //# sourceMappingURL=observable.js.map
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2259,7 +2220,7 @@ exports.$$rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 
 //# sourceMappingURL=rxSubscriber.js.map
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2293,7 +2254,7 @@ exports.ArgumentOutOfRangeError = ArgumentOutOfRangeError;
 //# sourceMappingURL=ArgumentOutOfRangeError.js.map
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2327,7 +2288,7 @@ exports.EmptyError = EmptyError;
 //# sourceMappingURL=EmptyError.js.map
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2360,7 +2321,7 @@ exports.ObjectUnsubscribedError = ObjectUnsubscribedError;
 //# sourceMappingURL=ObjectUnsubscribedError.js.map
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2372,7 +2333,7 @@ exports.isDate = isDate;
 //# sourceMappingURL=isDate.js.map
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2384,7 +2345,7 @@ exports.isFunction = isFunction;
 //# sourceMappingURL=isFunction.js.map
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2402,13 +2363,13 @@ exports.isNumeric = isNumeric;
 //# sourceMappingURL=isNumeric.js.map
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_31__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_32__;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2427,19 +2388,19 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports.default = StateProxy;
 
-var _react = __webpack_require__(31);
+var _react = __webpack_require__(32);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _StateValue = __webpack_require__(20);
+var _StateValueHelpers = __webpack_require__(356);
 
 var _lodash = __webpack_require__(76);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _FormController = __webpack_require__(19);
+var _FormEvents = __webpack_require__(357);
 
-var _rxjs = __webpack_require__(35);
+var _rxjs = __webpack_require__(36);
 
 var _rxjs2 = _interopRequireDefault(_rxjs);
 
@@ -2452,9 +2413,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function StateProxy() {
-  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { root: false },
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       _ref$root = _ref.root,
-      root = _ref$root === undefined ? false : _ref$root;
+      root = _ref$root === undefined ? false : _ref$root,
+      _ref$validate = _ref.validate,
+      validate = _ref$validate === undefined ? function () {
+    return true;
+  } : _ref$validate;
 
   var uncontrolledConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
     getValue: function getValue() {
@@ -2475,7 +2440,8 @@ function StateProxy() {
         var _this = _possibleConstructorReturn(this, (ProxiedState.__proto__ || Object.getPrototypeOf(ProxiedState)).call(this, props));
 
         _this.state = {
-          value: null
+          value: null,
+          validation: null
         };
         _this.parentValueChangeObs = props.valueChangeObs || context.valueChangeObs || _rxjs2.default.Observable.never();
         _this.valueChangeObs = _this.parentValueChangeObs
@@ -2500,8 +2466,7 @@ function StateProxy() {
         // })
         .filter(function (e) {
           var path = _this.getCompleteCurrentStatePath(props, context, e.value);
-          return e.type == _FormController.INITIAL_CHANGE_EVENT_TYPE || path.startsWith(e.statePath) || root && e.statePath.startsWith(path);
-          props.valueChangeObs;
+          return e.type === _FormEvents.INITIAL_CHANGE_EVENT_TYPE || e.type === _FormEvents.VALIDATION_FAILED_EVENT_TYPE || path.startsWith(e.statePath) || root && e.statePath.startsWith(path);
         })
         // .do(e => {
         //   const path = this.getCompleteCurrentStatePath(
@@ -2514,7 +2479,8 @@ function StateProxy() {
         // })
         .map(function (e) {
           return Object.assign({}, e, {
-            value: (0, _StateValue.getValue)(e.value, _this.getCurrentStatePath(props, context, e.value))
+            value: (0, _StateValueHelpers.getValue)(e.value, _this.getCurrentStatePath(props, context, e.value)),
+            validation: (0, _StateValueHelpers.getValue)(e.validation, _this.getCurrentStatePath(props, context, e.value))
           });
         });
         return _this;
@@ -2534,9 +2500,15 @@ function StateProxy() {
           }
           if (this.valueChangeObs && this.isControlled()) this.subscription = this.valueChangeObs.subscribe({
             next: function next(e) {
-              return root ? _this2.value = e.value : _this2.setState({
-                value: e.value
-              });
+              if (root) {
+                _this2.value = e.value;
+                _this2.validation = e.validation;
+              } else {
+                _this2.setState({
+                  value: e.value,
+                  validation: e.validation
+                });
+              }
             }
           });
         }
@@ -2548,7 +2520,7 @@ function StateProxy() {
       }, {
         key: "getNewPathPart",
         value: function getNewPathPart(props, context, v) {
-          var value = (0, _StateValue.getValue)(v, context.statePath || "");
+          var value = (0, _StateValueHelpers.getValue)(v, context.statePath || "");
           if ((typeof value === "undefined" ? "undefined" : _typeof(value)) == "object" && Array.isArray(value)) {
             var index = value.findIndex(function (v) {
               return v.id == props.name;
@@ -2561,7 +2533,7 @@ function StateProxy() {
       }, {
         key: "getNewCompletePathPart",
         value: function getNewCompletePathPart(props, context, v) {
-          var value = (0, _StateValue.getValue)(v, context.completeStatePath || "");
+          var value = (0, _StateValueHelpers.getValue)(v, context.completeStatePath || "");
           if ((typeof value === "undefined" ? "undefined" : _typeof(value)) == "object" && Array.isArray(value)) {
             var index = value.findIndex(function (v) {
               return v.id == props.name;
@@ -2611,16 +2583,18 @@ function StateProxy() {
           var _this3 = this;
 
           var value = this.state.value === undefined && this.props.value !== undefined ? this.props.value : this.state.value;
+          var validation = this.state.validation === undefined && this.props.validation !== undefined ? this.props.validation : this.state.validation;
           var statePath = this.getCurrentStatePath(this.props, this.context);
           if (this.isControlled()) {
             return _react2.default.createElement(WrappedComponent, _extends({}, Object.assign({}, this.props, {
               value: value,
+              validation: validation,
               valueChangeObs: this.valueChangeObs,
               rootValueChangeObs: this.context.rootValueChangeObs ? this.context.rootValueChangeObs : this.valueChangeObs,
               onChange: this.props.onChange != null ? function (newValue, sp) {
-                return _this3.props.onChange(newValue, sp !== undefined ? sp : statePath);
+                _this3.props.onChange(newValue, sp !== undefined ? sp : statePath, validate(newValue, _this3.props));
               } : function (newValue, sp) {
-                return _this3.context.onStateChange(newValue, sp !== undefined ? sp : statePath);
+                _this3.context.onStateChange(newValue, sp !== undefined ? sp : statePath, validate(newValue, _this3.props));
               },
               statePath: statePath,
               getValue: root ? function () {
@@ -2676,7 +2650,7 @@ function StateProxy() {
 }
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -7660,7 +7634,7 @@ function StateProxy() {
 }));
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7673,8 +7647,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Subject_1 = __webpack_require__(5);
 var queue_1 = __webpack_require__(63);
 var Subscription_1 = __webpack_require__(4);
-var observeOn_1 = __webpack_require__(40);
-var ObjectUnsubscribedError_1 = __webpack_require__(27);
+var observeOn_1 = __webpack_require__(41);
+var ObjectUnsubscribedError_1 = __webpack_require__(28);
 var SubjectSubscription_1 = __webpack_require__(46);
 /**
  * @class ReplaySubject<T>
@@ -7768,7 +7742,7 @@ var ReplayEvent = (function () {
 //# sourceMappingURL=ReplaySubject.js.map
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7919,21 +7893,21 @@ var Subscription_1 = __webpack_require__(4);
 exports.Subscription = Subscription_1.Subscription;
 var Subscriber_1 = __webpack_require__(1);
 exports.Subscriber = Subscriber_1.Subscriber;
-var AsyncSubject_1 = __webpack_require__(21);
+var AsyncSubject_1 = __webpack_require__(22);
 exports.AsyncSubject = AsyncSubject_1.AsyncSubject;
-var ReplaySubject_1 = __webpack_require__(34);
+var ReplaySubject_1 = __webpack_require__(35);
 exports.ReplaySubject = ReplaySubject_1.ReplaySubject;
 var BehaviorSubject_1 = __webpack_require__(44);
 exports.BehaviorSubject = BehaviorSubject_1.BehaviorSubject;
 var ConnectableObservable_1 = __webpack_require__(47);
 exports.ConnectableObservable = ConnectableObservable_1.ConnectableObservable;
-var Notification_1 = __webpack_require__(15);
+var Notification_1 = __webpack_require__(16);
 exports.Notification = Notification_1.Notification;
-var EmptyError_1 = __webpack_require__(26);
+var EmptyError_1 = __webpack_require__(27);
 exports.EmptyError = EmptyError_1.EmptyError;
-var ArgumentOutOfRangeError_1 = __webpack_require__(25);
+var ArgumentOutOfRangeError_1 = __webpack_require__(26);
 exports.ArgumentOutOfRangeError = ArgumentOutOfRangeError_1.ArgumentOutOfRangeError;
-var ObjectUnsubscribedError_1 = __webpack_require__(27);
+var ObjectUnsubscribedError_1 = __webpack_require__(28);
 exports.ObjectUnsubscribedError = ObjectUnsubscribedError_1.ObjectUnsubscribedError;
 var TimeoutError_1 = __webpack_require__(66);
 exports.TimeoutError = TimeoutError_1.TimeoutError;
@@ -7955,9 +7929,9 @@ var asap_1 = __webpack_require__(62);
 var async_1 = __webpack_require__(9);
 var queue_1 = __webpack_require__(63);
 var animationFrame_1 = __webpack_require__(339);
-var rxSubscriber_1 = __webpack_require__(24);
-var iterator_1 = __webpack_require__(18);
-var observable_1 = __webpack_require__(23);
+var rxSubscriber_1 = __webpack_require__(25);
+var iterator_1 = __webpack_require__(19);
+var observable_1 = __webpack_require__(24);
 /* tslint:enable:no-unused-variable */
 /**
  * @typedef {Object} Rx.Scheduler
@@ -8001,7 +7975,7 @@ exports.Symbol = Symbol;
 //# sourceMappingURL=Rx.js.map
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8065,7 +8039,7 @@ exports.ScalarObservable = ScalarObservable;
 //# sourceMappingURL=ScalarObservable.js.map
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8223,7 +8197,7 @@ exports.CombineLatestSubscriber = CombineLatestSubscriber;
 //# sourceMappingURL=combineLatest.js.map
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8231,7 +8205,7 @@ exports.CombineLatestSubscriber = CombineLatestSubscriber;
 var Observable_1 = __webpack_require__(0);
 var isScheduler_1 = __webpack_require__(12);
 var ArrayObservable_1 = __webpack_require__(10);
-var mergeAll_1 = __webpack_require__(22);
+var mergeAll_1 = __webpack_require__(23);
 /* tslint:enable:max-line-length */
 /**
  * Creates an output Observable which sequentially emits all values from every
@@ -8403,7 +8377,7 @@ exports.concatStatic = concatStatic;
 //# sourceMappingURL=concat.js.map
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8496,7 +8470,7 @@ var MapSubscriber = (function (_super) {
 //# sourceMappingURL=map.js.map
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8507,7 +8481,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var Notification_1 = __webpack_require__(15);
+var Notification_1 = __webpack_require__(16);
 /**
  * @see {@link Notification}
  *
@@ -8578,7 +8552,7 @@ exports.ObserveOnMessage = ObserveOnMessage;
 //# sourceMappingURL=observeOn.js.map
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8710,7 +8684,7 @@ exports.ReduceSubscriber = ReduceSubscriber;
 //# sourceMappingURL=reduce.js.map
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8725,7 +8699,7 @@ var isArray_1 = __webpack_require__(11);
 var Subscriber_1 = __webpack_require__(1);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
-var iterator_1 = __webpack_require__(18);
+var iterator_1 = __webpack_require__(19);
 /* tslint:enable:max-line-length */
 /**
  * @param observables
@@ -8991,33 +8965,6 @@ var ZipBufferIterator = (function (_super) {
 //# sourceMappingURL=zip.js.map
 
 /***/ }),
-/* 43 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9029,7 +8976,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subject_1 = __webpack_require__(5);
-var ObjectUnsubscribedError_1 = __webpack_require__(27);
+var ObjectUnsubscribedError_1 = __webpack_require__(28);
 /**
  * @class BehaviorSubject<T>
  */
@@ -9318,10 +9265,10 @@ var PromiseObservable_1 = __webpack_require__(49);
 var IteratorObservable_1 = __webpack_require__(218);
 var ArrayObservable_1 = __webpack_require__(10);
 var ArrayLikeObservable_1 = __webpack_require__(207);
-var iterator_1 = __webpack_require__(18);
+var iterator_1 = __webpack_require__(19);
 var Observable_1 = __webpack_require__(0);
-var observeOn_1 = __webpack_require__(40);
-var observable_1 = __webpack_require__(23);
+var observeOn_1 = __webpack_require__(41);
+var observable_1 = __webpack_require__(24);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -9571,7 +9518,7 @@ var tryCatch_1 = __webpack_require__(8);
 var errorObject_1 = __webpack_require__(6);
 var Observable_1 = __webpack_require__(0);
 var Subscriber_1 = __webpack_require__(1);
-var map_1 = __webpack_require__(39);
+var map_1 = __webpack_require__(40);
 function getCORSRequest() {
     if (root_1.root.XMLHttpRequest) {
         return new root_1.root.XMLHttpRequest();
@@ -10302,7 +10249,7 @@ exports.FindValueSubscriber = FindValueSubscriber;
 
 var Observable_1 = __webpack_require__(0);
 var ArrayObservable_1 = __webpack_require__(10);
-var mergeAll_1 = __webpack_require__(22);
+var mergeAll_1 = __webpack_require__(23);
 var isScheduler_1 = __webpack_require__(12);
 /* tslint:enable:max-line-length */
 /**
@@ -11114,8 +11061,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncAction_1 = __webpack_require__(16);
-var AsyncScheduler_1 = __webpack_require__(17);
+var AsyncAction_1 = __webpack_require__(17);
+var AsyncScheduler_1 = __webpack_require__(18);
 var VirtualTimeScheduler = (function (_super) {
     __extends(VirtualTimeScheduler, _super);
     function VirtualTimeScheduler(SchedulerAction, maxFrames) {
@@ -11563,7 +11510,7 @@ exports.clearImmediate = clearImmediate;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(global) {
 "use babel";
 
 Object.defineProperty(exports, "__esModule", {
@@ -11576,23 +11523,23 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports.default = StateDispatcher;
 
-var _react = __webpack_require__(31);
+var _react = __webpack_require__(32);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _immutable = __webpack_require__(33);
+var _immutable = __webpack_require__(34);
 
-var _StateProxy = __webpack_require__(32);
+var _StateProxy = __webpack_require__(33);
 
 var _StateProxy2 = _interopRequireDefault(_StateProxy);
 
-var _StateValue = __webpack_require__(20);
+var _StateValueHelpers = __webpack_require__(356);
 
-var _rxjs = __webpack_require__(35);
+var _rxjs = __webpack_require__(36);
 
 var _rxjs2 = _interopRequireDefault(_rxjs);
 
-var _FormController = __webpack_require__(19);
+var _FormEvents = __webpack_require__(357);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11626,7 +11573,8 @@ function StateDispatcher() {
           var convertedValue = convertIn(e.value, props);
           if (convertedValue === e.value) return e;else return Object.assign({}, e, {
             value: convertedValue,
-            statePath: e.type === _FormController.INITIAL_CHANGE_EVENT_TYPE ? undefined : props.statePath
+            validation: e.validation,
+            statePath: e.type === _FormEvents.INITIAL_CHANGE_EVENT_TYPE ? undefined : props.statePath
           });
         });
         return _this;
@@ -11640,10 +11588,10 @@ function StateDispatcher() {
           if (this.context.attachToController != null) this.context.attachToController(function () {
             return _this2.getUncontrolledState();
           });
-          this.unsubscribeInitial = this.valueChangeObs.filter(function (e) {
-            return e.type == _FormController.INITIAL_CHANGE_EVENT_TYPE;
+          this.subscription = this.valueChangeObs.filter(function (e) {
+            return e.type == _FormEvents.INITIAL_CHANGE_EVENT_TYPE;
           }).do(function (e) {
-            return console.log("Dispatching uncontrolled values from " + _this2.props.statePath);
+            return global.process && global.process.env && global.process.env.FORMALIZR_ENV === "DEBUG" && console.log("Dispatching uncontrolled values from " + _this2.props.statePath);
           }).subscribe({
             next: function next(e) {
               return _this2.dispatchUncontrolledValues(e);
@@ -11654,7 +11602,7 @@ function StateDispatcher() {
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
           if (this.context.attachToController != null) this.context.attachToController(null);
-          this.unsubscribeInitial.unsubscribe();
+          this.subscription.unsubscribe();
         }
       }, {
         key: "dispatchUncontrolledValues",
@@ -11662,7 +11610,7 @@ function StateDispatcher() {
           var _this3 = this;
 
           Object.keys(this.handlers).forEach(function (statePath) {
-            if (event.oldValue === undefined || (0, _StateValue.getValue)(convertIn(event.value, _this3.props), statePath) !== (0, _StateValue.getValue)(convertIn(event.oldValue, _this3.props), statePath)) _this3.handlers[statePath].set((0, _StateValue.getValue)(convertIn(event.value, _this3.props), statePath));
+            if (event.oldValue === undefined || (0, _StateValueHelpers.getValue)(convertIn(event.value, _this3.props), statePath) !== (0, _StateValueHelpers.getValue)(convertIn(event.oldValue, _this3.props), statePath)) _this3.handlers[statePath].set((0, _StateValueHelpers.getValue)(convertIn(event.value, _this3.props), statePath));
           });
         }
       }, {
@@ -11673,7 +11621,7 @@ function StateDispatcher() {
           return {
             valueChangeObs: this.valueChangeObs,
             rootValueChangeObs: this.props.rootValueChangeObs,
-            onStateChange: function onStateChange(v, statePath) {
+            onStateChange: function onStateChange(v, statePath, validation) {
               var convertedInParentValue = convertIn(_this4.props.getValue(), _this4.props);
               var completeValue = Array.isArray(convertedInParentValue) === false ? Object.assign({}, convertedInParentValue, _defineProperty({}, statePath, v)) : (0, _immutable.List)().concat(convertedInParentValue).update(function (list) {
                 return list.update(list.findIndex(function (item) {
@@ -11691,7 +11639,7 @@ function StateDispatcher() {
               //   v,
               //   statePath,
               // );
-              if (convertedValue !== completeValue || (typeof convertedValue === "undefined" ? "undefined" : _typeof(convertedValue)) != _typeof(_this4.props.getValue())) _this4.props.onChange(convertedValue, _this4.props.statePath);else _this4.props.onChange(v, "" + _this4.props.statePath + (_this4.props.statePath == "" || statePath == "" ? "" : ".") + statePath);
+              if (convertedValue !== completeValue || (typeof convertedValue === "undefined" ? "undefined" : _typeof(convertedValue)) != _typeof(_this4.props.getValue())) _this4.props.onChange(convertedValue, _this4.props.statePath, validation);else _this4.props.onChange(v, "" + _this4.props.statePath + (_this4.props.statePath == "" || statePath == "" ? "" : ".") + statePath, validation);
             },
             attachToController: null,
             addHandler: function (statePath, getHandler, setHandler) {
@@ -11708,7 +11656,7 @@ function StateDispatcher() {
           var _this5 = this;
 
           var value = Object.keys(this.handlers).reduce(function (red, statePath) {
-            return (0, _StateValue.setValue)(red, statePath, _this5.handlers[statePath].get());
+            return (0, _StateValueHelpers.setValue)(red, statePath, _this5.handlers[statePath].get());
           }, {});
           return convertOut(value, this.props);
         }
@@ -11754,6 +11702,7 @@ function StateDispatcher() {
     })(Dispatcher);
   };
 }
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)))
 
 /***/ }),
 /* 75 */
@@ -11769,15 +11718,19 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(31);
+var _react = __webpack_require__(32);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _StateProxy = __webpack_require__(32);
+var _StateProxy = __webpack_require__(33);
 
 var _StateProxy2 = _interopRequireDefault(_StateProxy);
 
-var _FormController = __webpack_require__(19);
+var _FormEvents = __webpack_require__(357);
+
+var _rxjs = __webpack_require__(36);
+
+var _rxjs2 = _interopRequireDefault(_rxjs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11802,7 +11755,7 @@ var StateInjector = function (_React$Component) {
     _this.watchPath = _this.getWatchedPath(props, context);
     _this.valueChangeObs = context.rootValueChangeObs.filter(function (e) {
       // console.log("FILTERING", e, "In watcher", this.watchPath);
-      if (e.statePath) return _this.watchPath.startsWith(e.statePath) || e.statePath.startsWith(_this.watchPath);else if (e.type === _FormController.INITIAL_CHANGE_EVENT_TYPE) return true;else return false;
+      if (e.statePath) return _this.watchPath.startsWith(e.statePath) || e.statePath.startsWith(_this.watchPath);else if (e.type === _FormEvents.INITIAL_CHANGE_EVENT_TYPE) return true;else return false;
     });
     return _this;
   }
@@ -11819,21 +11772,26 @@ var StateInjector = function (_React$Component) {
 
       this.subscription = this.valueChangeObs.subscribe(function (e) {
         _this2.setState({
-          value: e.value
+          value: e.value,
+          validation: e.validation
         });
       });
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      this.subscription.unsubscribe();
+      if (this.subscription) {
+        this.subscription.unsubscribe();
+        this.subscription = null;
+      }
     }
   }, {
     key: "render",
     value: function render() {
       if (typeof this.props.children !== "function") throw new Error("children of StateInjector must be a function of type (stateValue, props) => React$element");
       return this.props.children(this.state.value, this.props, {
-        watchedStatePath: this.watchPath
+        watchedStatePath: this.watchPath,
+        validation: this.state.validation
       });
     }
   }]);
@@ -28943,7 +28901,7 @@ StateInjector.contextTypes = {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43), __webpack_require__(353)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15), __webpack_require__(353)(module)))
 
 /***/ }),
 /* 77 */
@@ -29632,7 +29590,7 @@ Observable_1.Observable.prototype.combineAll = combineAll_1.combineAll;
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var combineLatest_1 = __webpack_require__(37);
+var combineLatest_1 = __webpack_require__(38);
 Observable_1.Observable.prototype.combineLatest = combineLatest_1.combineLatest;
 //# sourceMappingURL=combineLatest.js.map
 
@@ -29643,7 +29601,7 @@ Observable_1.Observable.prototype.combineLatest = combineLatest_1.combineLatest;
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var concat_1 = __webpack_require__(38);
+var concat_1 = __webpack_require__(39);
 Observable_1.Observable.prototype.concat = concat_1.concat;
 //# sourceMappingURL=concat.js.map
 
@@ -29976,7 +29934,7 @@ Observable_1.Observable.prototype.letBind = let_1.letProto;
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var map_1 = __webpack_require__(39);
+var map_1 = __webpack_require__(40);
 Observable_1.Observable.prototype.map = map_1.map;
 //# sourceMappingURL=map.js.map
 
@@ -30031,7 +29989,7 @@ Observable_1.Observable.prototype.merge = merge_1.merge;
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var mergeAll_1 = __webpack_require__(22);
+var mergeAll_1 = __webpack_require__(23);
 Observable_1.Observable.prototype.mergeAll = mergeAll_1.mergeAll;
 //# sourceMappingURL=mergeAll.js.map
 
@@ -30099,7 +30057,7 @@ Observable_1.Observable.prototype.multicast = multicast_1.multicast;
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var observeOn_1 = __webpack_require__(40);
+var observeOn_1 = __webpack_require__(41);
 Observable_1.Observable.prototype.observeOn = observeOn_1.observeOn;
 //# sourceMappingURL=observeOn.js.map
 
@@ -30209,7 +30167,7 @@ Observable_1.Observable.prototype.race = race_1.race;
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var reduce_1 = __webpack_require__(41);
+var reduce_1 = __webpack_require__(42);
 Observable_1.Observable.prototype.reduce = reduce_1.reduce;
 //# sourceMappingURL=reduce.js.map
 
@@ -30617,7 +30575,7 @@ Observable_1.Observable.prototype.withLatestFrom = withLatestFrom_1.withLatestFr
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var zip_1 = __webpack_require__(42);
+var zip_1 = __webpack_require__(43);
 Observable_1.Observable.prototype.zip = zip_1.zipProto;
 //# sourceMappingURL=zip.js.map
 
@@ -30644,7 +30602,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var ScalarObservable_1 = __webpack_require__(36);
+var ScalarObservable_1 = __webpack_require__(37);
 var EmptyObservable_1 = __webpack_require__(13);
 /**
  * We need this JSDoc comment for affecting ESDoc.
@@ -30722,7 +30680,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Observable_1 = __webpack_require__(0);
 var tryCatch_1 = __webpack_require__(8);
 var errorObject_1 = __webpack_require__(6);
-var AsyncSubject_1 = __webpack_require__(21);
+var AsyncSubject_1 = __webpack_require__(22);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -30996,7 +30954,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Observable_1 = __webpack_require__(0);
 var tryCatch_1 = __webpack_require__(8);
 var errorObject_1 = __webpack_require__(6);
-var AsyncSubject_1 = __webpack_require__(21);
+var AsyncSubject_1 = __webpack_require__(22);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -31575,7 +31533,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Observable_1 = __webpack_require__(0);
 var tryCatch_1 = __webpack_require__(8);
-var isFunction_1 = __webpack_require__(29);
+var isFunction_1 = __webpack_require__(30);
 var errorObject_1 = __webpack_require__(6);
 var Subscription_1 = __webpack_require__(4);
 var toString = Object.prototype.toString;
@@ -31719,7 +31677,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isFunction_1 = __webpack_require__(29);
+var isFunction_1 = __webpack_require__(30);
 var Observable_1 = __webpack_require__(0);
 var Subscription_1 = __webpack_require__(4);
 /**
@@ -32046,7 +32004,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isNumeric_1 = __webpack_require__(30);
+var isNumeric_1 = __webpack_require__(31);
 var Observable_1 = __webpack_require__(0);
 var async_1 = __webpack_require__(9);
 /**
@@ -32142,7 +32100,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var root_1 = __webpack_require__(7);
 var Observable_1 = __webpack_require__(0);
-var iterator_1 = __webpack_require__(18);
+var iterator_1 = __webpack_require__(19);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -32569,7 +32527,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Observable_1 = __webpack_require__(0);
 var asap_1 = __webpack_require__(62);
-var isNumeric_1 = __webpack_require__(30);
+var isNumeric_1 = __webpack_require__(31);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -32624,11 +32582,11 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isNumeric_1 = __webpack_require__(30);
+var isNumeric_1 = __webpack_require__(31);
 var Observable_1 = __webpack_require__(0);
 var async_1 = __webpack_require__(9);
 var isScheduler_1 = __webpack_require__(12);
-var isDate_1 = __webpack_require__(28);
+var isDate_1 = __webpack_require__(29);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -32822,7 +32780,7 @@ exports.bindNodeCallback = BoundNodeCallbackObservable_1.BoundNodeCallbackObserv
 var isScheduler_1 = __webpack_require__(12);
 var isArray_1 = __webpack_require__(11);
 var ArrayObservable_1 = __webpack_require__(10);
-var combineLatest_1 = __webpack_require__(37);
+var combineLatest_1 = __webpack_require__(38);
 /* tslint:enable:max-line-length */
 /**
  * Combines multiple Observables to create an Observable whose values are
@@ -32961,7 +32919,7 @@ exports.combineLatest = combineLatest;
 
 "use strict";
 
-var concat_1 = __webpack_require__(38);
+var concat_1 = __webpack_require__(39);
 exports.concat = concat_1.concatStatic;
 //# sourceMappingURL=concat.js.map
 
@@ -32991,7 +32949,7 @@ var Subscriber_1 = __webpack_require__(1);
 var Observable_1 = __webpack_require__(0);
 var Subscription_1 = __webpack_require__(4);
 var root_1 = __webpack_require__(7);
-var ReplaySubject_1 = __webpack_require__(34);
+var ReplaySubject_1 = __webpack_require__(35);
 var tryCatch_1 = __webpack_require__(8);
 var errorObject_1 = __webpack_require__(6);
 var assign_1 = __webpack_require__(349);
@@ -33415,7 +33373,7 @@ exports.using = UsingObservable_1.UsingObservable.create;
 
 "use strict";
 
-var zip_1 = __webpack_require__(42);
+var zip_1 = __webpack_require__(43);
 exports.zip = zip_1.zipStatic;
 //# sourceMappingURL=zip.js.map
 
@@ -34459,7 +34417,7 @@ var CatchSubscriber = (function (_super) {
 
 "use strict";
 
-var combineLatest_1 = __webpack_require__(37);
+var combineLatest_1 = __webpack_require__(38);
 /**
  * Converts a higher-order Observable into a first-order Observable by waiting
  * for the outer Observable to complete, then applying {@link combineLatest}.
@@ -34512,7 +34470,7 @@ exports.combineAll = combineAll;
 
 "use strict";
 
-var mergeAll_1 = __webpack_require__(22);
+var mergeAll_1 = __webpack_require__(23);
 /* tslint:enable:max-line-length */
 /**
  * Converts a higher-order Observable into a first-order Observable by
@@ -35181,9 +35139,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var async_1 = __webpack_require__(9);
-var isDate_1 = __webpack_require__(28);
+var isDate_1 = __webpack_require__(29);
 var Subscriber_1 = __webpack_require__(1);
-var Notification_1 = __webpack_require__(15);
+var Notification_1 = __webpack_require__(16);
 /**
  * Delays the emission of items from the source Observable by a given timeout or
  * until a given Date.
@@ -35920,7 +35878,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var ArgumentOutOfRangeError_1 = __webpack_require__(25);
+var ArgumentOutOfRangeError_1 = __webpack_require__(26);
 /**
  * Emits the single value at the specified `index` in a sequence of emissions
  * from the source Observable.
@@ -36598,7 +36556,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var EmptyError_1 = __webpack_require__(26);
+var EmptyError_1 = __webpack_require__(27);
 /**
  * Emits only the first value (or the first value that meets some condition)
  * emitted by the source Observable.
@@ -37108,7 +37066,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var EmptyError_1 = __webpack_require__(26);
+var EmptyError_1 = __webpack_require__(27);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits only the last item emitted by the source Observable.
@@ -37320,7 +37278,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var Notification_1 = __webpack_require__(15);
+var Notification_1 = __webpack_require__(16);
 /**
  * Represents all of the notifications from the source Observable as `next`
  * emissions marked with their original types within {@link Notification}
@@ -37410,7 +37368,7 @@ var MaterializeSubscriber = (function (_super) {
 
 "use strict";
 
-var reduce_1 = __webpack_require__(41);
+var reduce_1 = __webpack_require__(42);
 /**
  * The Max operator operates on an Observable that emits numbers (or items that can be compared with a provided function),
  * and when source Observable completes it emits a single item: the item with the largest value.
@@ -37592,7 +37550,7 @@ exports.MergeScanSubscriber = MergeScanSubscriber;
 
 "use strict";
 
-var reduce_1 = __webpack_require__(41);
+var reduce_1 = __webpack_require__(42);
 /**
  * The Min operator operates on an Observable that emits numbers (or items that can be compared with a provided function),
  * and when source Observable completes it emits a single item: the item with the smallest value.
@@ -37780,7 +37738,7 @@ exports.partition = partition;
 
 "use strict";
 
-var map_1 = __webpack_require__(39);
+var map_1 = __webpack_require__(40);
 /**
  * Maps each source value (an object) to its specified nested property.
  *
@@ -37892,7 +37850,7 @@ exports.publishBehavior = publishBehavior;
 
 "use strict";
 
-var AsyncSubject_1 = __webpack_require__(21);
+var AsyncSubject_1 = __webpack_require__(22);
 var multicast_1 = __webpack_require__(14);
 /**
  * @return {ConnectableObservable<T>}
@@ -37911,7 +37869,7 @@ exports.publishLast = publishLast;
 
 "use strict";
 
-var ReplaySubject_1 = __webpack_require__(34);
+var ReplaySubject_1 = __webpack_require__(35);
 var multicast_1 = __webpack_require__(14);
 /**
  * @param bufferSize
@@ -38825,7 +38783,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var EmptyError_1 = __webpack_require__(26);
+var EmptyError_1 = __webpack_require__(27);
 /**
  * Returns an Observable that emits the single item emitted by the source Observable that matches a specified
  * predicate, if that Observable emits one such item. If the source Observable emits more than one such item or no
@@ -39125,9 +39083,9 @@ var SkipWhileSubscriber = (function (_super) {
 "use strict";
 
 var ArrayObservable_1 = __webpack_require__(10);
-var ScalarObservable_1 = __webpack_require__(36);
+var ScalarObservable_1 = __webpack_require__(37);
 var EmptyObservable_1 = __webpack_require__(13);
-var concat_1 = __webpack_require__(38);
+var concat_1 = __webpack_require__(39);
 var isScheduler_1 = __webpack_require__(12);
 /* tslint:enable:max-line-length */
 /**
@@ -39608,7 +39566,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var ArgumentOutOfRangeError_1 = __webpack_require__(25);
+var ArgumentOutOfRangeError_1 = __webpack_require__(26);
 var EmptyObservable_1 = __webpack_require__(13);
 /**
  * Emits only the first `count` values emitted by the source Observable.
@@ -39703,7 +39661,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var ArgumentOutOfRangeError_1 = __webpack_require__(25);
+var ArgumentOutOfRangeError_1 = __webpack_require__(26);
 var EmptyObservable_1 = __webpack_require__(13);
 /**
  * Emits only the last `count` values emitted by the source Observable.
@@ -40210,7 +40168,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var async_1 = __webpack_require__(9);
-var isDate_1 = __webpack_require__(28);
+var isDate_1 = __webpack_require__(29);
 var Subscriber_1 = __webpack_require__(1);
 var TimeoutError_1 = __webpack_require__(66);
 /**
@@ -40317,7 +40275,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var async_1 = __webpack_require__(9);
-var isDate_1 = __webpack_require__(28);
+var isDate_1 = __webpack_require__(29);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /* tslint:enable:max-line-length */
@@ -40818,7 +40776,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Subject_1 = __webpack_require__(5);
 var async_1 = __webpack_require__(9);
 var Subscriber_1 = __webpack_require__(1);
-var isNumeric_1 = __webpack_require__(30);
+var isNumeric_1 = __webpack_require__(31);
 var isScheduler_1 = __webpack_require__(12);
 function windowTime(windowTimeSpan) {
     var scheduler = async_1.async;
@@ -41432,7 +41390,7 @@ var WithLatestFromSubscriber = (function (_super) {
 
 "use strict";
 
-var zip_1 = __webpack_require__(42);
+var zip_1 = __webpack_require__(43);
 /**
  * @param project
  * @return {Observable<R>|WebSocketSubject<T>|Observable<T>}
@@ -41506,7 +41464,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncAction_1 = __webpack_require__(16);
+var AsyncAction_1 = __webpack_require__(17);
 var AnimationFrame_1 = __webpack_require__(343);
 /**
  * We need this JSDoc comment for affecting ESDoc.
@@ -41567,7 +41525,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncScheduler_1 = __webpack_require__(17);
+var AsyncScheduler_1 = __webpack_require__(18);
 var AnimationFrameScheduler = (function (_super) {
     __extends(AnimationFrameScheduler, _super);
     function AnimationFrameScheduler() {
@@ -41611,7 +41569,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Immediate_1 = __webpack_require__(345);
-var AsyncAction_1 = __webpack_require__(16);
+var AsyncAction_1 = __webpack_require__(17);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -41671,7 +41629,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncScheduler_1 = __webpack_require__(17);
+var AsyncScheduler_1 = __webpack_require__(18);
 var AsapScheduler = (function (_super) {
     __extends(AsapScheduler, _super);
     function AsapScheduler() {
@@ -41714,7 +41672,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncAction_1 = __webpack_require__(16);
+var AsyncAction_1 = __webpack_require__(17);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -41769,7 +41727,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncScheduler_1 = __webpack_require__(17);
+var AsyncScheduler_1 = __webpack_require__(18);
 var QueueScheduler = (function (_super) {
     __extends(QueueScheduler, _super);
     function QueueScheduler() {
@@ -41939,7 +41897,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var Notification_1 = __webpack_require__(15);
+var Notification_1 = __webpack_require__(16);
 var ColdObservable_1 = __webpack_require__(340);
 var HotObservable_1 = __webpack_require__(341);
 var SubscriptionLog_1 = __webpack_require__(64);
@@ -42608,7 +42566,7 @@ exports.not = not;
 "use strict";
 
 var Subscriber_1 = __webpack_require__(1);
-var rxSubscriber_1 = __webpack_require__(24);
+var rxSubscriber_1 = __webpack_require__(25);
 var Observer_1 = __webpack_require__(45);
 function toSubscriber(nextOrObserver, error, complete) {
     if (nextOrObserver) {
@@ -42818,7 +42776,7 @@ exports.toSubscriber = toSubscriber;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43), __webpack_require__(77)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15), __webpack_require__(77)))
 
 /***/ }),
 /* 353 */
@@ -42854,15 +42812,15 @@ module.exports = function(module) {
 
 "use strict";
 
-'use babel';
+"use babel";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _FormController = __webpack_require__(19);
+var _FormController = __webpack_require__(20);
 
-Object.defineProperty(exports, 'FormController', {
+Object.defineProperty(exports, "FormController", {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_FormController).default;
@@ -42871,16 +42829,16 @@ Object.defineProperty(exports, 'FormController', {
 
 var _StateDispatcher = __webpack_require__(74);
 
-Object.defineProperty(exports, 'StateDispatcher', {
+Object.defineProperty(exports, "StateDispatcher", {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_StateDispatcher).default;
   }
 });
 
-var _StateProxy = __webpack_require__(32);
+var _StateProxy = __webpack_require__(33);
 
-Object.defineProperty(exports, 'StateProxy', {
+Object.defineProperty(exports, "StateProxy", {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_StateProxy).default;
@@ -42889,23 +42847,241 @@ Object.defineProperty(exports, 'StateProxy', {
 
 var _StateInjector = __webpack_require__(75);
 
-Object.defineProperty(exports, 'StateInjector', {
+Object.defineProperty(exports, "StateInjector", {
   enumerable: true,
   get: function get() {
     return _interopRequireDefault(_StateInjector).default;
   }
 });
 
-var _StateValue = __webpack_require__(20);
+var _StateValueHelpers = __webpack_require__(356);
 
-Object.defineProperty(exports, 'getValue', {
+Object.defineProperty(exports, "getValue", {
   enumerable: true,
   get: function get() {
-    return _StateValue.getValue;
+    return _StateValueHelpers.getValue;
   }
 });
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 355 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+"use babel";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getImmutPath = getImmutPath;
+exports.getNewPath = getNewPath;
+
+function getImmutPath(path) {
+  if (path == "") return [];
+  return path.split(".").map(function (p) {
+    return isNaN(p) ? p : parseInt(p);
+  });
+}
+
+function getNewPath(immutState, statePath, name) {
+  if (isArray(getValue(immutState, statePath))) {
+    var index = getValue(immutState, statePath).findIndex(function (obj) {
+      return obj.id == name;
+    });
+    return "" + statePath + (statePath.length > 0 ? "." : "") + index + ".value";
+  } else {
+    return "" + statePath + (statePath.length > 0 ? "." : "") + name;
+  }
+}
+
+/***/ }),
+/* 356 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+"use babel";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.getJavascriptEntity = getJavascriptEntity;
+exports.getImmutableEntity = getImmutableEntity;
+exports.getValue = getValue;
+exports.setValue = setValue;
+
+var _immutable = __webpack_require__(34);
+
+var _StatePathHelpers = __webpack_require__(355);
+
+function getJavascriptEntity(obj) {
+  if (obj && (typeof obj === "undefined" ? "undefined" : _typeof(obj)) == "object" && obj.toJS) return obj.toJS();else return obj;
+}
+
+function getImmutableEntity(obj) {
+  if (obj && (typeof obj === "undefined" ? "undefined" : _typeof(obj)) == "object" && obj.toJS) return obj;else if ((typeof obj === "undefined" ? "undefined" : _typeof(obj)) == "object") return (0, _immutable.fromJS)(obj);else return obj;
+}
+
+function getValue(state, path) {
+  if (path == "") return getJavascriptEntity(state);else {
+    if ((typeof state === "undefined" ? "undefined" : _typeof(state)) == "object") {
+      var valuePath = (0, _StatePathHelpers.getImmutPath)(path);
+      return valuePath.reduce(function (red, value, i) {
+        if (red !== undefined && red !== null) {
+          return red[value];
+        } else {
+          return red;
+        }
+      }, state);
+    } else return state;
+  }
+}
+
+function setValue(state, path, value) {
+  if (path == "") return value;else {
+    var immutState = (0, _immutable.fromJS)(state);
+    if (global.process && global.process.env && global.process.env.FORMALIZR_ENV === "DEBUG") console.log(state, path, value, immutState);
+    var newState = immutState ? immutState.setIn((0, _StatePathHelpers.getImmutPath)(path), value).toJS() : immutState;
+    return newState;
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)))
+
+/***/ }),
+/* 357 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+"use babel";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.VALIDATION_FAILED_EVENT_TYPE = exports.SUBMIT_EVENT_TYPE = exports.INITIAL_CHANGE_EVENT_TYPE = exports.VALUE_CHANGE_EVENT_TYPE = undefined;
+exports.createValueChangeEvent = createValueChangeEvent;
+exports.createInitialChangeEvent = createInitialChangeEvent;
+exports.createSubmitChangeEvent = createSubmitChangeEvent;
+exports.createValidationFailedEvent = createValidationFailedEvent;
+
+var _ValidationHelpers = __webpack_require__(358);
+
+var VALUE_CHANGE_EVENT_TYPE = exports.VALUE_CHANGE_EVENT_TYPE = "VALUE_CHANGE";var INITIAL_CHANGE_EVENT_TYPE = exports.INITIAL_CHANGE_EVENT_TYPE = "INITIAL_CHANGE";
+var SUBMIT_EVENT_TYPE = exports.SUBMIT_EVENT_TYPE = "SUBMIT";
+var VALIDATION_FAILED_EVENT_TYPE = exports.VALIDATION_FAILED_EVENT_TYPE = "VALIDATION_FAILED";
+
+function createValueChangeEvent(newValue, statePath, validation) {
+  return {
+    type: VALUE_CHANGE_EVENT_TYPE,
+    newValue: newValue,
+    statePath: statePath,
+    validation: validation
+  };
+}
+
+function createInitialChangeEvent(newInitial) {
+  return {
+    type: INITIAL_CHANGE_EVENT_TYPE,
+    newValue: newInitial,
+    validation: new _ValidationHelpers.Validation()
+  };
+}
+
+function createSubmitChangeEvent() {
+  return {
+    type: SUBMIT_EVENT_TYPE
+  };
+}
+
+function createValidationFailedEvent(validation) {
+  return {
+    type: VALIDATION_FAILED_EVENT_TYPE,
+    validation: validation
+  };
+}
+
+/***/ }),
+/* 358 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+"use babel";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Validation = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _immutable = __webpack_require__(34);
+
+var _StateValueHelpers = __webpack_require__(356);
+
+var _StatePathHelpers = __webpack_require__(355);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _setErrorForFieldAt(infos, statePath, error) {
+  if (statePath == "" || infos == null || (typeof infos === "undefined" ? "undefined" : _typeof(infos)) != "object") {
+    return infos;
+  } else {
+    return (0, _immutable.fromJS)(infos).setIn((0, _StatePathHelpers.getImmutPath)(statePath), error).toJS();
+  }
+}
+
+function _removeErrorForFieldAt(infos, statePath) {
+  return _setErrorForFieldAt(infos, statePath, null);
+}
+
+var Validation = exports.Validation = function () {
+  function Validation() {
+    var infos = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, Validation);
+
+    this.infos = infos;
+  }
+
+  _createClass(Validation, [{
+    key: "setErrorForFieldAt",
+    value: function setErrorForFieldAt(statePath, error) {
+      return new Validation(_setErrorForFieldAt(this.infos, statePath, error));
+    }
+  }, {
+    key: "removeErrorForFieldAt",
+    value: function removeErrorForFieldAt(statePath) {
+      return new Validation(_removeErrorForFieldAt(this.infos, statePath));
+    }
+  }, {
+    key: "getErrorForFieldAt",
+    value: function getErrorForFieldAt(statePath) {
+      if (statePath == "") return (0, _StateValueHelpers.getJavascriptEntity)(this.infos);else {
+        if (_typeof(this.infos) === "object") {
+          var valuePath = (0, _StatePathHelpers.getImmutPath)(statePath);
+          return valuePath.reduce(function (red, value, i) {
+            if (red !== undefined && red !== null && (typeof red === "undefined" ? "undefined" : _typeof(red)) == 'object') {
+              return red[value];
+            } else {
+              return red;
+            }
+          }, this.infos);
+        } else return this.infos;
+      }
+    }
+  }]);
+
+  return Validation;
+}();
 
 /***/ })
 /******/ ]);

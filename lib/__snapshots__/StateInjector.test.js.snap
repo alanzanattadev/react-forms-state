@@ -10,6 +10,7 @@ Object {
         "watchPath": [Function],
       },
       Object {
+        "validation": undefined,
         "watchedStatePath": "test.newPath",
       },
     ],
@@ -49,6 +50,7 @@ Object {
         "watchPath": "infos",
       },
       Object {
+        "validation": undefined,
         "watchedStatePath": "infos",
       },
     ],
@@ -59,6 +61,7 @@ Object {
         "watchPath": "infos",
       },
       Object {
+        "validation": undefined,
         "watchedStatePath": "infos",
       },
     ],
@@ -86,6 +89,7 @@ Object {
         "watchPath": "name",
       },
       Object {
+        "validation": undefined,
         "watchedStatePath": "name",
       },
     ],
@@ -111,6 +115,7 @@ Object {
         "watchPath": "infos.name",
       },
       Object {
+        "validation": undefined,
         "watchedStatePath": "infos.name",
       },
     ],
@@ -121,6 +126,7 @@ Object {
         "watchPath": "infos.name",
       },
       Object {
+        "validation": undefined,
         "watchedStatePath": "infos.name",
       },
     ],
@@ -148,6 +154,7 @@ Object {
         "watchPath": "infos",
       },
       Object {
+        "validation": undefined,
         "watchedStatePath": "infos",
       },
     ],
@@ -158,6 +165,7 @@ Object {
         "watchPath": "infos",
       },
       Object {
+        "validation": undefined,
         "watchedStatePath": "infos",
       },
     ],
