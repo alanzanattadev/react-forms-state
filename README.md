@@ -47,7 +47,8 @@ The goal is to have a controlled form so you also have access to an applyControl
     {
       checkIfModified: true, // Checks if value has been modified to prevent repeated submits
       immutableInitial: false, // Speeds up checks by only checking reference equalities
-    }
+    },
+    (value, props) => true // Validation function
   )(FormPresenter);
 
   let Page = () => <Form initial={cache.userInfos} onSubmit={(value) => postToServer(value)}/>;
@@ -70,6 +71,8 @@ params:
   ```
 
   - Options : checkIfModified to prevent repeated submits and immutableInitial to speed up equality checks.
+
+  - Function that let you validate data before submitting, you have to return an object with the same structure as the state but with errors instead of value where there are errors. Others attributs can be undefined.
 
 ### StateDispatcher
 
@@ -120,6 +123,11 @@ FormPresenter.refs.dispatcher.dispatchUncontrolledValues({name: "Zanatta"});
 assert(FormPresenter.refs.dispatcher.getUncontrolledState() == {name: "Zanatta"});
 ```
 
+injects
+  - value
+  - onChange
+  - validation : validation object, validation.infos leads to the error strings.
+
 ## StateInjector
 
 StateInjector is a component that is used to get some value from form state in a component.
@@ -129,7 +137,7 @@ const Comp = () => (
   import {StateInjector} from 'react-forms-state';
 
   <StateInjector watchPath={(props) => `group.${props.name}`}>
-    {(value, props, {watchedStatePath}) => (
+    {(value, props, {watchedStatePath, validation}) => (
       value.group.name && <div></div>
     )}
   </StateInjector>
@@ -146,4 +154,5 @@ Injected:
   - props : the others props sent to injector
   - options:
     - watchedStatePath : the computed watchPath
+    - validation : validation object, valifation.infos leads to the error string
 ```
