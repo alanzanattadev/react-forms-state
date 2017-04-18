@@ -1,11 +1,13 @@
 {
   "name": "react-forms-state",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "description": "React helpers to quickly make forms",
   "main": "dist/bundle.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack"
+    "build": "webpack",
+    "jest": "jest --watch",
+    "watch": "webpack --watch"
   },
   "keywords": [
     "react",

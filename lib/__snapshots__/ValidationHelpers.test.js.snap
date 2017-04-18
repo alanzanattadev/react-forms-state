@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Validation should get error correctly with simple path 1`] = `"not ok"`;
+
+exports[`Validation should get nested Validation correctly 1`] = `
+Validation {
+  "infos": Object {
+    "ah": "ah",
+    "individual": Object {
+      "field": "impossible",
+      "ok": "not ok",
+    },
+  },
+}
+`;
+
+exports[`Validation should not crash when trying to remove a non existing error 1`] = `
+Validation {
+  "infos": Object {
+    "all": Object {
+      "group": Object {
+        "ah": "ah",
+        "individual": Object {
+          "field": "impossible",
+          "ok": "not ok",
+        },
+        "ok": null,
+      },
+      "nothing": null,
+    },
+    "wrong": Object {
+      "one": "wrong",
+    },
+  },
+}
+`;
+
+exports[`Validation should not error when nothing exists at statepath 1`] = `
+Validation {
+  "infos": Object {},
+}
+`;
+
+exports[`Validation should not error when null is at statepath 1`] = `null`;
+
+exports[`Validation should remove error correctly with simple path 1`] = `
+Object {
+  "all": Object {
+    "group": Object {
+      "ah": "ah",
+      "individual": Object {
+        "field": null,
+        "ok": "not ok",
+      },
+    },
+  },
+  "wrong": Object {
+    "one": "wrong",
+  },
+}
+`;
+
+exports[`Validation should set error correctly with simple path 1`] = `
+Object {
+  "all": Object {
+    "group": Object {
+      "individual": Object {
+        "field": "impossible",
+      },
+    },
+  },
+}
+`;
