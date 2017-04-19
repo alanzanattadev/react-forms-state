@@ -11979,7 +11979,8 @@ var StateInjector = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (StateInjector.__proto__ || Object.getPrototypeOf(StateInjector)).call(this, props));
 
     _this.state = {
-      value: null
+      value: null,
+      validation: true
     };
 
     _this.watchPath = _this.getWatchedPath(props, context);
