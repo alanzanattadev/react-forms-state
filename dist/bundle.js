@@ -12001,7 +12001,6 @@ var StateInjector = function (_React$Component) {
       var _this2 = this;
 
       this.subscription = this.valueChangeObs.subscribe(function (e) {
-        console.log("EVENT", e);
         _this2.setState({
           value: e.value,
           validation: e.validation
