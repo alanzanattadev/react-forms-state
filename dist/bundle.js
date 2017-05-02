@@ -1883,8 +1883,7 @@ function createValueChangeEvent(newValue, statePath, validation) {
 function createInitialChangeEvent(newInitial) {
   return {
     type: INITIAL_CHANGE_EVENT_TYPE,
-    newValue: newInitial,
-    validation: new _ValidationHelpers.Validation()
+    newValue: newInitial
   };
 }
 
@@ -11596,10 +11595,10 @@ function FormController() {
         var _this = _possibleConstructorReturn(this, (Controller.__proto__ || Object.getPrototypeOf(Controller)).call(this));
 
         _this.subject = new _rxjs2.default.Subject().scan(function (acc, e) {
+          var newValidation = e.validation != null ? e.validation : acc.validation;
           switch (e.type) {
             case _FormEvents.VALUE_CHANGE_EVENT_TYPE:
               var newState = (0, _StateValueHelpers.setValue)(acc.value, e.statePath, e.newValue);
-              var newValidation = e.validation != null ? e.validation : acc.validation;
               var controlledNewState = applyControl(newState, _this.props);
               return {
                 type: _FormEvents.VALUE_CHANGE_EVENT_TYPE,
@@ -11619,7 +11618,7 @@ function FormController() {
                 type: _FormEvents.INITIAL_CHANGE_EVENT_TYPE,
                 value: e.newValue,
                 oldValue: acc.value,
-                validation: e.validation
+                validation: newValidation
               };
             case _FormEvents.VALIDATION_FAILED_EVENT_TYPE:
               return {
@@ -11630,7 +11629,7 @@ function FormController() {
             default:
               return acc;
           }
-        }, { value: _this._getInitialValue(props) }).do(function (e) {
+        }, { value: _this._getInitialValue(props), validation: true }).do(function (e) {
           return global.process && global.process.env && global.process.env.FORMALIZR_ENV === "DEBUG" && console.log("FormController event:\n", e);
         }).share();
         _this.subject.filter(function (e) {
@@ -12002,6 +12001,7 @@ var StateInjector = function (_React$Component) {
       var _this2 = this;
 
       this.subscription = this.valueChangeObs.subscribe(function (e) {
+        console.log("EVENT", e);
         _this2.setState({
           value: e.value,
           validation: e.validation
