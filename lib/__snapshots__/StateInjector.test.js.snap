@@ -10,7 +10,7 @@ Object {
         "watchPath": [Function],
       },
       Object {
-        "validation": undefined,
+        "validation": true,
         "watchedStatePath": "test.newPath",
       },
     ],
@@ -50,7 +50,7 @@ Object {
         "watchPath": "infos",
       },
       Object {
-        "validation": undefined,
+        "validation": true,
         "watchedStatePath": "infos",
       },
     ],
@@ -89,7 +89,7 @@ Object {
         "watchPath": "name",
       },
       Object {
-        "validation": undefined,
+        "validation": true,
         "watchedStatePath": "name",
       },
     ],
@@ -115,7 +115,7 @@ Object {
         "watchPath": "infos.name",
       },
       Object {
-        "validation": undefined,
+        "validation": true,
         "watchedStatePath": "infos.name",
       },
     ],
@@ -154,7 +154,7 @@ Object {
         "watchPath": "infos",
       },
       Object {
-        "validation": undefined,
+        "validation": true,
         "watchedStatePath": "infos",
       },
     ],

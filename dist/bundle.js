@@ -11672,7 +11672,7 @@ function FormController() {
         key: "_getInitialValue",
         value: function _getInitialValue(props) {
           var v = typeof props.initial != "function" ? props.initial : props.initial(props);
-          return convertIn(v == null ? {} : v, this.props);
+          return convertIn(v == null ? {} : v, props);
         }
       }, {
         key: "_mergeValues",
