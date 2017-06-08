@@ -12315,6 +12315,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var NeverObservable = _rxjs2.default.Observable.never();
+
 var StateInjector = function (_React$Component) {
   _inherits(StateInjector, _React$Component);
 
@@ -12329,14 +12331,44 @@ var StateInjector = function (_React$Component) {
     };
 
     _this.watchPath = _this.getWatchedPath(props, context);
-    _this.valueChangeObs = context.rootValueChangeObs.filter(function (e) {
-      // console.log("FILTERING", e, "In watcher", this.watchPath);
-      if (e.statePath) return _this.watchPath.startsWith(e.statePath) || e.statePath.startsWith(_this.watchPath);else if (e.type === _FormEvents.INITIAL_CHANGE_EVENT_TYPE) return true;else if (e.type === _FormEvents.VALIDATION_FAILED_EVENT_TYPE) return true;else return false;
-    });
+    if (_this.watchPath == null) {
+      throw new Error("watchPath props is not set on StateInjector, you have to set a statepath string on which the StateInjector will watch");
+    }
+    _this.selectObs(props, context);
     return _this;
   }
 
   _createClass(StateInjector, [{
+    key: "getAssignedObs",
+    value: function getAssignedObs(props, context) {
+      if (context.rootValueChangeObs != null) return context.rootValueChangeObs;else return NeverObservable;
+    }
+  }, {
+    key: "selectObs",
+    value: function selectObs(props, context) {
+      var _this2 = this;
+
+      this.valueChangeObs = this.getAssignedObs(props, context).filter(function (e) {
+        if (props.__debug) {
+          console.log("FILTERING", e, "In watcher", _this2.watchPath);
+        }
+        if (e.statePath) return _this2.watchPath.startsWith(e.statePath) || e.statePath.startsWith(_this2.watchPath);else if (e.type === _FormEvents.INITIAL_CHANGE_EVENT_TYPE) return true;else if (e.type === _FormEvents.VALIDATION_FAILED_EVENT_TYPE) return true;else return false;
+      });
+    }
+  }, {
+    key: "connectsToFormController",
+    value: function connectsToFormController() {
+      var _this3 = this;
+
+      if (this.subscription) this.subscription.unsubscribe();
+      this.subscription = this.valueChangeObs.subscribe(function (e) {
+        _this3.setState({
+          value: e.value,
+          validation: e.validation
+        });
+      });
+    }
+  }, {
     key: "getWatchedPath",
     value: function getWatchedPath(props, context) {
       return typeof props.watchPath === "function" ? props.watchPath(context.completeStatePath || "") : props.watchPath;
@@ -12344,14 +12376,15 @@ var StateInjector = function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
-      this.subscription = this.valueChangeObs.subscribe(function (e) {
-        _this2.setState({
-          value: e.value,
-          validation: e.validation
-        });
-      });
+      this.connectsToFormController();
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps, nextContext) {
+      if (this.valueChangeObs !== this.getAssignedObs(nextProps, nextContext)) {
+        this.selectObs(nextProps, nextContext);
+        this.connectsToFormController();
+      }
     }
   }, {
     key: "componentWillUnmount",
@@ -12380,7 +12413,9 @@ exports.default = StateInjector;
 
 StateInjector.propTypes = {};
 
-StateInjector.defaultProps = {};
+StateInjector.defaultProps = {
+  __debug: false
+};
 
 StateInjector.contextTypes = {
   rootValueChangeObs: _react2.default.PropTypes.any,
