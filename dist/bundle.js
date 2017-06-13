@@ -7723,7 +7723,7 @@ function StateProxy() {
           var _this2 = this;
 
           this.parentValueChangeObs = this.getAssignedObs(props, context);
-          if (this.parentValueChangeObs === NeverObservable) console.warn(this.getHumanReadableIdentifier(props, context) + " hasn't received any valueChangeObs neither as props nor context. Maybe you have forgotten the FormController / StateDispatcher duo");
+          if (this.parentValueChangeObs === NeverObservable && props.__debug) console.warn(this.getHumanReadableIdentifier(props, context) + " hasn't received any valueChangeObs neither as props nor context. Maybe you have forgotten the FormController / StateDispatcher duo");
           this.valueChangeObs = this.parentValueChangeObs.do(function (e) {
             if (props.__debug) {
               var path = _this2.getCompleteCurrentStatePath(props, context, e.value);
@@ -7763,6 +7763,9 @@ function StateProxy() {
               if (props.__debug) {
                 console.log("Setting value", e, "in " + (root ? "instance" : "state") + " mode");
               }
+              if (e.value === undefined) {
+                console.warn(_this3.getHumanReadableIdentifier(props, context) + " doesn't have any value set in the state, it may break");
+              }
               if (root) {
                 _this3.value = e.value;
                 _this3.validation = e.validation;
@@ -7770,10 +7773,6 @@ function StateProxy() {
                 _this3.setState({
                   value: e.value,
                   validation: e.validation
-                }, function () {
-                  if (props.__debug) {
-                    console.log("VALUE SET");
-                  }
                 });
               }
             });
