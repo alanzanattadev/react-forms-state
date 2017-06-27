@@ -43845,11 +43845,10 @@ function isTrue() {
   };
 }
 
-function maxLength() {
-  var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+function maxLength(max) {
+  var _ref6 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
       _ref6$errorString = _ref6.errorString,
-      errorString = _ref6$errorString === undefined ? "too long" : _ref6$errorString,
-      max = _ref6.max;
+      errorString = _ref6$errorString === undefined ? "too long" : _ref6$errorString;
 
   return function validateMaxLength(value) {
     if (typeof value !== "string" || value.length > max) {
