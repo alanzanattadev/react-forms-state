@@ -12549,6 +12549,51 @@ Object.defineProperty(exports, "getValue", {
   }
 });
 
+var _ValidationComposition = __webpack_require__(363);
+
+Object.defineProperty(exports, "notNull", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.notNull;
+  }
+});
+Object.defineProperty(exports, "notUndefined", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.notUndefined;
+  }
+});
+Object.defineProperty(exports, "notEmpty", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.notEmpty;
+  }
+});
+Object.defineProperty(exports, "composeValidation", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.composeValidation;
+  }
+});
+Object.defineProperty(exports, "required", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.required;
+  }
+});
+Object.defineProperty(exports, "isTrue", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.isTrue;
+  }
+});
+Object.defineProperty(exports, "maxLength", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.maxLength;
+  }
+});
+
 var _FormModel = __webpack_require__(78);
 
 Object.defineProperty(exports, "convertConversionModelToConversionJobs", {
@@ -43667,6 +43712,116 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 363 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.notNull = notNull;
+exports.notUndefined = notUndefined;
+exports.notEmpty = notEmpty;
+exports.composeValidation = composeValidation;
+exports.required = required;
+exports.isTrue = isTrue;
+exports.maxLength = maxLength;
+function notNull() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$errorString = _ref.errorString,
+      errorString = _ref$errorString === undefined ? "Not filled" : _ref$errorString;
+
+  return function validateNotNull(value) {
+    if (value === null) {
+      return errorString;
+    } else {
+      return true;
+    }
+  };
+}
+
+function notUndefined() {
+  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref2$errorString = _ref2.errorString,
+      errorString = _ref2$errorString === undefined ? "not filled" : _ref2$errorString;
+
+  return function validateNotUndefined(value) {
+    if (value === undefined) {
+      return errorString;
+    } else {
+      return true;
+    }
+  };
+}
+
+function notEmpty() {
+  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref3$errorString = _ref3.errorString,
+      errorString = _ref3$errorString === undefined ? "not filled" : _ref3$errorString;
+
+  return function validateNotEmpty(value) {
+    if (value === "") {
+      return errorString;
+    } else {
+      return true;
+    }
+  };
+}
+
+function composeValidation() {
+  for (var _len = arguments.length, validates = Array(_len), _key = 0; _key < _len; _key++) {
+    validates[_key] = arguments[_key];
+  }
+
+  return function validateValue(value, props) {
+    return validates.reduce(function (red, validate) {
+      if (red !== true) return red;
+      var validated = validate(value, props);
+      if (validated === true) return true;else return validated;
+    }, true);
+  };
+}
+
+function required() {
+  var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref4$errorString = _ref4.errorString,
+      errorString = _ref4$errorString === undefined ? "not filled" : _ref4$errorString;
+
+  return composeValidation(notUndefined({ errorString: errorString }), notNull({ errorString: errorString }), notEmpty({ errorString: errorString }));
+}
+
+function isTrue() {
+  var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref5$errorString = _ref5.errorString,
+      errorString = _ref5$errorString === undefined ? "not true" : _ref5$errorString;
+
+  return function validateTrue(value) {
+    if (value !== true) {
+      return errorString;
+    } else {
+      return true;
+    }
+  };
+}
+
+function maxLength() {
+  var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref6$errorString = _ref6.errorString,
+      errorString = _ref6$errorString === undefined ? "too long" : _ref6$errorString,
+      max = _ref6.max;
+
+  return function validateMaxLength(value) {
+    if (typeof value !== "string" || value.length > max) {
+      return errorString;
+    } else {
+      return true;
+    }
+  };
+}
 
 /***/ })
 /******/ ]);
