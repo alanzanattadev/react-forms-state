@@ -12093,6 +12093,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 exports.convertConversionModelToConversionJobs = convertConversionModelToConversionJobs;
 exports.convertIn = convertIn;
 exports.convertOut = convertOut;
+exports.validateModel = validateModel;
 
 var _immutable = __webpack_require__(17);
 
@@ -12114,9 +12115,12 @@ function convertConversionModelToConversionJobs(model) {
     convertOut: "convertOut" in model ? model.convertOut : function (value) {
       return value;
     },
-    default: model.default
+    default: model.default,
+    validate: "validate" in model ? model.validate : function () {
+      return true;
+    }
   }) : (0, _immutable.List)()).concat(Object.keys(model).filter(function (nodeKey) {
-    return !["convertIn", "convertOut", "out", "out_path", "complex", "default"].includes(nodeKey);
+    return !["convertIn", "convertOut", "out", "out_path", "complex", "default", "validate"].includes(nodeKey);
   }).reduce(function (red, nodeKey) {
     var childNode = model[nodeKey];
     var childInPath = currentInPath ? currentInPath + "." + nodeKey : nodeKey;
@@ -12125,11 +12129,11 @@ function convertConversionModelToConversionJobs(model) {
   return jobs;
 }
 
-function convertIn(value, jobs) {
+function convertIn(value, jobs, props) {
   if (value == null) return {};
   var immutableValue = (0, _immutable.fromJS)(value);
   return jobs.reduceRight(function (red, job) {
-    var inValue = job.convertIn(immutableValue.getIn(job.in.split("."), job.default));
+    var inValue = job.convertIn(immutableValue.getIn(job.in.split("."), job.default), props);
     if (red.getIn(job.out.split(".")) != null && inValue != null) return red;
     return red.setIn(job.out.split("."), (0, _immutable.fromJS)(inValue));
   }, (0, _immutable.Map)()).toJS();
@@ -12146,6 +12150,21 @@ function convertOut(value, jobs, props) {
     if (red.getIn(job.in.split(".")) != null && outValue != null) return red;
     return red.setIn(job.in.split("."), outValue);
   }, (0, _immutable.Map)()).toJS();
+}
+
+function validateModel(value, jobs, props) {
+  var immutableValue = (0, _immutable.fromJS)(value);
+  var wholeValidation = jobs.reduceRight(function (red, job) {
+    var fieldValue = immutableValue.getIn(job.in.split("."));
+    var validation = typeof job.validate === "function" ? job.validate(fieldValue, props) : true;
+    if (validation === true || validation === null || validation === undefined) {
+      return red;
+    } else {
+      return ((typeof red === "undefined" ? "undefined" : _typeof(red)) === "object" ? red : (0, _immutable.Map)()).setIn(job.in.split("."), validation);
+    }
+  }, true);
+
+  if ((typeof wholeValidation === "undefined" ? "undefined" : _typeof(wholeValidation)) === "object") return wholeValidation.toJS();else return wholeValidation;
 }
 
 /***/ }),
@@ -12612,6 +12631,12 @@ Object.defineProperty(exports, "convertOut", {
   enumerable: true,
   get: function get() {
     return _FormModel.convertOut;
+  }
+});
+Object.defineProperty(exports, "validateModel", {
+  enumerable: true,
+  get: function get() {
+    return _FormModel.validateModel;
   }
 });
 
