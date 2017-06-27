@@ -12614,6 +12614,12 @@ Object.defineProperty(exports, "maxLength", {
     return _ValidationComposition.maxLength;
   }
 });
+Object.defineProperty(exports, "lessThan", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.lessThan;
+  }
+});
 
 var _FormModel = __webpack_require__(78);
 
@@ -43757,6 +43763,10 @@ exports.composeValidation = composeValidation;
 exports.required = required;
 exports.isTrue = isTrue;
 exports.maxLength = maxLength;
+exports.lessThan = lessThan;
+
+var _immutable = __webpack_require__(17);
+
 function notNull() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       _ref$errorString = _ref.errorString,
@@ -43843,6 +43853,24 @@ function maxLength() {
 
   return function validateMaxLength(value) {
     if (typeof value !== "string" || value.length > max) {
+      return errorString;
+    } else {
+      return true;
+    }
+  };
+}
+
+function lessThan(accessor1, accessor2) {
+  var _ref7 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+      _ref7$errorString = _ref7.errorString,
+      errorString = _ref7$errorString === undefined ? "too long" : _ref7$errorString;
+
+  return function validateLessThan(value, props) {
+    if (typeof accessor1 !== "function" && typeof accessor1 !== "string" || typeof accessor2 !== "function" && typeof accessor2 !== "string") throw new Error("lessThan validator takes either a function or a stringPath as accessor type");
+    var value1 = typeof accessor1 === "function" ? accessor1(value, props) : (0, _immutable.fromJS)(value).getIn(accessor1.split("."));
+    var value2 = typeof accessor2 === "function" ? accessor2(value, props) : (0, _immutable.fromJS)(value).getIn(accessor2.split("."));
+    // $FlowFixMe
+    if (value1 > value2) {
       return errorString;
     } else {
       return true;
