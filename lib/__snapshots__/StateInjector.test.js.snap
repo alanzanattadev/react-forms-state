@@ -6,6 +6,7 @@ Object {
     Array [
       null,
       Object {
+        "__debug": false,
         "children": [Function],
         "watchPath": [Function],
       },
@@ -17,6 +18,7 @@ Object {
   ],
   "instances": Array [
     Object {
+      "__debug": false,
       "children": [Function],
       "watchPath": [Function],
     },
@@ -33,6 +35,7 @@ Object {
   ],
   "instances": Array [
     Object {
+      "__debug": false,
       "children": [Function],
       "watchPath": [Function],
     },
@@ -46,6 +49,7 @@ Object {
     Array [
       null,
       Object {
+        "__debug": false,
         "children": [Function],
         "watchPath": "infos",
       },
@@ -57,6 +61,7 @@ Object {
     Array [
       "salut",
       Object {
+        "__debug": false,
         "children": [Function],
         "watchPath": "infos",
       },
@@ -68,10 +73,12 @@ Object {
   ],
   "instances": Array [
     Object {
+      "__debug": false,
       "children": [Function],
       "watchPath": "infos",
     },
     Object {
+      "__debug": false,
       "children": [Function],
       "watchPath": "infos",
     },
@@ -85,6 +92,7 @@ Object {
     Array [
       null,
       Object {
+        "__debug": false,
         "children": [Function],
         "watchPath": "name",
       },
@@ -96,6 +104,7 @@ Object {
   ],
   "instances": Array [
     Object {
+      "__debug": false,
       "children": [Function],
       "watchPath": "name",
     },
@@ -111,6 +120,7 @@ Object {
     Array [
       null,
       Object {
+        "__debug": false,
         "children": [Function],
         "watchPath": "infos.name",
       },
@@ -122,6 +132,7 @@ Object {
     Array [
       "salut",
       Object {
+        "__debug": false,
         "children": [Function],
         "watchPath": "infos.name",
       },
@@ -133,10 +144,12 @@ Object {
   ],
   "instances": Array [
     Object {
+      "__debug": false,
       "children": [Function],
       "watchPath": "infos.name",
     },
     Object {
+      "__debug": false,
       "children": [Function],
       "watchPath": "infos.name",
     },
@@ -150,6 +163,7 @@ Object {
     Array [
       null,
       Object {
+        "__debug": false,
         "children": [Function],
         "watchPath": "infos",
       },
@@ -161,6 +175,7 @@ Object {
     Array [
       "salut",
       Object {
+        "__debug": false,
         "children": [Function],
         "watchPath": "infos",
       },
@@ -172,10 +187,12 @@ Object {
   ],
   "instances": Array [
     Object {
+      "__debug": false,
       "children": [Function],
       "watchPath": "infos",
     },
     Object {
+      "__debug": false,
       "children": [Function],
       "watchPath": "infos",
     },
