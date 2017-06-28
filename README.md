@@ -1,6 +1,6 @@
 # react-forms-state
 
-Library designed to make easy form managment with React, in a semantic way.
+Library designed to make easy form management with React, in a semantic way.
 
 ## Use case
 
@@ -12,19 +12,144 @@ Forms in react are painful. You have choices between :
 The thing is manually handling form state can quickly lead to huge performance problem on big forms.
 I wanted a way to make forms easily, seperating views (presenters) from data managment, and using semantic structure (as in raw HTML) without having performance issues.
 
+It also add some convenient utils for handling validation, conversions and automatic prefilling.
+
 ## Guide
 
-Wrap your root form component with StateDispatcher
-You can also wrap some "Field containing fields" with StateDispatcher to be able to convert values
+Wrap your root form component with FormController and StateDispatcher:
+```js
+import { FormController, StateDispatcher } from "react-forms-state";
 
-pass down props from FormController to the dispatcher
+function RootFormComponent({onSubmit, children}) {
+  return (
+    <div>
+      {children}
+      <button onClick={onSubmit}/>
+    </div>
+  );
+}
 
+const WrappedRootFormComponent = FormController()(StateDispatcher()(RootFormComponent));
+```
 Wrap some fields with StateProxy
+```js
+import { StateProxy } from "react-forms-state";
 
-declare your fields in a form component wrapped with a Dispatcher and
-assign them a name props to get values from the form state.
+const WrappedTextField = StateProxy(TextField);
+```
+A field is a component which accepts value and onChange.
+
+create a semantic structure by using the name props:
+```js
+<WrappedRootFormComponent onSubmit={(formValue) => console.log(formValue)} initial={{firstname: ""}}>
+  <WrappedTextField name="firstname"/>
+</WrappedRootFormComponent>
+```
 
 That's it :)
+
+initial is the initial state of your form, when initial change, the dispatching of the new data is automatically done on the differents fields, allowing prefilling of data even after mounted.
+
+onSubmit is passed as props to your root component and triggers the validation and conversion of data for you when you call it. You have to pass a onSubmit props to the FormController component to get the value once the user has submitted the form.
+
+### Let's add conversions
+
+In progress ...
+
+### Let's add validation
+
+FormController takes as fifth argument the validation function. This function has to return true if everything is ok, or differents types of error. To make things smoothers for you, a lot of utils are available. Let's dive into them:
+  - notNull({errorString})
+  - notUndefined({errorString})
+  - notEmpty({errorString})
+  - required({errorString}) which is notNull + notUndefined + notEmpty
+  - isTrue({errorString})
+  - maxLength(max, {errorString})
+  - lessThan(accessor1, accessor2, {errorString}) where accessors are either function as (state) => value or string path "user.profile.name".
+  - composeValidation(...validators) is a function that accepts many validators functions and returns a root one to be used directly in FormController validation function.
+  
+so for example
+```js
+FormController(undefined, undefined, undefined, undefined, composeValidation(notNull(), lessThan("user.birthday", "user.death")));
+```
+
+You can also compose with nested composeValidation:
+
+```js
+  const validation = composeValidation(composeValidation(notNull(), notUndefined()), isTrue());
+```
+
+Fields that have failed receive a validation prop. You can use this prop with two utils:
+  - isValid
+  - getErrorText
+  
+They are useful for displaying errors when necessary.
+```js
+
+import {isValid, getErrorText} from "react-forms-state";
+
+function Field({value, onChange, validation}) {
+  
+  return (
+    <div>
+      <input value={value} onChange={onChange}/>
+      {isValid(validation) === false && (<span>Error: {getErrorText(validation)}</span>)}
+    </div>
+  )
+}
+
+export default StateProxy()(Field);
+```
+
+### Let's use a form model to make things easier
+
+Sometimes you have to deal with really big forms and doing conversions and validations for each field can be painful. That's why the library contains a model system to help you.
+
+This model is a simple schema.
+
+```js
+const model = {
+  user: {
+    out: "user",
+    profile: {
+      out: "profile",
+      email: {
+        out: "email",
+        validate: composeValidation(notNull(), notEmpty())
+      }
+    }
+  }
+};
+```
+
+the model structure depends on the initial structure, and the out attribut will allow you to create another structure after convertIn is called.
+this is the capabilities of each object:
+```js
+export type ConversionModel = {
+  out?: string,
+  default?: ?any,
+  convertIn?: (value: any) => any,
+  convertOut?: (value: any) => any,
+  validate?: validator,
+  [key: string]: ConversionModel,
+};
+```
+
+to use a model you have to convert it first to jobs with convertConversionModelToConversionJobs.
+```js
+import { convertConversionModelToConversionJobs } from "react-forms-state";
+
+const jobs = convertConversionModelToConversionJobs(model);
+```
+
+then you can use the differents utils to use it with FormController
+```js
+import { convertIn, convertOut, validateModel } from "react-forms-state";
+
+const Form = FormController(undefined, convertIn(jobs), convertOut(), undefined, composeValidation(validateModel(jobs)))(FormComponent);
+```
+
+And everything is magical !
 
 ## API Doc
 
