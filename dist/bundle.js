@@ -7971,6 +7971,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+exports.isValid = isValid;
+exports.getErrorText = getErrorText;
+
 var _immutable = __webpack_require__(17);
 
 var _StateValueHelpers = __webpack_require__(16);
@@ -7978,6 +7981,16 @@ var _StateValueHelpers = __webpack_require__(16);
 var _StatePathHelpers = __webpack_require__(45);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function isValid(validation) {
+  if (typeof validation === "boolean") return validation;else {
+    return validation.infos === true;
+  }
+}
+
+function getErrorText(validation) {
+  if (typeof validation.infos === "string") return validation.infos;else return null;
+}
 
 function _setErrorForFieldAt(infos, statePath, error) {
   if (statePath == "" || infos == null || (typeof infos === "undefined" ? "undefined" : _typeof(infos)) != "object") {
@@ -8017,7 +8030,7 @@ var Validation = exports.Validation = function () {
         if (_typeof(this.infos) === "object") {
           var valuePath = (0, _StatePathHelpers.getImmutPath)(statePath);
           return valuePath.reduce(function (red, value, i) {
-            if (red !== undefined && red !== null && (typeof red === "undefined" ? "undefined" : _typeof(red)) == 'object') {
+            if (red !== undefined && red !== null && (typeof red === "undefined" ? "undefined" : _typeof(red)) == "object") {
               return red[value];
             } else {
               return red;
@@ -12645,6 +12658,21 @@ Object.defineProperty(exports, "validateModel", {
   enumerable: true,
   get: function get() {
     return _FormModel.validateModel;
+  }
+});
+
+var _ValidationHelpers = __webpack_require__(37);
+
+Object.defineProperty(exports, "isValid", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationHelpers.isValid;
+  }
+});
+Object.defineProperty(exports, "getErrorText", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationHelpers.getErrorText;
   }
 });
 
