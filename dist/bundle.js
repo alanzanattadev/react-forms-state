@@ -7983,7 +7983,7 @@ var _StatePathHelpers = __webpack_require__(45);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function isValid(validation) {
-  if (typeof validation === "boolean") return validation;else {
+  if (typeof validation === "boolean") return validation;else if (validation == null) return true;else {
     return validation.infos === true;
   }
 }
