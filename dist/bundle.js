@@ -7983,8 +7983,8 @@ var _StatePathHelpers = __webpack_require__(45);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function isValid(validation) {
-  if (typeof validation === "boolean") return validation;else if (validation == null) return true;else {
-    return validation.infos === true;
+  if (typeof validation === "boolean") return validation;else if (validation == null) return true;else if ((typeof validation === "undefined" ? "undefined" : _typeof(validation)) === "object" && _typeof(validation.infos) === "object" && validation.infos !== null && Object.keys(validation.infos).length === 0) return true;else {
+    return validation.infos === true || validation.infos == null;
   }
 }
 
@@ -8036,7 +8036,7 @@ var Validation = exports.Validation = function () {
               return red;
             }
           }, this.infos);
-        } else return this.infos;
+        } else return null;
       }
     }
   }, {
@@ -43890,7 +43890,7 @@ function maxLength(max) {
 function lessThan(accessor1, accessor2) {
   var _ref7 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
       _ref7$errorString = _ref7.errorString,
-      errorString = _ref7$errorString === undefined ? "too long" : _ref7$errorString;
+      errorString = _ref7$errorString === undefined ? "Invalid" : _ref7$errorString;
 
   return function validateLessThan(value, props) {
     if (typeof accessor1 !== "function" && typeof accessor1 !== "string" || typeof accessor2 !== "function" && typeof accessor2 !== "string") throw new Error("lessThan validator takes either a function or a stringPath as accessor type");
