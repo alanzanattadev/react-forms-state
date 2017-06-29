@@ -43893,8 +43893,8 @@ function maxLength(max) {
 
 function lessThan(accessor1, accessor2) {
   var _ref7 = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
-      _ref7$errorString = _ref7.errorString,
-      errorString = _ref7$errorString === undefined ? "Invalid" : _ref7$errorString;
+      _ref7$error = _ref7.error,
+      error = _ref7$error === undefined ? "Invalid" : _ref7$error;
 
   return function validateLessThan(value, props) {
     if (typeof accessor1 !== "function" && typeof accessor1 !== "string" || typeof accessor2 !== "function" && typeof accessor2 !== "string") throw new Error("lessThan validator takes either a function or a stringPath as accessor type");
@@ -43902,7 +43902,7 @@ function lessThan(accessor1, accessor2) {
     var value2 = typeof accessor2 === "function" ? accessor2(value, props) : (0, _immutable.fromJS)(value).getIn(accessor2.split("."));
     // $FlowFixMe
     if (value1 > value2) {
-      return errorString;
+      return error;
     } else {
       return true;
     }
