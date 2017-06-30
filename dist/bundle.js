@@ -43902,7 +43902,7 @@ function lessThan(accessor1, accessor2) {
     var value2 = typeof accessor2 === "function" ? accessor2(value, props) : (0, _immutable.fromJS)(value).getIn(accessor2.split("."));
     // $FlowFixMe
     if (value1 > value2) {
-      return error;
+      if (typeof error === "function") return error(value, props);else return error;
     } else {
       return true;
     }
