@@ -9,6 +9,15 @@ Object {
 }
 `;
 
+exports[`FormModel validateModel handles nested validation with out structure different than in structure 1`] = `
+Object {
+  "user": Object {
+    "account": "Weird account",
+    "lastname": "not a real one",
+  },
+}
+`;
+
 exports[`FormModel validateModel merges objects if several error are returns by validators 1`] = `
 Object {
   "user": Object {

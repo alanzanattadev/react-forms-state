@@ -12169,12 +12169,12 @@ function validateModel(jobs) {
   return function validateState(value, props) {
     var immutableValue = (0, _immutable.fromJS)(value);
     var wholeValidation = jobs.reduceRight(function (red, job) {
-      var fieldValue = immutableValue.getIn(job.in.split("."));
+      var fieldValue = immutableValue.getIn(job.out.split("."));
       var validation = typeof job.validate === "function" ? job.validate(fieldValue, props) : true;
       if (validation === true || validation === null || validation === undefined) {
         return red;
       } else {
-        return ((typeof red === "undefined" ? "undefined" : _typeof(red)) === "object" ? red : (0, _immutable.Map)()).setIn(job.in.split("."), validation);
+        return ((typeof red === "undefined" ? "undefined" : _typeof(red)) === "object" ? red : (0, _immutable.Map)()).setIn(job.out.split("."), validation);
       }
     }, true);
 
