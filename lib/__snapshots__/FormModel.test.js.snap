@@ -21,6 +21,12 @@ Object {
 }
 `;
 
+exports[`FormModel convertIn should handle well empty out 1`] = `
+Object {
+  "lastname": "ah ok",
+}
+`;
+
 exports[`FormModel validateModel handles nested validation 1`] = `
 Object {
   "user": Object {
