@@ -87,3 +87,21 @@ Object {
   },
 }
 `;
+
+exports[`FormModel validateModel should handle well empty in 1`] = `
+Object {
+  "user": Object {
+    "firstname": "error",
+  },
+}
+`;
+
+exports[`FormModel validateModel should handle well empty in and out 1`] = `
+Object {
+  "user": Object {
+    "lastname": "error",
+  },
+}
+`;
+
+exports[`FormModel validateModel should handle well empty out 1`] = `"You can't use validation if you don't have any out, either in the current node or a parent one. At user.firstname"`;
