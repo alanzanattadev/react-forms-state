@@ -12129,9 +12129,7 @@ function convertConversionModelToConversionJobs(model) {
       return value;
     },
     default: model.default,
-    validate: "validate" in model ? model.validate : function () {
-      return true;
-    }
+    validate: "validate" in model ? model.validate : undefined
   }) : (0, _immutable.List)()).concat(Object.keys(model).filter(function (nodeKey) {
     return !["convertIn", "convertOut", "out", "out_path", "complex", "default", "validate"].includes(nodeKey);
   }).reduce(function (red, nodeKey) {
@@ -12146,9 +12144,12 @@ function convertIn(value, jobs, props) {
   if (value == null) return {};
   var immutableValue = (0, _immutable.fromJS)(value);
   return jobs.reduceRight(function (red, job) {
-    var inValue = job.convertIn(immutableValue.getIn(job.in.split("."), job.default), props);
-    if (red.getIn(job.out.split(".")) != null && inValue != null && inValue !== false) return red;
-    return red.setIn(job.out.split("."), (0, _immutable.fromJS)(inValue));
+    var inPath = job.in.split(".");
+    var notConvertedValue = inPath.length === 1 && inPath[0] === "" ? immutableValue : immutableValue.getIn(inPath, job.default);
+    var inValue = typeof job.convertIn === "function" ? job.convertIn(notConvertedValue, props) : notConvertedValue;
+    var outPath = job.out.split(".");
+    if (red.getIn(outPath) != null && inValue != null && inValue !== false || outPath.length === 1 && outPath[0] === "") return red;
+    return red.setIn(outPath, (0, _immutable.fromJS)(inValue));
   }, (0, _immutable.Map)()).toJS();
 }
 
@@ -12156,12 +12157,15 @@ function convertOut(value, jobs, props) {
   if (value == null) return {};
   var immutableValue = (0, _immutable.fromJS)(value);
   return jobs.reduceRight(function (red, job) {
-    var outValue = job.convertOut(immutableValue.getIn(job.out.split(".")), props);
+    var outPath = job.out.split(".");
+    var notConvertedValue = immutableValue.getIn(outPath);
+    var outValue = typeof job.convertOut === "function" ? job.convertOut(notConvertedValue, props) : notConvertedValue;
     if (outValue === undefined) {
       return red;
     }
-    if (red.getIn(job.in.split(".")) != null && outValue != null) return red;
-    return red.setIn(job.in.split("."), outValue);
+    var inPath = job.in.split(".");
+    if (red.getIn(inPath) != null && outValue != null || inPath.length === 1 && inPath[0] === "") return red;
+    return red.setIn(inPath, outValue);
   }, (0, _immutable.Map)()).toJS();
 }
 
@@ -12169,12 +12173,14 @@ function validateModel(jobs) {
   return function validateState(value, props) {
     var immutableValue = (0, _immutable.fromJS)(value);
     var wholeValidation = jobs.reduceRight(function (red, job) {
-      var fieldValue = immutableValue.getIn(job.out.split("."));
+      var outPath = job.out.split(".");
+      var fieldValue = immutableValue.getIn(outPath);
+      if (outPath.length === 1 && outPath[0] === "" && typeof job.validate === "function") throw new Error("You can't use validation if you don't have any out, either in the current node or a parent one. At " + job.in);
       var validation = typeof job.validate === "function" ? job.validate(fieldValue, props) : true;
       if (validation === true || validation === null || validation === undefined) {
         return red;
       } else {
-        return ((typeof red === "undefined" ? "undefined" : _typeof(red)) === "object" ? red : (0, _immutable.Map)()).setIn(job.out.split("."), validation);
+        return ((typeof red === "undefined" ? "undefined" : _typeof(red)) === "object" ? red : (0, _immutable.Map)()).setIn(outPath, validation);
       }
     }, true);
 
