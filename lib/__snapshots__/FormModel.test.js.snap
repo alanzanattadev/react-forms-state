@@ -21,6 +21,12 @@ Object {
 }
 `;
 
+exports[`FormModel convertIn should handle well empty in and out 1`] = `
+Object {
+  "lastname": "ah ok",
+}
+`;
+
 exports[`FormModel convertIn should handle well empty out 1`] = `
 Object {
   "lastname": "ah ok",
