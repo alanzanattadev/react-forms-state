@@ -1,5 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FormModel convertIn should handle well empty in 1`] = `
+Object {
+  "firstname": "alan",
+  "test": Object {
+    "trip": Object {
+      "destination": Object {
+        "country": "Australia",
+      },
+    },
+    "user": Object {
+      "account": Object {
+        "email": "my email",
+        "password": "test",
+      },
+      "firstname": "alan",
+      "lastname": "ah ok",
+    },
+  },
+}
+`;
+
+exports[`FormModel convertIn should handle well empty in and out 1`] = `
+Object {
+  "lastname": "ah ok",
+}
+`;
+
+exports[`FormModel convertIn should handle well empty out 1`] = `
+Object {
+  "lastname": "ah ok",
+}
+`;
+
+exports[`FormModel convertOut should handle well empty in 1`] = `
+Object {
+  "lastname": "ah ok",
+}
+`;
+
+exports[`FormModel convertOut should handle well empty in and out 1`] = `
+Object {
+  "lastname": "ah ok",
+}
+`;
+
+exports[`FormModel convertOut should handle well empty out 1`] = `
+Object {
+  "lastname": "ah ok",
+}
+`;
+
 exports[`FormModel validateModel handles nested validation 1`] = `
 Object {
   "user": Object {
@@ -36,3 +87,21 @@ Object {
   },
 }
 `;
+
+exports[`FormModel validateModel should handle well empty in 1`] = `
+Object {
+  "user": Object {
+    "firstname": "error",
+  },
+}
+`;
+
+exports[`FormModel validateModel should handle well empty in and out 1`] = `
+Object {
+  "user": Object {
+    "lastname": "error",
+  },
+}
+`;
+
+exports[`FormModel validateModel should handle well empty out 1`] = `"You can't use validation if you don't have any out, either in the current node or a parent one. At user.firstname"`;
