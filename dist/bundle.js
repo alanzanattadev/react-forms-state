@@ -12145,7 +12145,7 @@ function convertIn(value, jobs, props) {
   var immutableValue = (0, _immutable.fromJS)(value);
   return jobs.reduceRight(function (red, job) {
     var inPath = job.in.split(".");
-    var notConvertedValue = inPath.length === 1 && inPath[0] === "" ? immutableValue : immutableValue.getIn(inPath, job.default);
+    var notConvertedValue = inPath.length === 1 && inPath[0] === "" ? immutableValue : immutableValue.getIn(inPath, red.getIn(inPath, job.default));
     var inValue = typeof job.convertIn === "function" ? job.convertIn(notConvertedValue, props) : notConvertedValue;
     var outPath = job.out.split(".");
     if (red.getIn(outPath) != null && inValue != null && inValue !== false || outPath.length === 1 && outPath[0] === "") return red;
