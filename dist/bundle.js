@@ -12143,20 +12143,39 @@ function convertConversionModelToConversionJobs(model) {
 function convertIn(value, jobs, props) {
   if (value == null) return {};
   var immutableValue = (0, _immutable.fromJS)(value);
-  return jobs.reduceRight(function (red, job) {
+  if (props && props.__debug && console.groupCollapsed) {
+    console.groupCollapsed("Form ConvertIn");
+  }
+  var convertedValue = jobs.reduceRight(function (red, job) {
     var inPath = job.in.split(".");
-    var notConvertedValue = inPath.length === 1 && inPath[0] === "" ? immutableValue : immutableValue.getIn(inPath, red.getIn(inPath, job.default));
-    var inValue = typeof job.convertIn === "function" ? job.convertIn(notConvertedValue, props) : notConvertedValue;
     var outPath = job.out.split(".");
-    if (red.getIn(outPath) != null && inValue != null && inValue !== false || outPath.length === 1 && outPath[0] === "") return red;
-    return red.setIn(outPath, (0, _immutable.fromJS)(inValue));
+    var notConvertedValue = inPath.length === 1 && inPath[0] === "" ? immutableValue : immutableValue.getIn(inPath, red.getIn(outPath, job.default));
+    var inValue = typeof job.convertIn === "function" ? job.convertIn(notConvertedValue, props) : notConvertedValue;
+    var newRed = void 0;
+    if (red.getIn(outPath) != null && inValue != null && inValue !== false || outPath.length === 1 && outPath[0] === "") newRed = red;else {
+      newRed = red.setIn(outPath, (0, _immutable.fromJS)(inValue));
+    }
+    if (props && props.__debug) {
+      console.log("ConvertIn reducing...", "\nState (initial, red):", immutableValue, red, "\nJob:", job, "\nIn:", inPath, inValue, "converted from", notConvertedValue, "\nOut:", outPath, "\nNew reduction:", newRed);
+    }
+    return newRed;
   }, (0, _immutable.Map)()).toJS();
+  if (props && props.__debug) {
+    console.log("ConvertIn converted", value, "into", convertedValue, "with props", props, "and jobs", jobs);
+    if (console.groupEnd) {
+      console.groupEnd();
+    }
+  }
+  return convertedValue;
 }
 
 function convertOut(value, jobs, props) {
   if (value == null) return {};
   var immutableValue = (0, _immutable.fromJS)(value);
-  return jobs.reduceRight(function (red, job) {
+  if (props && props.__debug && console.groupCollapsed) {
+    console.groupCollapsed("Form ConvertOut");
+  }
+  var convertedValue = jobs.reduceRight(function (red, job) {
     var outPath = job.out.split(".");
     var notConvertedValue = immutableValue.getIn(outPath);
     var outValue = typeof job.convertOut === "function" ? job.convertOut(notConvertedValue, props) : notConvertedValue;
@@ -12164,9 +12183,22 @@ function convertOut(value, jobs, props) {
       return red;
     }
     var inPath = job.in.split(".");
-    if (red.getIn(inPath) != null && outValue != null || inPath.length === 1 && inPath[0] === "") return red;
-    return red.setIn(inPath, outValue);
+    var newRed = void 0;
+    if (red.getIn(inPath) != null && outValue != null || inPath.length === 1 && inPath[0] === "") newRed = red;else {
+      newRed = red.setIn(inPath, outValue);
+    }
+    if (props && props.__debug) {
+      console.log("ConvertOut reducing...", "\nState (initial, red):", immutableValue, red, "\nJob:", job, "\nOut:", outPath, outValue, "converted from", notConvertedValue, "\nIn:", inPath, "\nNew reduction:", newRed);
+    }
+    return newRed;
   }, (0, _immutable.Map)()).toJS();
+  if (props && props.__debug) {
+    console.log("ConvertOut converted", value, "into", convertedValue, "with props", props, "and jobs", jobs);
+    if (console.groupEnd) {
+      console.groupEnd();
+    }
+  }
+  return convertedValue;
 }
 
 function validateModel(jobs) {
