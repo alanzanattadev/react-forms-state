@@ -12046,7 +12046,11 @@ function FormController() {
             if (validation === true || validation == null) {
               this.props.onSubmit(convertOut(newValue.toJS(), this.props));
             } else {
-              this.subject.next((0, _FormEvents.createValidationFailedEvent)(new _ValidationHelpers.Validation(validation)));
+              var newValidation = new _ValidationHelpers.Validation(validation);
+              if (typeof this.props.onValidationFailed === "function") {
+                this.props.onValidationFailed(newValidation);
+              }
+              this.subject.next((0, _FormEvents.createValidationFailedEvent)(newValidation));
             }
           }
         }
