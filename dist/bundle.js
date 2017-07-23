@@ -12126,12 +12126,8 @@ function convertConversionModelToConversionJobs(model) {
   var jobs = (0, _immutable.List)().concat(currentInPath !== "" ? _immutable.List.of({
     in: currentInPath,
     out: currentOutPath,
-    convertIn: "convertIn" in model ? model.convertIn : function (value) {
-      return value;
-    },
-    convertOut: "convertOut" in model ? model.convertOut : function (value) {
-      return value;
-    },
+    convertIn: "convertIn" in model ? model.convertIn : undefined,
+    convertOut: "convertOut" in model ? model.convertOut : undefined,
     default: model.default,
     validate: "validate" in model ? model.validate : undefined
   }) : (0, _immutable.List)()).concat(Object.keys(model).filter(function (nodeKey) {
@@ -12188,7 +12184,7 @@ function convertOut(value, jobs, props) {
     }
     var inPath = job.in.split(".");
     var newRed = void 0;
-    if (red.getIn(inPath) != null && outValue != null || inPath.length === 1 && inPath[0] === "") newRed = red;else {
+    if ((red.getIn(inPath) != null && outValue != null || inPath.length === 1 && inPath[0] === "") && !job.convertOut) newRed = red;else {
       newRed = red.setIn(inPath, outValue);
     }
     if (props && props.__debug) {
