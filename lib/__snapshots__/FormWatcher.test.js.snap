@@ -1,19 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FormWatcher gives nested value in watchedValue 1`] = `
+Object {
+  "calls": Array [
+    Array [
+      Object {
+        "validation": true,
+        "value": null,
+        "watchedStatePath": "infos.name",
+        "watchedValidation": true,
+        "watchedValue": null,
+      },
+      Object {
+        "__debug": false,
+        "children": [Function],
+        "watchPath": "infos.name",
+      },
+    ],
+    Array [
+      Object {
+        "validation": undefined,
+        "value": Object {
+          "infos": Object {
+            "name": "ok",
+          },
+        },
+        "watchedStatePath": "infos.name",
+        "watchedValidation": undefined,
+        "watchedValue": "ok",
+      },
+      Object {
+        "__debug": false,
+        "children": [Function],
+        "watchPath": "infos.name",
+      },
+    ],
+  ],
+  "instances": Array [
+    Object {
+      "__debug": false,
+      "children": [Function],
+      "watchPath": "infos.name",
+    },
+    Object {
+      "__debug": false,
+      "children": [Function],
+      "watchPath": "infos.name",
+    },
+  ],
+}
+`;
+
 exports[`FormWatcher should accept a function as watchPath taking current statePath as parameter 1`] = `
 Object {
   "calls": Array [
     Array [
-      null,
+      Object {
+        "validation": true,
+        "value": null,
+        "watchedStatePath": "test.newPath",
+        "watchedValidation": true,
+        "watchedValue": null,
+      },
       Object {
         "__debug": false,
         "children": [Function],
         "watchPath": [Function],
-      },
-      Object {
-        "validation": true,
-        "watchedStatePath": "test.newPath",
-        "watchedValidation": true,
       },
     ],
   ],
@@ -33,8 +85,16 @@ Object {
     Array [
       "test",
     ],
+    Array [
+      "test",
+    ],
   ],
   "instances": Array [
+    Object {
+      "__debug": false,
+      "children": [Function],
+      "watchPath": [Function],
+    },
     Object {
       "__debug": false,
       "children": [Function],
@@ -48,29 +108,31 @@ exports[`FormWatcher should handle initial change 1`] = `
 Object {
   "calls": Array [
     Array [
-      null,
+      Object {
+        "validation": true,
+        "value": null,
+        "watchedStatePath": "infos",
+        "watchedValidation": true,
+        "watchedValue": null,
+      },
       Object {
         "__debug": false,
         "children": [Function],
         "watchPath": "infos",
-      },
-      Object {
-        "validation": true,
-        "watchedStatePath": "infos",
-        "watchedValidation": true,
       },
     ],
     Array [
-      "salut",
+      Object {
+        "validation": undefined,
+        "value": "salut",
+        "watchedStatePath": "infos",
+        "watchedValidation": undefined,
+        "watchedValue": "salut",
+      },
       Object {
         "__debug": false,
         "children": [Function],
         "watchPath": "infos",
-      },
-      Object {
-        "validation": undefined,
-        "watchedStatePath": "infos",
-        "watchedValidation": undefined,
       },
     ],
   ],
@@ -93,16 +155,17 @@ exports[`FormWatcher should not update when statePath is "infos.name" and watchP
 Object {
   "calls": Array [
     Array [
-      null,
+      Object {
+        "validation": true,
+        "value": null,
+        "watchedStatePath": "name",
+        "watchedValidation": true,
+        "watchedValue": null,
+      },
       Object {
         "__debug": false,
         "children": [Function],
         "watchPath": "name",
-      },
-      Object {
-        "validation": true,
-        "watchedStatePath": "name",
-        "watchedValidation": true,
       },
     ],
   ],
@@ -122,29 +185,31 @@ exports[`FormWatcher should update when statePath is "infos" and watchPath "info
 Object {
   "calls": Array [
     Array [
-      null,
+      Object {
+        "validation": true,
+        "value": null,
+        "watchedStatePath": "infos.name",
+        "watchedValidation": true,
+        "watchedValue": null,
+      },
       Object {
         "__debug": false,
         "children": [Function],
         "watchPath": "infos.name",
-      },
-      Object {
-        "validation": true,
-        "watchedStatePath": "infos.name",
-        "watchedValidation": true,
       },
     ],
     Array [
-      "salut",
+      Object {
+        "validation": undefined,
+        "value": "salut",
+        "watchedStatePath": "infos.name",
+        "watchedValidation": undefined,
+        "watchedValue": "salut",
+      },
       Object {
         "__debug": false,
         "children": [Function],
         "watchPath": "infos.name",
-      },
-      Object {
-        "validation": undefined,
-        "watchedStatePath": "infos.name",
-        "watchedValidation": undefined,
       },
     ],
   ],
@@ -167,29 +232,31 @@ exports[`FormWatcher should update when statePath is "infos.name" and watchPath 
 Object {
   "calls": Array [
     Array [
-      null,
+      Object {
+        "validation": true,
+        "value": null,
+        "watchedStatePath": "infos",
+        "watchedValidation": true,
+        "watchedValue": null,
+      },
       Object {
         "__debug": false,
         "children": [Function],
         "watchPath": "infos",
-      },
-      Object {
-        "validation": true,
-        "watchedStatePath": "infos",
-        "watchedValidation": true,
       },
     ],
     Array [
-      "salut",
+      Object {
+        "validation": undefined,
+        "value": "salut",
+        "watchedStatePath": "infos",
+        "watchedValidation": undefined,
+        "watchedValue": "salut",
+      },
       Object {
         "__debug": false,
         "children": [Function],
         "watchPath": "infos",
-      },
-      Object {
-        "validation": undefined,
-        "watchedStatePath": "infos",
-        "watchedValidation": undefined,
       },
     ],
   ],
