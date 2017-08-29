@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StateInjector should accept a function as watchPath taking current statePath as parameter 1`] = `
+exports[`FormWatcher should accept a function as watchPath taking current statePath as parameter 1`] = `
 Object {
   "calls": Array [
     Array [
@@ -27,7 +27,7 @@ Object {
 }
 `;
 
-exports[`StateInjector should accept a function as watchPath taking current statePath as parameter 2`] = `
+exports[`FormWatcher should accept a function as watchPath taking current statePath as parameter 2`] = `
 Object {
   "calls": Array [
     Array [
@@ -44,7 +44,7 @@ Object {
 }
 `;
 
-exports[`StateInjector should handle initial change 1`] = `
+exports[`FormWatcher should handle initial change 1`] = `
 Object {
   "calls": Array [
     Array [
@@ -89,7 +89,7 @@ Object {
 }
 `;
 
-exports[`StateInjector should not update when statePath is "infos.name" and watchPath "name" 1`] = `
+exports[`FormWatcher should not update when statePath is "infos.name" and watchPath "name" 1`] = `
 Object {
   "calls": Array [
     Array [
@@ -116,9 +116,9 @@ Object {
 }
 `;
 
-exports[`StateInjector should throw if children isn't a function 1`] = `"children of StateInjector must be a function of type (stateValue, props) => React$element"`;
+exports[`FormWatcher should throw if children isn't a function 1`] = `"children of FormWatcher must be a function of type (stateValue, props) => React$element"`;
 
-exports[`StateInjector should update when statePath is "infos" and watchPath "infos.name" 1`] = `
+exports[`FormWatcher should update when statePath is "infos" and watchPath "infos.name" 1`] = `
 Object {
   "calls": Array [
     Array [
@@ -163,7 +163,7 @@ Object {
 }
 `;
 
-exports[`StateInjector should update when statePath is "infos.name" and watchPath "infos" 1`] = `
+exports[`FormWatcher should update when statePath is "infos.name" and watchPath "infos" 1`] = `
 Object {
   "calls": Array [
     Array [
