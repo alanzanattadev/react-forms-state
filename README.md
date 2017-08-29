@@ -128,8 +128,8 @@ this is the capabilities of each object:
 export type ConversionModel = {
   out?: string,
   default?: ?any,
-  convertIn?: (value: any) => any,
-  convertOut?: (value: any) => any,
+  convertIn?: (value: any, props: Object) => any,
+  convertOut?: (value: any, props: Object) => any,
   validate?: validator,
   [key: string]: ConversionModel,
 };
