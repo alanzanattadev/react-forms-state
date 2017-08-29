@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FormController should send an event when state has changed 1`] = `
+exports[`Form should send an event when state has changed 1`] = `
 Object {
   "name": "Mr Joe",
 }
