@@ -1,64 +1,68 @@
 # react-forms-state
 
-Library designed to make easy form management with React, in a semantic way.
+Library designed to make easy form management with React, in a semantic and declarative way.
 
 ## Use case
 
-Forms in react are painful. You have choices between :
-  - Using uncontrolled fields, which are very limited for advanced features (autocomplete, instant search, etc...)
-  - handling onChange and value on each field, and merging manually data for having an immutable state
-  - not doing forms.
+Form management is painful, and handling big forms with validation, prefilling, conversions in and out, value propagation and modification handling can quickly become a hell. At some point the performances can even become a real issue if the whole form is re-rendered at every key typed. 
 
-The thing is manually handling form state can quickly lead to huge performance problem on big forms.
-I wanted a way to make forms easily, seperating views (presenters) from data managment, and using semantic structure (as in raw HTML) without having performance issues.
-
-It also add some convenient utils for handling validation, conversions and automatic prefilling.
+To make all those problematics easier to handle, I've created a set of Higher Order Components and utilities.
+The library is used in production on forms of more than 50 fields on the same page with complete smoothness.
 
 ## Guide
 
-Wrap your root form component with FormController and StateDispatcher:
-```js
-import { FormController, StateDispatcher } from "react-forms-state";
+Wrap your root form component with a Form.
+```javascript
+import { Form } from "react-forms-state";
 
-function RootFormComponent({onSubmit, children}) {
+function RootFormComponent({submit, children}) {
   return (
     <div>
       {children}
-      <button onClick={onSubmit}/>
+      <button onClick={submit}/>
     </div>
   );
 }
 
-const WrappedRootFormComponent = FormController()(StateDispatcher()(RootFormComponent));
+const WrappedRootFormComponent = Form()(RootFormComponent);
 ```
-Wrap some fields with StateProxy
-```js
-import { StateProxy } from "react-forms-state";
 
-const WrappedTextField = StateProxy(TextField);
+The Form sends you a submit prop, that you have to call to trigger the submission of the data. This data will go through validation if there's one, and then will call the onSubmit prop that you passed to Form.
+
+Wrap some fields with FormElement.
+```javascript
+import { FormElement } from "react-forms-state";
+
+const WrappedTextField = FormElement()(TextField);
 ```
-A field is a component which accepts value and onChange.
+A field is a component which accepts value and onChange. FormElement will handle the propagation of value and of onChange event handling. It works with a semantic structure created from the FormElement component hierarchy. You create a hierarchy of FormElement and then you give them the elementName prop. The library builds a state with this exact same shape. You have to define an initial state value of this exact same shape, by sending the formInputValue prop. When this formInputValue prop is received the first time or is modified, the library handle the automatic prefilling of the fields with the new data, it can be useful when you fetch data on a server asynchronously.
 
-create a semantic structure by using the name props:
 ```js
-<WrappedRootFormComponent onSubmit={(formValue) => console.log(formValue)} initial={{firstname: ""}}>
-  <WrappedTextField name="firstname"/>
+<WrappedRootFormComponent onSubmit={(formValue) => console.log(formValue)} formInputValue={{firstname: ""}}>
+  <WrappedTextField elementName="firstname"/>
 </WrappedRootFormComponent>
 ```
 
 That's it :)
 
-initial is the initial state of your form, when initial change, the dispatching of the new data is automatically done on the differents fields, allowing prefilling of data even after mounted.
-
-onSubmit is passed as props to your root component and triggers the validation and conversion of data for you when you call it. You have to pass a onSubmit props to the FormController component to get the value once the user has submitted the form.
-
 ### Let's add conversions
 
-In progress ...
+This library allow you to easily have a conversion from an input value to the form state shape, and the other way around. This is done through Form parameters.
+
+```javascript
+  import { Form } from "react-forms-state";
+
+  const FormHOC = Form({
+    convertIn: (value, props) => formState,
+    convertOut: (formState, props) => newValue,
+  });
+```
+
 
 ### Let's add validation
 
-FormController takes as fifth argument the validation function. This function has to return true if everything is ok, or differents types of error. To make things smoothers for you, a lot of utils are available. Let's dive into them:
+Form also supports validation. It is possible with a validate function that has to return true if everything is ok, or differents types of error.
+The validation is called when you call the submit function. If the validation fails, the onSubmit event is not triggered. To make things smoother for you, a lot of utils are available. Let's dive into them:
   - notNull({errorString})
   - notUndefined({errorString})
   - notEmpty({errorString})
@@ -66,27 +70,36 @@ FormController takes as fifth argument the validation function. This function ha
   - isTrue({errorString})
   - maxLength(max, {errorString})
   - lessThan(accessor1, accessor2, {errorString}) where accessors are either function as (state) => value or string path "user.profile.name".
-  - composeValidation(...validators) is a function that accepts many validators functions and returns a root one to be used directly in FormController validation function.
+  - composeValidation(...validators) is a function that accepts many validators functions and returns a root one to be used directly in Form validation function.
   
 so for example
-```js
-FormController(undefined, undefined, undefined, undefined, composeValidation(notNull(), lessThan("user.birthday", "user.death")));
+```javascript
+  import { Form } from "react-forms-state";
+
+  const FormHOC = Form({
+    validate: composeValidation(notNull(), lessThan("user.birthday", "user.death"))
+  });
 ```
 
-You can also compose with nested composeValidation:
+composeValidation can be nested together, making validation really powerful.
 
-```js
-  const validation = composeValidation(composeValidation(notNull(), notUndefined()), isTrue());
+```javascript
+  const validation = composeValidation(
+    composeValidation(
+      notNull(),
+      notUndefined()
+    ),
+    isTrue()
+  );
 ```
 
-Fields that have failed receive a validation prop. You can use this prop with two utils:
+Fields (components wrapped with FormElement) that have failed receive a validation prop. This prop can be used to change the color of the component on error for example, it's used with two utils:
   - isValid
   - getErrorText
   
-They are useful for displaying errors when necessary.
-```js
+```javascript
 
-import {isValid, getErrorText} from "react-forms-state";
+import {FormElement, isValid, getErrorText} from "react-forms-state";
 
 function Field({value, onChange, validation}) {
   
@@ -98,7 +111,7 @@ function Field({value, onChange, validation}) {
   )
 }
 
-export default StateProxy()(Field);
+export default FormElement()(Field);
 ```
 
 ### Let's use a form model to make things easier
@@ -107,7 +120,7 @@ Sometimes you have to deal with really big forms and doing conversions and valid
 
 This model is a simple schema.
 
-```js
+```javascript
 const model = {
   user: {
     out: "user",
@@ -122,9 +135,10 @@ const model = {
 };
 ```
 
-the model structure depends on the initial structure, and the out attribut will allow you to create another structure after convertIn is called.
+the model structure depends on the structure of the input value, and the out attribut will allow you to create the form shape after the convertIn util is called.
+
 this is the capabilities of each object:
-```js
+```javascript
 export type ConversionModel = {
   out?: string,
   default?: ?any,
@@ -136,74 +150,113 @@ export type ConversionModel = {
 ```
 
 to use a model you have to convert it first to jobs with convertConversionModelToConversionJobs.
-```js
+```javascript
 import { convertConversionModelToConversionJobs } from "react-forms-state";
 
 const jobs = convertConversionModelToConversionJobs(model);
 ```
 
-then you can use the differents utils to use it with FormController
-```js
-import { convertIn, convertOut, validateModel } from "react-forms-state";
+then you can use the differents utils with Form. The library provides three important utils for working with model:
+  - convertIn
+  - convertOut
+  - validateModel
+  
+They all have the signature util(jobs)(value, props).
 
-const Form = FormController(undefined, convertIn(jobs), convertOut(), undefined, composeValidation(validateModel(jobs)))(FormComponent);
+```javascript
+import { Form, convertIn, convertOut, validateModel } from "react-forms-state";
+
+const FormRoot = Form({
+  convertIn: convertIn(jobs),
+  convertOut: convertOut(jobs),
+  validate: composeValidation(validateModel(jobs))
+})(FormComponent);
 ```
 
-And everything is magical !
+And everything is magical ! No, it's not. It only automates this painful selection of data and manipulation for you.
 
 ## API Doc
 
-### FormController
+### Form
 
-tl;dr: wrap the root dispatcher with that or the entire form and pass down props to the dispatcher.
+Form is a Higher Order Component which handles forms state for you. It lets you convert data from external value to "form state" data and the other way around. It also helps you with validation and prefilling of the fields.
 
-FormController is a Higher Order Component which handles forms state for you. It lets you convert data to "form state" data, and to "external data" on submit.
-It sends the state as value to the WrappedComponent through an Rx Observable (valueChangeObs) and get new value by passing onChange, as every react form fields.
-The goal is to have a controlled form so you also have access to an applyControl function to let you control the data in fields. It handles a props 'initial' to let you prefill data, updating fields when initial value is updated to handle async prefilling of fields. It calls onSubmit when onSubmit is called on the wrapped component with the form state as parameter.
 
 ```javascript
   // React and components imports ...
-  import {FormController} from 'react-forms-state';
+  import {Form} from 'react-forms-state';
 
-  let Form = FormController(
-    (state, props) => fromJS(state).update('name', state => state.toLowerCase()).toJS(), // Apply Control
-    (value, props) => ({name: value.firstname}), // Convert In
-    (value, props) => ({firstname: value.name}), // Convert Out
-    {
-      checkIfModified: true, // Checks if value has been modified to prevent repeated submits
-      immutableInitial: false, // Speeds up checks by only checking reference equalities
-    },
-    (value, props) => true // Validation function
-  )(FormPresenter);
+  let Form = Form({
+    convertIn: (value, props) => ({name: value.firstname}), // Convert In
+    convertOut: (formState, props) => ({firstname: formState.name}), // Convert Out
+    checkIfModified: true, // Checks if value has been modified to prevent repeated submits, default false.
+    immutableInitial: false, // Speeds up checks by only checking reference equalities, default false.
+    applyControl: (state, props) => fromJS(state).update('name', state => state.toLowerCase()).toJS(), // Apply Control
+    (value, props) => true // Validation function, default always true.
+  })(FormPresenter);
 
-  let Page = () => <Form initial={cache.userInfos} onSubmit={(value) => postToServer(value)}/>;
+  let Page = () => <Form formInputValue={cache.userInfos} onSubmit={(value) => postToServer(value)}/>;
 ```
 
-params:
-  - Function that let you control the form by modifying data in fields, called at each onChange, returning the new form state.
-  ```javascript
-    (state: any, props: any) => any
-  ```
+### FormElement
 
-  - Function that let you convert data sent to the controller into data used in form.
-  ```javascript
-    (value: any, props) => any
-  ```
+tl;dr : wrap simple fields with that.
 
-  - Function that let you convert data sent to the onSubmit handler from form state value.
-  ```javascript
-    (value: any, props) => any
-  ```
+FormElement is a Higher Order Component made to act as a marker which proxies values dispatched by the Form to the WrappedComponent. It handles field value selection and dispatching of onChange event.
+Components are identified with the elementName props, and the elementName hierarchy is used to select the good value in the form state dispatched, the same for changing value onChange. Components marked as uncontrolled don't call onChange and don't use value, their value is get / set imperatively by the Dispatcher. Uncontrolled values gotten imperatively have to be merged with controlled ones sent by onChange.
 
-  - Options : checkIfModified to prevent repeated submits and immutableInitial to speed up equality checks.
+```javascript
+import {Form, FormElement} from 'react-forms-state';
 
-  - Function that let you validate data before submitting, you have to return an object with the same structure as the state but with errors instead of value where there are errors. Others attributs can be undefined.
+let WrappedComponent = (props) => (<input ref="input" type="text" value={props.value} onChange={e => props.onChange(e.target.value)}/>);
 
-### StateDispatcher
+let Field = Form({
+  getUncontrolledValue: (child) => child.input.value, // Handling fetching of data of uncontrolled version of the wrapped component
+  setUncontrolledValue: (child, value) => {child.input.value = value}, // Handling update of data of uncontrolled version of the wrapped component
+  root: false // Defines this as a root element to change the selection method. Used internally.
+})(WrappedComponent);
 
-tl;dr : wrap the root form component with that.
+let FormPresenter = (props) => (<div><Field elementName="firstname"/></div>); // Field props value == "Alan"
+----------------
+let FormPresenter = (props) => (<div><Field elementName="firstname" uncontrolled/></div>); // Field props value == "Alan"
+```
 
-StateDispatcher is a Higher Order Component made to dispatch values to StateProxies using contexts, and providing methods to get / set values on ,marked as uncontrolled, components. It has to wrap the root Form Component. It's well handled by FormController.
+It injects to the wrapped component.
+  - value: the value of the field.
+  - onChange: the onChange handler.
+  - validation: validation object, validation.infos leads to the error strings.
+
+
+## FormWatcher
+
+Sometimes it can be useful to know the value of one of the attributs of the form state. For example you may want to display a part of the form only if one checkbox is checked. FormWatcher is used in those specific cases. It can also be useful for displaying a toast or a notification in case of validation failure.  
+
+The big pro of using a FormWatcher is that it will rerender only if the watched value change, so it increases drastically performances. For this reason, it's the only way of getting a value of the form state. Let's force everyone to keep good performances (You can however watch "" and it will rerender everytime, but you won't).
+
+```javascript
+const Comp = () => (
+  import {FormWatcher} from 'react-forms-state';
+
+  <FormWatcher watchPath={(props) => `group.${props.name}`}>
+    {({
+      watchedStatePath, // watched path
+      validation, // global form validation value
+      watchedValidation, // validation value of the watched element, selected with the watchPath prop
+      value, // Global form state value
+      watchedValue, // Watched value, selected with the watchPath prop
+    }, props) => (
+      watchedValue && <div></div>
+    )}
+  </FormWatcher>
+)
+```
+
+Props:
+  - watchPath : Path to the value, separated with dots (eg : "group.name"). Can also be a function (parentPath) => statePath
+
+### StateDispatcher (Used internally)
+
+StateDispatcher is a Higher Order Component made to dispatch values to FormElement using context, and providing methods to get / set values on ,marked as uncontrolled, components. It has to wrap the root Form Component (the Form HOC does this for you).
 
 ```javascript
   // React and components imports ...
@@ -217,67 +270,19 @@ StateDispatcher is a Higher Order Component made to dispatch values to StateProx
   })(WrappedComponent);
 ```
 
-### StateProxy
+## Migrate from v2 to v3
 
-tl;dr : wrap simple fields with that.
+FormController(..., ..., ...) -> Form({..., ..., ...})
+  - wrapped component received onSubmit -> wrapped component receives submit
+  - initial -> formInputValue
+StateProxy(options, uncontrolledConfig) -> FormElement({..., ...})
+  - name -> elementName
+StateInjector -> FormWatcher, it now takes a children function like: ({value, watchedValue}, props) => React.Element
+StateDispatcher -> now included into FormController
+FormModel:
+  - convertIn(value, jobs, props) => convertIn(jobs)(value, props)
+  - convertOut(value, jobs, props) => convertOut(jobs)(value, props)
 
-StateProxy is a Higher Order Component made to act as a marker which proxies values dispatched by the Dispatcher to the WrappedComponent, and providing methods to get / set values on , marked as uncontrolled, components. It can change the root value for the wrapped component if root is set as true.
-Components are marked with a name props, and the name hierarchy is used to select the good value in the form state dispatched, the same for changing value onChange. Components marked as uncontrolled don't call onChange and don't use value, their value is get / set imperatively by the Dispatcher.
+## Thank you
 
-Uncontrolled values gotten imperatively have to be merged with controlled ones sent by onChange.
-
-```javascript
-import {StateDispatcher} from 'react-forms-state';
-
-let WrappedComponent = (props) => (<input ref="input" type="text" value={props.value} onChange={e => props.onChange(e.target.value)}/>); // functional because of readability
-
-let Field = StateProxy({
-  root: false
-}, {
-  getValue: (child) => child.input.value,
-  setValue: (child, value) => {child.input.value = value}
-})(WrappedComponent);
-
-// valueChangeObs will send {firstname: "Alan"}
-
-let FormPresenter = (props) => (<Dispatcher valueChangeObs={props.valueChangeObs} ><Field name="firstname"/></Dispatcher>); // Field props value == "Alan"
-----------------
-let FormPresenter = () => (<Dispatcher ref="dispatcher" valueChangeObs={valueChangeObs} ><Field name="firstname" uncontrolled/></Dispatcher>); // Field props value == "Alan"
-assert(FormPresenter.refs.dispatcher.getUncontrolledState() == {name: "Alan"});
-FormPresenter.refs.dispatcher.dispatchUncontrolledValues({name: "Zanatta"});
-assert(FormPresenter.refs.dispatcher.getUncontrolledState() == {name: "Zanatta"});
-```
-
-injects
-  - value
-  - onChange
-  - validation : validation object, validation.infos leads to the error strings.
-
-## StateInjector
-
-StateInjector is a component that is used to get some value from form state in a component.
-
-```javascript
-const Comp = () => (
-  import {StateInjector} from 'react-forms-state';
-
-  <StateInjector watchPath={(props) => `group.${props.name}`}>
-    {(value, props, {watchedStatePath, validation}) => (
-      value.group.name && <div></div>
-    )}
-  </StateInjector>
-)
-```
-
-```
-
-Props:
-  - watchPath : Path to the value, separated with dots (eg : "group.name"). Can also be a function (props) => statePath
-
-Injected:
-  - value : the entire form state
-  - props : the others props sent to injector
-  - options:
-    - watchedStatePath : the computed watchPath
-    - validation : validation object, valifation.infos leads to the error string
-```
+Charles Cote for having created the Form model pattern.
