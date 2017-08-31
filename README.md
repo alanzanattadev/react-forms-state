@@ -206,11 +206,11 @@ FormElement is a Higher Order Component made to act as a marker which proxies va
 Components are identified with the elementName props, and the elementName hierarchy is used to select the good value in the form state dispatched, the same for changing value onChange. Components marked as uncontrolled don't call onChange and don't use value, their value is get / set imperatively by the Dispatcher. Uncontrolled values gotten imperatively have to be merged with controlled ones sent by onChange.
 
 ```javascript
-import {Form, FormElement} from 'react-forms-state';
+import { FormElement } from 'react-forms-state';
 
-let WrappedComponent = (props) => (<input ref="input" type="text" value={props.value} onChange={e => props.onChange(e.target.value)}/>);
+let InputField = (props) => (<input ref="input" type="text" value={props.value} onChange={e => props.onChange(e.target.value)}/>);
 
-let Field = Form({
+let Field = FormElement({
   getUncontrolledValue: (child) => child.input.value, // Handling fetching of data of uncontrolled version of the wrapped component
   setUncontrolledValue: (child, value) => {child.input.value = value}, // Handling update of data of uncontrolled version of the wrapped component
   root: false // Defines this as a root element to change the selection method. Used internally.
