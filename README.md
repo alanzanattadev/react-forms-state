@@ -55,12 +55,12 @@ A field is a component which accepts value and onChange. FormElement will handle
   
   // And you want to modify it, you will have a form
   
-  const Field = FormElement(({value, onChange}) => <input type="text" value={value} onChange={(e) => onChange(e.target.value)}/>);
+  const Field = FormElement()(({value, onChange}) => <input type="text" value={value} onChange={(e) => onChange(e.target.value)}/>);
   const Group = FormElement()(({children}) => <div>{children}</div>)
   
   // Group is only used to nest data. 
   
-  const FormView () => (
+  const FormView ({submit}) => (
     <div>
       <Field elementName="username"/>
       <div>
@@ -68,6 +68,7 @@ A field is a component which accepts value and onChange. FormElement will handle
           <Field elementName="phone"/>
         </Group>
       </div>
+      <button onClick={submit}>submit</button>
     </div>
   );
   
@@ -81,7 +82,7 @@ A field is a component which accepts value and onChange. FormElement will handle
       contact: {
         phone: "+33"
       }
-    }}/>
+    }} onSubmit={newValue => { user = newValue }}/>
   )
 ```
 
