@@ -234,7 +234,6 @@ Sometimes it can be useful to know the value of one of the attributs of the form
 The big pro of using a FormWatcher is that it will rerender only if the watched value change, so it increases drastically performances. For this reason, it's the only way of getting a value of the form state. Let's force everyone to keep good performances (You can however watch "" and it will rerender everytime, but you won't).
 
 ```javascript
-const Comp = () => (
   import {FormWatcher} from 'react-forms-state';
 
   <FormWatcher watchPath={(parentPath) => `${parentPath}.group.name`}>
@@ -248,7 +247,6 @@ const Comp = () => (
       watchedValue && <div></div>
     )}
   </FormWatcher>
-)
 ```
 
 Props:
