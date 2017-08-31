@@ -293,7 +293,7 @@ The big pro of using a FormWatcher is that it will rerender only if the watched 
 ```
 
 Props:
-  - watchPath : Path to the value, separated with dots (eg : "group.name"). Can also be a function (parentPath) => statePath
+  - watchPath : Path to the value, separated with dots (eg : "group.name"). Can also be a function (parentPath) => statePath. parentPath is the state path made by the parent components of FormWatcher. It's used to avoid rewriting the entire path when the FormWatcher is nested in the component hierarchy.
 
 ### StateDispatcher (Used internally)
 
