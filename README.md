@@ -37,11 +37,54 @@ const WrappedTextField = FormElement()(TextField);
 ```
 A field is a component which accepts value and onChange. FormElement will handle the propagation of value and of onChange event handling. It works with a semantic structure created from the FormElement component hierarchy. You create a hierarchy of FormElement and then you give them the elementName prop. The library builds a state with this exact same shape. You have to define an initial state value of this exact same shape, by sending the formInputValue prop. When this formInputValue prop is received the first time or is modified, the library handle the automatic prefilling of the fields with the new data, it can be useful when you fetch data on a server asynchronously.
 
-```js
+```javascript
 <WrappedRootFormComponent onSubmit={(formValue) => console.log(formValue)} formInputValue={{firstname: ""}}>
   <WrappedTextField elementName="firstname"/>
 </WrappedRootFormComponent>
 ```
+
+```javascript
+  // if you have an entity User
+  
+  const user = {
+    username: "",
+    contact: {
+      phone: ""
+    }
+  };
+  
+  // And you want to modify it, you will have a form
+  
+  const Field = FormElement(({value, onChange}) => <input type="text" value={value} onChange={(e) => e.target.value}/>);
+  const Group = FormElement()(({children}) => <div>{children}</div>)
+  
+  // Group is only used to nest data. 
+  
+  const FormView () => (
+    <div>
+      <Field elementName="username"/>
+      <div>
+        <Group elementName="contact">
+          <Field elementName="phone"/>
+        </Group>
+      </div>
+    </div>
+  );
+  
+  // This way you can autoprefill
+  
+  const FormRoot = Form()(FormView);
+  
+  const MyForm = () => (
+    <FormRoot formInputValue={{
+      username: "",
+      contact: {
+        phone: "+33"
+      }
+    }}/>
+  )
+```
+
 
 That's it :)
 
