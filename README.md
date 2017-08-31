@@ -237,7 +237,7 @@ The big pro of using a FormWatcher is that it will rerender only if the watched 
 const Comp = () => (
   import {FormWatcher} from 'react-forms-state';
 
-  <FormWatcher watchPath={(props) => `group.${props.name}`}>
+  <FormWatcher watchPath={(parentPath) => `${parentPath}.group.name`}>
     {({
       watchedStatePath, // watched path
       validation, // global form validation value
