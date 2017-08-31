@@ -60,7 +60,7 @@ A field is a component which accepts value and onChange. FormElement will handle
   
   // Group is only used to nest data. 
   
-  const FormView ({submit}) => (
+  const FormView = ({submit}) => (
     <div>
       <Field elementName="username"/>
       <div>
