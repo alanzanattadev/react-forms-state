@@ -7,7 +7,7 @@
 		exports["ReactFormsState"] = factory(require("immutable"), require("react"), require("rxjs"));
 	else
 		root["ReactFormsState"] = factory(root["immutable"], root["React"], root["Rx"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -43,9 +43,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -73,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -103,7 +100,7 @@ exports.setValue = setValue;
 
 var _immutable = __webpack_require__(0);
 
-var _StatePathHelpers = __webpack_require__(8);
+var _StatePathHelpers = __webpack_require__(7);
 
 function getJavascriptEntity(obj) {
   if (obj && (typeof obj === "undefined" ? "undefined" : _typeof(obj)) == "object" && obj.toJS) return obj.toJS();else return obj;
@@ -136,10 +133,74 @@ function setValue(state, path, value) {
     return newState;
   }
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+"use babel";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.VALIDATION_FAILED_EVENT_TYPE = exports.SUBMIT_EVENT_TYPE = exports.INITIAL_CHANGE_EVENT_TYPE = exports.VALUE_CHANGE_EVENT_TYPE = undefined;
+exports.createValueChangeEvent = createValueChangeEvent;
+exports.createInitialChangeEvent = createInitialChangeEvent;
+exports.createSubmitChangeEvent = createSubmitChangeEvent;
+exports.createValidationFailedEvent = createValidationFailedEvent;
+
+var _ValidationHelpers = __webpack_require__(5);
+
+var VALUE_CHANGE_EVENT_TYPE = exports.VALUE_CHANGE_EVENT_TYPE = "VALUE_CHANGE";var INITIAL_CHANGE_EVENT_TYPE = exports.INITIAL_CHANGE_EVENT_TYPE = "INITIAL_CHANGE";
+var SUBMIT_EVENT_TYPE = exports.SUBMIT_EVENT_TYPE = "SUBMIT";
+var VALIDATION_FAILED_EVENT_TYPE = exports.VALIDATION_FAILED_EVENT_TYPE = "VALIDATION_FAILED";
+
+function createValueChangeEvent(newValue, statePath, validation) {
+  return {
+    type: VALUE_CHANGE_EVENT_TYPE,
+    newValue: newValue,
+    statePath: statePath,
+    validation: validation
+  };
+}
+
+function createInitialChangeEvent(newInitial) {
+  return {
+    type: INITIAL_CHANGE_EVENT_TYPE,
+    newValue: newInitial
+  };
+}
+
+function createSubmitChangeEvent() {
+  return {
+    type: SUBMIT_EVENT_TYPE
+  };
+}
+
+function createValidationFailedEvent(validation) {
+  return {
+    type: VALIDATION_FAILED_EVENT_TYPE,
+    validation: validation
+  };
+}
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -162,7 +223,7 @@ var _immutable = __webpack_require__(0);
 
 var _StateValueHelpers = __webpack_require__(1);
 
-var _StatePathHelpers = __webpack_require__(8);
+var _StatePathHelpers = __webpack_require__(7);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -238,7 +299,34 @@ var Validation = exports.Validation = function () {
 }();
 
 /***/ }),
-/* 3 */
+/* 6 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -248,61 +336,231 @@ var Validation = exports.Validation = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.VALIDATION_FAILED_EVENT_TYPE = exports.SUBMIT_EVENT_TYPE = exports.INITIAL_CHANGE_EVENT_TYPE = exports.VALUE_CHANGE_EVENT_TYPE = undefined;
-exports.createValueChangeEvent = createValueChangeEvent;
-exports.createInitialChangeEvent = createInitialChangeEvent;
-exports.createSubmitChangeEvent = createSubmitChangeEvent;
-exports.createValidationFailedEvent = createValidationFailedEvent;
+exports.getImmutPath = getImmutPath;
+exports.getNewPath = getNewPath;
 
-var _ValidationHelpers = __webpack_require__(2);
-
-var VALUE_CHANGE_EVENT_TYPE = exports.VALUE_CHANGE_EVENT_TYPE = "VALUE_CHANGE";var INITIAL_CHANGE_EVENT_TYPE = exports.INITIAL_CHANGE_EVENT_TYPE = "INITIAL_CHANGE";
-var SUBMIT_EVENT_TYPE = exports.SUBMIT_EVENT_TYPE = "SUBMIT";
-var VALIDATION_FAILED_EVENT_TYPE = exports.VALIDATION_FAILED_EVENT_TYPE = "VALIDATION_FAILED";
-
-function createValueChangeEvent(newValue, statePath, validation) {
-  return {
-    type: VALUE_CHANGE_EVENT_TYPE,
-    newValue: newValue,
-    statePath: statePath,
-    validation: validation
-  };
+function getImmutPath(path) {
+  if (path == "") return [];
+  return path.split(".").map(function (p) {
+    return isNaN(p) ? p : parseInt(p);
+  });
 }
 
-function createInitialChangeEvent(newInitial) {
-  return {
-    type: INITIAL_CHANGE_EVENT_TYPE,
-    newValue: newInitial
-  };
-}
-
-function createSubmitChangeEvent() {
-  return {
-    type: SUBMIT_EVENT_TYPE
-  };
-}
-
-function createValidationFailedEvent(validation) {
-  return {
-    type: VALIDATION_FAILED_EVENT_TYPE,
-    validation: validation
-  };
+function getNewPath(immutState, statePath, name) {
+  if (isArray(getValue(immutState, statePath))) {
+    var index = getValue(immutState, statePath).findIndex(function (obj) {
+      return obj.id == name;
+    });
+    return "" + statePath + (statePath.length > 0 ? "." : "") + index + ".value";
+  } else {
+    return "" + statePath + (statePath.length > 0 ? "." : "") + name;
+  }
 }
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+"use babel";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+exports.default = StateDispatcher;
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _immutable = __webpack_require__(0);
+
+var _FormElement = __webpack_require__(9);
+
+var _FormElement2 = _interopRequireDefault(_FormElement);
+
+var _StateValueHelpers = __webpack_require__(1);
+
+var _rxjs = __webpack_require__(3);
+
+var _rxjs2 = _interopRequireDefault(_rxjs);
+
+var _FormEvents = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function StateDispatcher() {
+  var convertIn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (v, props) {
+    return v;
+  };
+  var convertOut = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (v, props) {
+    return v;
+  };
+
+  return function (WrappedComponent) {
+    var Dispatcher = function (_React$Component) {
+      _inherits(Dispatcher, _React$Component);
+
+      function Dispatcher(props) {
+        _classCallCheck(this, Dispatcher);
+
+        var _this = _possibleConstructorReturn(this, (Dispatcher.__proto__ || Object.getPrototypeOf(Dispatcher)).call(this, props));
+
+        _this.handlers = {};
+        _this.valueChangeObs = props.valueChangeObs.map(function (e) {
+          var convertedValue = convertIn(e.value, props);
+          if (convertedValue === e.value) return e;else return Object.assign({}, e, {
+            value: convertedValue,
+            validation: e.validation,
+            statePath: e.type === _FormEvents.INITIAL_CHANGE_EVENT_TYPE ? undefined : props.statePath
+          });
+        });
+        return _this;
+      }
+
+      _createClass(Dispatcher, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+          var _this2 = this;
+
+          if (this.context.attachToForm != null) this.context.attachToForm(function () {
+            return _this2.getUncontrolledState();
+          });
+          this.subscription = this.valueChangeObs.filter(function (e) {
+            return e.type == _FormEvents.INITIAL_CHANGE_EVENT_TYPE;
+          }).do(function (e) {
+            if (global.process && global.process.env && global.process.env.FORMALIZR_ENV === "DEBUG") {
+              console.log("Dispatching uncontrolled values from " + _this2.props.statePath);
+            }
+          }).subscribe({
+            next: function next(e) {
+              return _this2.dispatchUncontrolledValues(e);
+            }
+          });
+        }
+      }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+          if (this.context.attachToForm != null) this.context.attachToForm(null);
+          this.subscription.unsubscribe();
+        }
+      }, {
+        key: "dispatchUncontrolledValues",
+        value: function dispatchUncontrolledValues(event) {
+          var _this3 = this;
+
+          Object.keys(this.handlers).forEach(function (statePath) {
+            if (event.oldValue === undefined || (0, _StateValueHelpers.getValue)(convertIn(event.value, _this3.props), statePath) !== (0, _StateValueHelpers.getValue)(convertIn(event.oldValue, _this3.props), statePath)) _this3.handlers[statePath].set((0, _StateValueHelpers.getValue)(convertIn(event.value, _this3.props), statePath));
+          });
+        }
+      }, {
+        key: "getChildContext",
+        value: function getChildContext() {
+          var _this4 = this;
+
+          return {
+            valueChangeObs: this.valueChangeObs,
+            rootValueChangeObs: this.props.rootValueChangeObs,
+            onStateChange: function onStateChange(v, statePath, validation) {
+              var convertedInParentValue = convertIn(_this4.props.getValue(), _this4.props);
+              var completeValue = Array.isArray(convertedInParentValue) === false ? Object.assign({}, convertedInParentValue, _defineProperty({}, statePath, v)) : (0, _immutable.List)().concat(convertedInParentValue).update(function (list) {
+                return list.update(list.findIndex(function (item) {
+                  return item.id === statePath;
+                }), function (item) {
+                  return Object.assign({}, item, { value: v });
+                });
+              });
+              var convertedValue = convertOut(completeValue, _this4.props);
+              // console.log(
+              //   "On change",
+              //   completeValue,
+              //   convertedValue,
+              //   completeValue !== convertedValue,
+              //   v,
+              //   statePath,
+              // );
+              if (convertedValue !== completeValue || (typeof convertedValue === "undefined" ? "undefined" : _typeof(convertedValue)) != _typeof(_this4.props.getValue())) _this4.props.onChange(convertedValue, _this4.props.statePath, validation);else _this4.props.onChange(v, "" + _this4.props.statePath + (_this4.props.statePath == "" || statePath == "" ? "" : ".") + statePath, validation);
+            },
+            attachToForm: null,
+            addHandler: function (statePath, getHandler, setHandler) {
+              _this4.handlers = Object.assign({}, _this4.handlers, _defineProperty({}, statePath, {
+                get: getHandler,
+                set: setHandler
+              }));
+            }.bind(this)
+          };
+        }
+      }, {
+        key: "getUncontrolledState",
+        value: function getUncontrolledState() {
+          var _this5 = this;
+
+          var value = Object.keys(this.handlers).reduce(function (red, statePath) {
+            return (0, _StateValueHelpers.setValue)(red, statePath, _this5.handlers[statePath].get());
+          }, {});
+          return convertOut(value, this.props);
+        }
+      }, {
+        key: "render",
+        value: function render() {
+          return _react2.default.createElement(WrappedComponent, this.props);
+        }
+      }]);
+
+      return Dispatcher;
+    }(_react2.default.Component);
+
+    Dispatcher.defaultProps = Object.assign({}, WrappedComponent.defaultProps, {
+      onChange: function onChange() {},
+
+      value: {},
+      valueChangeObs: _rxjs2.default.Observable.never()
+    });
+
+    Dispatcher.propTypes = {
+      valueChangeObs: _react2.default.PropTypes.any,
+      onChange: _react2.default.PropTypes.func
+    };
+
+    Dispatcher.childContextTypes = {
+      valueChangeObs: _react2.default.PropTypes.any,
+      onStateChange: _react2.default.PropTypes.func,
+      addHandler: _react2.default.PropTypes.func,
+      attachToForm: _react2.default.PropTypes.func,
+      rootValueChangeObs: _react2.default.PropTypes.any
+    };
+
+    Dispatcher.contextTypes = {
+      attachToForm: _react2.default.PropTypes.func
+    };
+
+    return (0, _FormElement2.default)({
+      root: true,
+      getUncontrolledValue: function getUncontrolledValue(child) {
+        return child.getUncontrolledState();
+      },
+      setUncontrolledValue: function setUncontrolledValue(child) {}
+    })(Dispatcher);
+  };
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
-
-/***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -319,21 +577,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-exports.default = StateProxy;
+exports.default = FormElement;
 
-var _react = __webpack_require__(4);
+var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
 var _StateValueHelpers = __webpack_require__(1);
 
-var _FormEvents = __webpack_require__(3);
+var _FormEvents = __webpack_require__(4);
 
-var _rxjs = __webpack_require__(5);
+var _rxjs = __webpack_require__(3);
 
 var _rxjs2 = _interopRequireDefault(_rxjs);
 
-var _ValidationHelpers = __webpack_require__(2);
+var _ValidationHelpers = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -345,32 +603,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var NeverObservable = _rxjs2.default.Observable.never();
 
-function StateProxy() {
+function FormElement() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       _ref$root = _ref.root,
       root = _ref$root === undefined ? false : _ref$root,
       _ref$validate = _ref.validate,
       validate = _ref$validate === undefined ? function () {
     return true;
-  } : _ref$validate;
+  } : _ref$validate,
+      getUncontrolledValue = _ref.getUncontrolledValue,
+      setUncontrolledValue = _ref.setUncontrolledValue;
 
-  var uncontrolledConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
-    getValue: function getValue() {
-      return undefined;
-    },
-    setValue: function setValue() {
-      return undefined;
-    }
-  };
+  return function FormElementHOC(WrappedComponent) {
+    var FormElementContainer = function (_React$Component) {
+      _inherits(FormElementContainer, _React$Component);
 
-  return function (WrappedComponent) {
-    var ProxiedState = function (_React$Component) {
-      _inherits(ProxiedState, _React$Component);
+      function FormElementContainer(props, context) {
+        _classCallCheck(this, FormElementContainer);
 
-      function ProxiedState(props, context) {
-        _classCallCheck(this, ProxiedState);
-
-        var _this = _possibleConstructorReturn(this, (ProxiedState.__proto__ || Object.getPrototypeOf(ProxiedState)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (FormElementContainer.__proto__ || Object.getPrototypeOf(FormElementContainer)).call(this, props));
 
         _this.state = {
           value: null,
@@ -380,11 +631,11 @@ function StateProxy() {
         return _this;
       }
 
-      _createClass(ProxiedState, [{
+      _createClass(FormElementContainer, [{
         key: "getHumanReadableIdentifier",
         value: function getHumanReadableIdentifier(props, context) {
           var currentStatePath = this.getCurrentStatePath(props, context, {});
-          return "ProxiedField with statePath " + (currentStatePath != null && currentStatePath !== "" ? currentStatePath : '""') + " and name " + (props.name != "" && props.name != undefined ? props.name : '""');
+          return "ProxiedField with statePath " + (currentStatePath != null && currentStatePath !== "" ? currentStatePath : '""') + " and elementName " + (props.elementName != "" && props.elementName != undefined ? props.elementName : '""');
         }
       }, {
         key: "getAssignedObs",
@@ -470,14 +721,14 @@ function StateProxy() {
         value: function connectToUncontrolledHandlers(props, context) {
           var _this4 = this;
 
-          if (props.name && context.addHandler && !this.isControlled(props, context)) {
-            if (uncontrolledConfig.getValue == null || uncontrolledConfig.setValue == null) {
+          if (props.elementName && context.addHandler && !this.isControlled(props, context)) {
+            if (getUncontrolledValue == null || setUncontrolledValue == null) {
               console.warn(this.getHumanReadableIdentifier(props, context) + " is uncontrolled but has no getValue / setValue defined, thus it is disabled and not connected");
             } else {
               context.addHandler(this.getCurrentStatePath(props, context), function () {
-                return root ? _this4.getUncontrolledState() : uncontrolledConfig.getValue(_this4.child);
+                return root ? _this4.getUncontrolledState() : getUncontrolledValue(_this4.child);
               }, function (value) {
-                return root ? _this4.child.dispatchUncontrolledValues({ value: value }) : uncontrolledConfig.setValue(_this4.child, value);
+                return root ? _this4.child.dispatchUncontrolledValues({ value: value }) : setUncontrolledValue(_this4.child, value);
               });
             }
           }
@@ -508,11 +759,11 @@ function StateProxy() {
           var value = (0, _StateValueHelpers.getValue)(v, context.statePath || "");
           if ((typeof value === "undefined" ? "undefined" : _typeof(value)) == "object" && Array.isArray(value)) {
             var index = value.findIndex(function (v) {
-              return v.id == props.name;
+              return v.id == props.elementName;
             });
             return (index != -1 ? index : "") + ".value";
           } else {
-            return props.name;
+            return props.elementName;
           }
         }
       }, {
@@ -521,22 +772,22 @@ function StateProxy() {
           var value = (0, _StateValueHelpers.getValue)(v, context.completeStatePath || "");
           if ((typeof value === "undefined" ? "undefined" : _typeof(value)) == "object" && Array.isArray(value)) {
             var index = value.findIndex(function (v) {
-              return v.id == props.name;
+              return v.id == props.elementName;
             });
             return (index != -1 ? index : "") + ".value";
           } else {
-            return props.name;
+            return props.elementName;
           }
         }
       }, {
         key: "getCurrentStatePath",
         value: function getCurrentStatePath(props, context, value) {
-          if (context.statePath && context.statePath != "" && props.name) return context.statePath + "." + this.getNewPathPart(props, context, value);else if (props.name) return this.getNewPathPart(props, context, value);else if (context.statePath) return context.statePath;else return "";
+          if (context.statePath && context.statePath != "" && props.elementName) return context.statePath + "." + this.getNewPathPart(props, context, value);else if (props.elementName) return this.getNewPathPart(props, context, value);else if (context.statePath) return context.statePath;else return "";
         }
       }, {
         key: "getCompleteCurrentStatePath",
         value: function getCompleteCurrentStatePath(props, context, value) {
-          if (props.valueChangeObs == null && context.completeStatePath && context.completeStatePath != "" && props.name) return context.completeStatePath + "." + this.getNewCompletePathPart(props, context, value);else if (props.name) return this.getNewCompletePathPart(props, context, value);else if (props.valueChangeObs == null && context.completeStatePath) return context.completeStatePath;else return "";
+          if (props.valueChangeObs == null && context.completeStatePath && context.completeStatePath != "" && props.elementName) return context.completeStatePath + "." + this.getNewCompletePathPart(props, context, value);else if (props.elementName) return this.getNewCompletePathPart(props, context, value);else if (props.valueChangeObs == null && context.completeStatePath) return context.completeStatePath;else return "";
         }
       }, {
         key: "isControlled",
@@ -605,16 +856,16 @@ function StateProxy() {
         }
       }]);
 
-      return ProxiedState;
+      return FormElementContainer;
     }(_react2.default.Component);
 
-    ProxiedState.defaultProps = Object.assign({
+    FormElementContainer.defaultProps = Object.assign({
       uncontrolled: false
     }, {
-      name: WrappedComponent.defaultProps && WrappedComponent.defaultProps.name || undefined
+      elementName: WrappedComponent.defaultProps && WrappedComponent.defaultProps.elementName || undefined
     });
 
-    ProxiedState.contextTypes = {
+    FormElementContainer.contextTypes = {
       statePath: _react2.default.PropTypes.string,
       completeStatePath: _react2.default.PropTypes.string,
       valueChangeObs: _react2.default.PropTypes.any,
@@ -624,45 +875,18 @@ function StateProxy() {
       rootValueChangeObs: _react2.default.PropTypes.any
     };
 
-    ProxiedState.childContextTypes = {
+    FormElementContainer.childContextTypes = {
       statePath: _react2.default.PropTypes.string,
       completeStatePath: _react2.default.PropTypes.string,
       uncontrolled: _react2.default.PropTypes.bool
     };
 
-    return ProxiedState;
+    return FormElementContainer;
   };
 }
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -672,29 +896,149 @@ module.exports = g;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getImmutPath = getImmutPath;
-exports.getNewPath = getNewPath;
 
-function getImmutPath(path) {
-  if (path == "") return [];
-  return path.split(".").map(function (p) {
-    return isNaN(p) ? p : parseInt(p);
-  });
-}
+var _Form = __webpack_require__(11);
 
-function getNewPath(immutState, statePath, name) {
-  if (isArray(getValue(immutState, statePath))) {
-    var index = getValue(immutState, statePath).findIndex(function (obj) {
-      return obj.id == name;
-    });
-    return "" + statePath + (statePath.length > 0 ? "." : "") + index + ".value";
-  } else {
-    return "" + statePath + (statePath.length > 0 ? "." : "") + name;
+Object.defineProperty(exports, "Form", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Form).default;
   }
-}
+});
+
+var _StateDispatcher = __webpack_require__(8);
+
+Object.defineProperty(exports, "StateDispatcher", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_StateDispatcher).default;
+  }
+});
+
+var _FormElement = __webpack_require__(9);
+
+Object.defineProperty(exports, "FormElement", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_FormElement).default;
+  }
+});
+
+var _FormWatcher = __webpack_require__(12);
+
+Object.defineProperty(exports, "FormWatcher", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_FormWatcher).default;
+  }
+});
+
+var _StateValueHelpers = __webpack_require__(1);
+
+Object.defineProperty(exports, "getValue", {
+  enumerable: true,
+  get: function get() {
+    return _StateValueHelpers.getValue;
+  }
+});
+
+var _ValidationComposition = __webpack_require__(13);
+
+Object.defineProperty(exports, "notNull", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.notNull;
+  }
+});
+Object.defineProperty(exports, "notUndefined", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.notUndefined;
+  }
+});
+Object.defineProperty(exports, "notEmpty", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.notEmpty;
+  }
+});
+Object.defineProperty(exports, "composeValidation", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.composeValidation;
+  }
+});
+Object.defineProperty(exports, "required", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.required;
+  }
+});
+Object.defineProperty(exports, "isTrue", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.isTrue;
+  }
+});
+Object.defineProperty(exports, "maxLength", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.maxLength;
+  }
+});
+Object.defineProperty(exports, "lessThan", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationComposition.lessThan;
+  }
+});
+
+var _FormModel = __webpack_require__(14);
+
+Object.defineProperty(exports, "convertConversionModelToConversionJobs", {
+  enumerable: true,
+  get: function get() {
+    return _FormModel.convertConversionModelToConversionJobs;
+  }
+});
+Object.defineProperty(exports, "convertIn", {
+  enumerable: true,
+  get: function get() {
+    return _FormModel.convertIn;
+  }
+});
+Object.defineProperty(exports, "convertOut", {
+  enumerable: true,
+  get: function get() {
+    return _FormModel.convertOut;
+  }
+});
+Object.defineProperty(exports, "validateModel", {
+  enumerable: true,
+  get: function get() {
+    return _FormModel.validateModel;
+  }
+});
+
+var _ValidationHelpers = __webpack_require__(5);
+
+Object.defineProperty(exports, "isValid", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationHelpers.isValid;
+  }
+});
+Object.defineProperty(exports, "getErrorText", {
+  enumerable: true,
+  get: function get() {
+    return _ValidationHelpers.getErrorText;
+  }
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -709,23 +1053,27 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-exports.default = FormController;
+exports.default = Form;
 
-var _react = __webpack_require__(4);
+var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
 var _immutable = __webpack_require__(0);
 
-var _rxjs = __webpack_require__(5);
+var _rxjs = __webpack_require__(3);
 
 var _rxjs2 = _interopRequireDefault(_rxjs);
 
-var _FormEvents = __webpack_require__(3);
+var _FormEvents = __webpack_require__(4);
 
 var _StateValueHelpers = __webpack_require__(1);
 
-var _ValidationHelpers = __webpack_require__(2);
+var _ValidationHelpers = __webpack_require__(5);
+
+var _StateDispatcher = __webpack_require__(8);
+
+var _StateDispatcher2 = _interopRequireDefault(_StateDispatcher);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -735,35 +1083,39 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function FormController() {
-  var applyControl = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (state) {
+function Form() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$applyControl = _ref.applyControl,
+      applyControl = _ref$applyControl === undefined ? function (state) {
     return state;
-  };
-  var convertIn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (value, props) {
+  } : _ref$applyControl,
+      _ref$convertIn = _ref.convertIn,
+      convertIn = _ref$convertIn === undefined ? function (value, props) {
     return value;
-  };
-  var convertOut = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function (value, props) {
+  } : _ref$convertIn,
+      _ref$convertOut = _ref.convertOut,
+      convertOut = _ref$convertOut === undefined ? function (value, props) {
     return value;
-  };
-
-  var _ref = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {},
+  } : _ref$convertOut,
+      _ref$validate = _ref.validate,
+      validate = _ref$validate === undefined ? function (value, props) {
+    return true;
+  } : _ref$validate,
       _ref$checkIfModified = _ref.checkIfModified,
-      checkIfModified = _ref$checkIfModified === undefined ? true : _ref$checkIfModified,
+      checkIfModified = _ref$checkIfModified === undefined ? false : _ref$checkIfModified,
       _ref$immutableInitial = _ref.immutableInitial,
       immutableInitial = _ref$immutableInitial === undefined ? false : _ref$immutableInitial;
 
-  var validate = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : function (value, props) {
-    return true;
-  };
+  return function FormHOC(WrappedComponent) {
+    var WrappedComponentWithDispatcher = (0, _StateDispatcher2.default)()(WrappedComponent);
 
-  return function (WrappedComponent) {
-    var Controller = function (_React$Component) {
-      _inherits(Controller, _React$Component);
+    var FormContainer = function (_React$Component) {
+      _inherits(FormContainer, _React$Component);
 
-      function Controller(props) {
-        _classCallCheck(this, Controller);
+      function FormContainer(props) {
+        _classCallCheck(this, FormContainer);
 
-        var _this = _possibleConstructorReturn(this, (Controller.__proto__ || Object.getPrototypeOf(Controller)).call(this));
+        var _this = _possibleConstructorReturn(this, (FormContainer.__proto__ || Object.getPrototypeOf(FormContainer)).call(this));
 
         _this.subject = new _rxjs2.default.Subject().scan(function (acc, e) {
           var newValidation = e.validation != null ? e.validation : acc.validation;
@@ -801,7 +1153,7 @@ function FormController() {
               return acc;
           }
         }, { value: _this._getInitialValue(props), validation: true }).do(function (e) {
-          return global.process && global.process.env && global.process.env.FORMALIZR_ENV === "DEBUG" && console.log("FormController event:\n", e);
+          return global.process && global.process.env && global.process.env.FORMALIZR_ENV === "DEBUG" && console.log("Form event:\n", e);
         }).share();
         _this.subject.filter(function (e) {
           return e.type == _FormEvents.SUBMIT_EVENT_TYPE;
@@ -821,7 +1173,7 @@ function FormController() {
         return _this;
       }
 
-      _createClass(Controller, [{
+      _createClass(FormContainer, [{
         key: "componentWillReceiveProps",
         value: function componentWillReceiveProps(nextProps) {
           var newInitial = this._getInitialValue(nextProps);
@@ -842,7 +1194,7 @@ function FormController() {
       }, {
         key: "_getInitialValue",
         value: function _getInitialValue(props) {
-          var v = typeof props.initial != "function" ? props.initial : props.initial(props);
+          var v = typeof props.formInputValue != "function" ? props.formInputValue : props.formInputValue(props);
           return convertIn(v == null ? {} : v, props);
         }
       }, {
@@ -857,7 +1209,11 @@ function FormController() {
           if (checkIfModified === false || !(0, _immutable.is)(newValue, (0, _immutable.fromJS)(this._getInitialValue(this.props)))) {
             var validation = validate(newValue.toJS(), this.props);
             if (validation === true || validation == null) {
-              this.props.onSubmit(convertOut(newValue.toJS(), this.props));
+              if (this.props.onSubmit == null) {
+                console.warn("Form hasn't received any onSubmit function as props, you may have forgotten it");
+              } else {
+                this.props.onSubmit(convertOut(newValue.toJS(), this.props));
+              }
             } else {
               var newValidation = new _ValidationHelpers.Validation(validation);
               if (typeof this.props.onValidationFailed === "function") {
@@ -873,7 +1229,7 @@ function FormController() {
           var _this2 = this;
 
           return {
-            attachToController: function attachToController(getter) {
+            attachToForm: function attachToForm(getter) {
               _this2.rootDispatcherGetter = getter;
             }
           };
@@ -883,356 +1239,29 @@ function FormController() {
         value: function render() {
           var _this3 = this;
 
-          return _react2.default.createElement(WrappedComponent, _extends({}, this.props, {
+          return _react2.default.createElement(WrappedComponentWithDispatcher, _extends({}, this.props, {
             onChange: function onChange(value, statePath, validation) {
               return _this3.subject.next((0, _FormEvents.createValueChangeEvent)(value, statePath, validation));
             },
             valueChangeObs: this.valueChangeObs,
-            onSubmit: function onSubmit() {
+            submit: function submit() {
               return _this3.subject.next((0, _FormEvents.createSubmitChangeEvent)());
             }
           }));
         }
       }]);
 
-      return Controller;
+      return FormContainer;
     }(_react2.default.Component);
 
-    Controller.childContextTypes = {
-      attachToController: _react2.default.PropTypes.func
+    FormContainer.childContextTypes = {
+      attachToForm: _react2.default.PropTypes.func
     };
 
-    return Controller;
+    return FormContainer;
   };
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-exports.convertConversionModelToConversionJobs = convertConversionModelToConversionJobs;
-exports.convertIn = convertIn;
-exports.convertOut = convertOut;
-exports.validateModel = validateModel;
-
-var _immutable = __webpack_require__(0);
-
-function convertConversionModelToConversionJobs(model) {
-  var currentInPath = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-  var parentOutPath = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
-
-  if ((typeof model === "undefined" ? "undefined" : _typeof(model)) !== "object" || model == null) {
-    return (0, _immutable.List)();
-  }
-  var currentNodeOutPath = "out" in model || "out_path" in model ? model.out || model.out_path : "";
-  var currentOutPath = "" + (parentOutPath != "" ? parentOutPath + "." + currentNodeOutPath : currentNodeOutPath);
-  var jobs = (0, _immutable.List)().concat(currentInPath !== "" ? _immutable.List.of({
-    in: currentInPath,
-    out: currentOutPath,
-    convertIn: "convertIn" in model ? model.convertIn : undefined,
-    convertOut: "convertOut" in model ? model.convertOut : undefined,
-    default: model.default,
-    validate: "validate" in model ? model.validate : undefined
-  }) : (0, _immutable.List)()).concat(Object.keys(model).filter(function (nodeKey) {
-    return !["convertIn", "convertOut", "out", "out_path", "complex", "default", "validate"].includes(nodeKey);
-  }).reduce(function (red, nodeKey) {
-    var childNode = model[nodeKey];
-    var childInPath = currentInPath ? currentInPath + "." + nodeKey : nodeKey;
-    return red.concat(convertConversionModelToConversionJobs(childNode, childInPath, currentOutPath));
-  }, (0, _immutable.List)()));
-  return jobs;
-}
-
-function convertIn(value, jobs, props) {
-  if (value == null) return {};
-  var immutableValue = (0, _immutable.fromJS)(value);
-  if (props && props.__debug && console.groupCollapsed) {
-    console.groupCollapsed("Form ConvertIn");
-  }
-  var convertedValue = jobs.reduceRight(function (red, job) {
-    var inPath = job.in.split(".");
-    var outPath = job.out.split(".");
-    var notConvertedValue = inPath.length === 1 && inPath[0] === "" ? immutableValue : immutableValue.getIn(inPath, red.getIn(outPath, job.default));
-    var inValue = typeof job.convertIn === "function" ? job.convertIn(notConvertedValue, props) : notConvertedValue;
-    var newRed = void 0;
-    if (red.getIn(outPath) != null && inValue != null && inValue !== false || outPath.length === 1 && outPath[0] === "") newRed = red;else {
-      newRed = red.setIn(outPath, (0, _immutable.fromJS)(inValue));
-    }
-    if (props && props.__debug) {
-      console.log("ConvertIn reducing...", "\nState (initial, red):", immutableValue, red, "\nJob:", job, "\nIn:", inPath, inValue, "converted from", notConvertedValue, "\nOut:", outPath, "\nNew reduction:", newRed);
-    }
-    return newRed;
-  }, (0, _immutable.Map)()).toJS();
-  if (props && props.__debug) {
-    console.log("ConvertIn converted", value, "into", convertedValue, "with props", props, "and jobs", jobs);
-    if (console.groupEnd) {
-      console.groupEnd();
-    }
-  }
-  return convertedValue;
-}
-
-function convertOut(value, jobs, props) {
-  if (value == null) return {};
-  var immutableValue = (0, _immutable.fromJS)(value);
-  if (props && props.__debug && console.groupCollapsed) {
-    console.groupCollapsed("Form ConvertOut");
-  }
-  var convertedValue = jobs.reduceRight(function (red, job) {
-    var outPath = job.out.split(".");
-    var notConvertedValue = immutableValue.getIn(outPath);
-    var outValue = typeof job.convertOut === "function" ? job.convertOut(notConvertedValue, props) : notConvertedValue;
-    if (outValue === undefined) {
-      return red;
-    }
-    var inPath = job.in.split(".");
-    var newRed = void 0;
-    if ((red.getIn(inPath) != null && outValue != null || inPath.length === 1 && inPath[0] === "") && !job.convertOut) newRed = red;else {
-      newRed = red.setIn(inPath, outValue);
-    }
-    if (props && props.__debug) {
-      console.log("ConvertOut reducing...", "\nState (initial, red):", immutableValue, red, "\nJob:", job, "\nOut:", outPath, outValue, "converted from", notConvertedValue, "\nIn:", inPath, "\nNew reduction:", newRed);
-    }
-    return newRed;
-  }, (0, _immutable.Map)()).toJS();
-  if (props && props.__debug) {
-    console.log("ConvertOut converted", value, "into", convertedValue, "with props", props, "and jobs", jobs);
-    if (console.groupEnd) {
-      console.groupEnd();
-    }
-  }
-  return convertedValue;
-}
-
-function validateModel(jobs) {
-  return function validateState(value, props) {
-    var immutableValue = (0, _immutable.fromJS)(value);
-    var wholeValidation = jobs.reduceRight(function (red, job) {
-      var outPath = job.out.split(".");
-      var fieldValue = immutableValue.getIn(outPath);
-      if (outPath.length === 1 && outPath[0] === "" && typeof job.validate === "function") throw new Error("You can't use validation if you don't have any out, either in the current node or a parent one. At " + job.in);
-      var validation = typeof job.validate === "function" ? job.validate(fieldValue, props) : true;
-      if (validation === true || validation === null || validation === undefined) {
-        return red;
-      } else {
-        return ((typeof red === "undefined" ? "undefined" : _typeof(red)) === "object" ? red : (0, _immutable.Map)()).setIn(outPath, validation);
-      }
-    }, true);
-
-    if ((typeof wholeValidation === "undefined" ? "undefined" : _typeof(wholeValidation)) === "object") return wholeValidation.toJS();else return wholeValidation;
-  };
-}
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-"use babel";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-exports.default = StateDispatcher;
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _immutable = __webpack_require__(0);
-
-var _StateProxy = __webpack_require__(6);
-
-var _StateProxy2 = _interopRequireDefault(_StateProxy);
-
-var _StateValueHelpers = __webpack_require__(1);
-
-var _rxjs = __webpack_require__(5);
-
-var _rxjs2 = _interopRequireDefault(_rxjs);
-
-var _FormEvents = __webpack_require__(3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-function StateDispatcher() {
-  var convertIn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (v, props) {
-    return v;
-  };
-  var convertOut = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (v, props) {
-    return v;
-  };
-
-  return function (WrappedComponent) {
-    var Dispatcher = function (_React$Component) {
-      _inherits(Dispatcher, _React$Component);
-
-      function Dispatcher(props) {
-        _classCallCheck(this, Dispatcher);
-
-        var _this = _possibleConstructorReturn(this, (Dispatcher.__proto__ || Object.getPrototypeOf(Dispatcher)).call(this, props));
-
-        _this.handlers = {};
-        _this.valueChangeObs = props.valueChangeObs.map(function (e) {
-          var convertedValue = convertIn(e.value, props);
-          if (convertedValue === e.value) return e;else return Object.assign({}, e, {
-            value: convertedValue,
-            validation: e.validation,
-            statePath: e.type === _FormEvents.INITIAL_CHANGE_EVENT_TYPE ? undefined : props.statePath
-          });
-        });
-        return _this;
-      }
-
-      _createClass(Dispatcher, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-          var _this2 = this;
-
-          if (this.context.attachToController != null) this.context.attachToController(function () {
-            return _this2.getUncontrolledState();
-          });
-          this.subscription = this.valueChangeObs.filter(function (e) {
-            return e.type == _FormEvents.INITIAL_CHANGE_EVENT_TYPE;
-          }).do(function (e) {
-            if (global.process && global.process.env && global.process.env.FORMALIZR_ENV === "DEBUG") {
-              console.log("Dispatching uncontrolled values from " + _this2.props.statePath);
-            }
-          }).subscribe({
-            next: function next(e) {
-              return _this2.dispatchUncontrolledValues(e);
-            }
-          });
-        }
-      }, {
-        key: "componentWillUnmount",
-        value: function componentWillUnmount() {
-          if (this.context.attachToController != null) this.context.attachToController(null);
-          this.subscription.unsubscribe();
-        }
-      }, {
-        key: "dispatchUncontrolledValues",
-        value: function dispatchUncontrolledValues(event) {
-          var _this3 = this;
-
-          Object.keys(this.handlers).forEach(function (statePath) {
-            if (event.oldValue === undefined || (0, _StateValueHelpers.getValue)(convertIn(event.value, _this3.props), statePath) !== (0, _StateValueHelpers.getValue)(convertIn(event.oldValue, _this3.props), statePath)) _this3.handlers[statePath].set((0, _StateValueHelpers.getValue)(convertIn(event.value, _this3.props), statePath));
-          });
-        }
-      }, {
-        key: "getChildContext",
-        value: function getChildContext() {
-          var _this4 = this;
-
-          return {
-            valueChangeObs: this.valueChangeObs,
-            rootValueChangeObs: this.props.rootValueChangeObs,
-            onStateChange: function onStateChange(v, statePath, validation) {
-              var convertedInParentValue = convertIn(_this4.props.getValue(), _this4.props);
-              var completeValue = Array.isArray(convertedInParentValue) === false ? Object.assign({}, convertedInParentValue, _defineProperty({}, statePath, v)) : (0, _immutable.List)().concat(convertedInParentValue).update(function (list) {
-                return list.update(list.findIndex(function (item) {
-                  return item.id === statePath;
-                }), function (item) {
-                  return Object.assign({}, item, { value: v });
-                });
-              });
-              var convertedValue = convertOut(completeValue, _this4.props);
-              // console.log(
-              //   "On change",
-              //   completeValue,
-              //   convertedValue,
-              //   completeValue !== convertedValue,
-              //   v,
-              //   statePath,
-              // );
-              if (convertedValue !== completeValue || (typeof convertedValue === "undefined" ? "undefined" : _typeof(convertedValue)) != _typeof(_this4.props.getValue())) _this4.props.onChange(convertedValue, _this4.props.statePath, validation);else _this4.props.onChange(v, "" + _this4.props.statePath + (_this4.props.statePath == "" || statePath == "" ? "" : ".") + statePath, validation);
-            },
-            attachToController: null,
-            addHandler: function (statePath, getHandler, setHandler) {
-              _this4.handlers = Object.assign({}, _this4.handlers, _defineProperty({}, statePath, {
-                get: getHandler,
-                set: setHandler
-              }));
-            }.bind(this)
-          };
-        }
-      }, {
-        key: "getUncontrolledState",
-        value: function getUncontrolledState() {
-          var _this5 = this;
-
-          var value = Object.keys(this.handlers).reduce(function (red, statePath) {
-            return (0, _StateValueHelpers.setValue)(red, statePath, _this5.handlers[statePath].get());
-          }, {});
-          return convertOut(value, this.props);
-        }
-      }, {
-        key: "render",
-        value: function render() {
-          return _react2.default.createElement(WrappedComponent, this.props);
-        }
-      }]);
-
-      return Dispatcher;
-    }(_react2.default.Component);
-
-    Dispatcher.defaultProps = Object.assign({}, WrappedComponent.defaultProps, {
-      onChange: function onChange() {},
-
-      value: {},
-      valueChangeObs: _rxjs2.default.Observable.never()
-    });
-
-    Dispatcher.propTypes = {
-      valueChangeObs: _react2.default.PropTypes.any,
-      onChange: _react2.default.PropTypes.func
-    };
-
-    Dispatcher.childContextTypes = {
-      valueChangeObs: _react2.default.PropTypes.any,
-      onStateChange: _react2.default.PropTypes.func,
-      addHandler: _react2.default.PropTypes.func,
-      attachToController: _react2.default.PropTypes.func,
-      rootValueChangeObs: _react2.default.PropTypes.any
-    };
-
-    Dispatcher.contextTypes = {
-      attachToController: _react2.default.PropTypes.func
-    };
-
-    return (0, _StateProxy2.default)({ root: true }, {
-      getValue: function getValue(child) {
-        return child.getUncontrolledState();
-      },
-      setValue: function setValue(child) {}
-    })(Dispatcher);
-  };
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 12 */
@@ -1250,19 +1279,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(4);
+var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _StateProxy = __webpack_require__(6);
+var _FormEvents = __webpack_require__(4);
 
-var _StateProxy2 = _interopRequireDefault(_StateProxy);
-
-var _FormEvents = __webpack_require__(3);
-
-var _rxjs = __webpack_require__(5);
+var _rxjs = __webpack_require__(3);
 
 var _rxjs2 = _interopRequireDefault(_rxjs);
+
+var _StateValueHelpers = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1274,13 +1301,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var NeverObservable = _rxjs2.default.Observable.never();
 
-var StateInjector = function (_React$Component) {
-  _inherits(StateInjector, _React$Component);
+var FormWatcher = function (_React$Component) {
+  _inherits(FormWatcher, _React$Component);
 
-  function StateInjector(props, context) {
-    _classCallCheck(this, StateInjector);
+  function FormWatcher(props, context) {
+    _classCallCheck(this, FormWatcher);
 
-    var _this = _possibleConstructorReturn(this, (StateInjector.__proto__ || Object.getPrototypeOf(StateInjector)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (FormWatcher.__proto__ || Object.getPrototypeOf(FormWatcher)).call(this, props));
 
     _this.state = {
       value: null,
@@ -1289,13 +1316,13 @@ var StateInjector = function (_React$Component) {
 
     _this.watchPath = _this.getWatchedPath(props, context);
     if (_this.watchPath == null) {
-      throw new Error("watchPath props is not set on StateInjector, you have to set a statepath string on which the StateInjector will watch");
+      throw new Error("watchPath props is not set on FormWatcher, you have to set a statepath string on which the FormWatcher will watch");
     }
     _this.selectObs(props, context);
     return _this;
   }
 
-  _createClass(StateInjector, [{
+  _createClass(FormWatcher, [{
     key: "getAssignedObs",
     value: function getAssignedObs(props, context) {
       if (context.rootValueChangeObs != null) return context.rootValueChangeObs;else return NeverObservable;
@@ -1354,29 +1381,31 @@ var StateInjector = function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (typeof this.props.children !== "function") throw new Error("children of StateInjector must be a function of type (stateValue, props) => React$element");
+      if (typeof this.props.children !== "function") throw new Error("children of FormWatcher must be a function of type (stateValue, props) => React$element");
       var watchedValidation = _typeof(this.state.validation) === "object" && this.state.validation !== null ? this.state.validation.getNestedValidation(this.watchPath) : this.state.validation;
-      return this.props.children(this.state.value, this.props, {
+      return this.props.children({
+        value: this.state.value,
+        watchedValue: (0, _StateValueHelpers.getValue)(this.state.value, this.getWatchedPath(this.props, this.context)),
         watchedStatePath: this.watchPath,
-        watchedValidation: watchedValidation,
-        validation: this.state.validation
-      });
+        validation: this.state.validation,
+        watchedValidation: watchedValidation
+      }, this.props);
     }
   }]);
 
-  return StateInjector;
+  return FormWatcher;
 }(_react2.default.Component);
 
-exports.default = StateInjector;
+exports.default = FormWatcher;
 
 
-StateInjector.propTypes = {};
+FormWatcher.propTypes = {};
 
-StateInjector.defaultProps = {
+FormWatcher.defaultProps = {
   __debug: false
 };
 
-StateInjector.contextTypes = {
+FormWatcher.contextTypes = {
   rootValueChangeObs: _react2.default.PropTypes.any,
   completeStatePath: _react2.default.PropTypes.string
 };
@@ -1518,151 +1547,129 @@ function lessThan(accessor1, accessor2) {
 
 "use strict";
 
-"use babel";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _FormController = __webpack_require__(9);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-Object.defineProperty(exports, "FormController", {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_FormController).default;
-  }
-});
+exports.convertConversionModelToConversionJobs = convertConversionModelToConversionJobs;
+exports.convertIn = convertIn;
+exports.convertOut = convertOut;
+exports.validateModel = validateModel;
 
-var _StateDispatcher = __webpack_require__(11);
+var _immutable = __webpack_require__(0);
 
-Object.defineProperty(exports, "StateDispatcher", {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_StateDispatcher).default;
-  }
-});
+function convertConversionModelToConversionJobs(model) {
+  var currentInPath = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  var parentOutPath = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
-var _StateProxy = __webpack_require__(6);
+  if ((typeof model === "undefined" ? "undefined" : _typeof(model)) !== "object" || model == null) {
+    return (0, _immutable.List)();
+  }
+  var currentNodeOutPath = "out" in model || "out_path" in model ? model.out || model.out_path || "" : "";
+  var currentOutPath = "" + (parentOutPath != "" ? parentOutPath + "." + currentNodeOutPath : currentNodeOutPath);
+  var jobs = (0, _immutable.List)().concat(currentInPath !== "" ? _immutable.List.of({
+    in: currentInPath,
+    out: currentOutPath,
+    convertIn: "convertIn" in model ? model.convertIn : undefined,
+    convertOut: "convertOut" in model ? model.convertOut : undefined,
+    default: model.default,
+    validate: "validate" in model ? model.validate : undefined
+  }) : (0, _immutable.List)()).concat(Object.keys(model).filter(function (nodeKey) {
+    return !["convertIn", "convertOut", "out", "out_path", "complex", "default", "validate"].includes(nodeKey);
+  }).reduce(function (red, nodeKey) {
+    var childNode = model[nodeKey];
+    var childInPath = currentInPath ? currentInPath + "." + nodeKey : nodeKey;
+    return red.concat(convertConversionModelToConversionJobs(childNode, childInPath, currentOutPath));
+  }, (0, _immutable.List)()));
+  return jobs;
+}
 
-Object.defineProperty(exports, "StateProxy", {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_StateProxy).default;
-  }
-});
+function convertIn(jobs) {
+  return function convertInModelValue(value, props) {
+    if (value == null) return {};
+    var immutableValue = (0, _immutable.fromJS)(value);
+    if (props && props.__debug && console.groupCollapsed) {
+      console.groupCollapsed("Form ConvertIn");
+    }
+    var convertedValue = jobs.reduceRight(function (red, job) {
+      var inPath = job.in.split(".");
+      var outPath = job.out.split(".");
+      var notConvertedValue = inPath.length === 1 && inPath[0] === "" ? immutableValue : immutableValue.getIn(inPath, red.getIn(outPath, job.default));
+      var inValue = typeof job.convertIn === "function" ? job.convertIn(notConvertedValue, props) : notConvertedValue;
+      var newRed = void 0;
+      if (red.getIn(outPath) != null && inValue != null && inValue !== false || outPath.length === 1 && outPath[0] === "") newRed = red;else {
+        newRed = red.setIn(outPath, (0, _immutable.fromJS)(inValue));
+      }
+      if (props && props.__debug) {
+        console.log("ConvertIn reducing...", "\nState (initial, red):", immutableValue, red, "\nJob:", job, "\nIn:", inPath, inValue, "converted from", notConvertedValue, "\nOut:", outPath, "\nNew reduction:", newRed);
+      }
+      return newRed;
+    }, (0, _immutable.Map)()).toJS();
+    if (props && props.__debug) {
+      console.log("ConvertIn converted", value, "into", convertedValue, "with props", props, "and jobs", jobs);
+      if (console.groupEnd) {
+        console.groupEnd();
+      }
+    }
+    return convertedValue;
+  };
+}
 
-var _StateInjector = __webpack_require__(12);
+function convertOut(jobs) {
+  return function convertOutModelValue(value, props) {
+    if (value == null) return {};
+    var immutableValue = (0, _immutable.fromJS)(value);
+    if (props && props.__debug && console.groupCollapsed) {
+      console.groupCollapsed("Form ConvertOut");
+    }
+    var convertedValue = jobs.reduceRight(function (red, job) {
+      var outPath = job.out.split(".");
+      var notConvertedValue = immutableValue.getIn(outPath);
+      var outValue = typeof job.convertOut === "function" ? job.convertOut(notConvertedValue, props) : notConvertedValue;
+      if (outValue === undefined) {
+        return red;
+      }
+      var inPath = job.in.split(".");
+      var newRed = void 0;
+      if ((red.getIn(inPath) != null && outValue != null || inPath.length === 1 && inPath[0] === "") && !job.convertOut) newRed = red;else {
+        newRed = red.setIn(inPath, outValue);
+      }
+      if (props && props.__debug) {
+        console.log("ConvertOut reducing...", "\nState (initial, red):", immutableValue, red, "\nJob:", job, "\nOut:", outPath, outValue, "converted from", notConvertedValue, "\nIn:", inPath, "\nNew reduction:", newRed);
+      }
+      return newRed;
+    }, (0, _immutable.Map)()).toJS();
+    if (props && props.__debug) {
+      console.log("ConvertOut converted", value, "into", convertedValue, "with props", props, "and jobs", jobs);
+      if (console.groupEnd) {
+        console.groupEnd();
+      }
+    }
+    return convertedValue;
+  };
+}
 
-Object.defineProperty(exports, "StateInjector", {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_StateInjector).default;
-  }
-});
+function validateModel(jobs) {
+  return function validateState(value, props) {
+    var immutableValue = (0, _immutable.fromJS)(value);
+    var wholeValidation = jobs.reduceRight(function (red, job) {
+      var outPath = job.out.split(".");
+      var fieldValue = immutableValue.getIn(outPath);
+      if (outPath.length === 1 && outPath[0] === "" && typeof job.validate === "function") throw new Error("You can't use validation if you don't have any out, either in the current node or a parent one. At " + job.in);
+      var validation = typeof job.validate === "function" ? job.validate(fieldValue, props) : true;
+      if (validation === true || validation === null || validation === undefined) {
+        return red;
+      } else {
+        return ((typeof red === "undefined" ? "undefined" : _typeof(red)) === "object" ? red : (0, _immutable.Map)()).setIn(outPath, validation);
+      }
+    }, true);
 
-var _StateValueHelpers = __webpack_require__(1);
-
-Object.defineProperty(exports, "getValue", {
-  enumerable: true,
-  get: function get() {
-    return _StateValueHelpers.getValue;
-  }
-});
-
-var _ValidationComposition = __webpack_require__(13);
-
-Object.defineProperty(exports, "notNull", {
-  enumerable: true,
-  get: function get() {
-    return _ValidationComposition.notNull;
-  }
-});
-Object.defineProperty(exports, "notUndefined", {
-  enumerable: true,
-  get: function get() {
-    return _ValidationComposition.notUndefined;
-  }
-});
-Object.defineProperty(exports, "notEmpty", {
-  enumerable: true,
-  get: function get() {
-    return _ValidationComposition.notEmpty;
-  }
-});
-Object.defineProperty(exports, "composeValidation", {
-  enumerable: true,
-  get: function get() {
-    return _ValidationComposition.composeValidation;
-  }
-});
-Object.defineProperty(exports, "required", {
-  enumerable: true,
-  get: function get() {
-    return _ValidationComposition.required;
-  }
-});
-Object.defineProperty(exports, "isTrue", {
-  enumerable: true,
-  get: function get() {
-    return _ValidationComposition.isTrue;
-  }
-});
-Object.defineProperty(exports, "maxLength", {
-  enumerable: true,
-  get: function get() {
-    return _ValidationComposition.maxLength;
-  }
-});
-Object.defineProperty(exports, "lessThan", {
-  enumerable: true,
-  get: function get() {
-    return _ValidationComposition.lessThan;
-  }
-});
-
-var _FormModel = __webpack_require__(10);
-
-Object.defineProperty(exports, "convertConversionModelToConversionJobs", {
-  enumerable: true,
-  get: function get() {
-    return _FormModel.convertConversionModelToConversionJobs;
-  }
-});
-Object.defineProperty(exports, "convertIn", {
-  enumerable: true,
-  get: function get() {
-    return _FormModel.convertIn;
-  }
-});
-Object.defineProperty(exports, "convertOut", {
-  enumerable: true,
-  get: function get() {
-    return _FormModel.convertOut;
-  }
-});
-Object.defineProperty(exports, "validateModel", {
-  enumerable: true,
-  get: function get() {
-    return _FormModel.validateModel;
-  }
-});
-
-var _ValidationHelpers = __webpack_require__(2);
-
-Object.defineProperty(exports, "isValid", {
-  enumerable: true,
-  get: function get() {
-    return _ValidationHelpers.isValid;
-  }
-});
-Object.defineProperty(exports, "getErrorText", {
-  enumerable: true,
-  get: function get() {
-    return _ValidationHelpers.getErrorText;
-  }
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+    if ((typeof wholeValidation === "undefined" ? "undefined" : _typeof(wholeValidation)) === "object") return wholeValidation.toJS();else return wholeValidation;
+  };
+}
 
 /***/ })
 /******/ ]);
