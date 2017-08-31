@@ -214,7 +214,7 @@ let Field = FormElement({
   getUncontrolledValue: (child) => child.input.value, // Handling fetching of data of uncontrolled version of the wrapped component
   setUncontrolledValue: (child, value) => {child.input.value = value}, // Handling update of data of uncontrolled version of the wrapped component
   root: false // Defines this as a root element to change the selection method. Used internally.
-})(WrappedComponent);
+})(InputField);
 
 let FormPresenter = (props) => (<div><Field elementName="firstname"/></div>); // Field props value == "Alan"
 ----------------
