@@ -77,12 +77,7 @@ A field is a component which accepts value and onChange. FormElement will handle
   const FormRoot = Form()(FormView);
   
   const MyForm = () => (
-    <FormRoot formInputValue={{
-      username: "",
-      contact: {
-        phone: "+33"
-      }
-    }} onSubmit={newValue => { user = newValue }}/>
+    <FormRoot formInputValue={user} onSubmit={newValue => { user = newValue }}/>
   )
 ```
 
