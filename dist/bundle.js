@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -100,7 +100,7 @@ exports.setValue = setValue;
 
 var _immutable = __webpack_require__(0);
 
-var _StatePathHelpers = __webpack_require__(11);
+var _StatePathHelpers = __webpack_require__(12);
 
 function getJavascriptEntity(obj) {
   if (obj && (typeof obj === "undefined" ? "undefined" : _typeof(obj)) == "object" && obj.toJS) return obj.toJS();else return obj;
@@ -133,7 +133,7 @@ function setValue(state, path, value) {
     return newState;
   }
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 2 */
@@ -413,7 +413,7 @@ var _immutable = __webpack_require__(0);
 
 var _StateValueHelpers = __webpack_require__(1);
 
-var _StatePathHelpers = __webpack_require__(11);
+var _StatePathHelpers = __webpack_require__(12);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -490,6 +490,43 @@ var Validation = exports.Validation = function () {
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(18)(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(20)();
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports) {
 
 var g;
@@ -516,7 +553,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -560,7 +597,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -622,7 +659,7 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -643,7 +680,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -675,7 +712,7 @@ function getNewPath(immutState, statePath, name) {
 }
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -698,7 +735,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _immutable = __webpack_require__(0);
 
-var _FormElement = __webpack_require__(13);
+var _FormElement = __webpack_require__(14);
 
 var _FormElement2 = _interopRequireDefault(_FormElement);
 
@@ -709,6 +746,10 @@ var _rxjs = __webpack_require__(4);
 var _rxjs2 = _interopRequireDefault(_rxjs);
 
 var _FormEvents = __webpack_require__(5);
+
+var _propTypes = __webpack_require__(7);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -849,20 +890,20 @@ function StateDispatcher() {
     });
 
     Dispatcher.propTypes = {
-      valueChangeObs: _react2.default.PropTypes.any,
-      onChange: _react2.default.PropTypes.func
+      valueChangeObs: _propTypes2.default.any,
+      onChange: _propTypes2.default.func
     };
 
     Dispatcher.childContextTypes = {
-      valueChangeObs: _react2.default.PropTypes.any,
-      onStateChange: _react2.default.PropTypes.func,
-      addHandler: _react2.default.PropTypes.func,
-      attachToForm: _react2.default.PropTypes.func,
-      rootValueChangeObs: _react2.default.PropTypes.any
+      valueChangeObs: _propTypes2.default.any,
+      onStateChange: _propTypes2.default.func,
+      addHandler: _propTypes2.default.func,
+      attachToForm: _propTypes2.default.func,
+      rootValueChangeObs: _propTypes2.default.any
     };
 
     Dispatcher.contextTypes = {
-      attachToForm: _react2.default.PropTypes.func
+      attachToForm: _propTypes2.default.func
     };
 
     return (0, _FormElement2.default)({
@@ -874,10 +915,10 @@ function StateDispatcher() {
     })(Dispatcher);
   };
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -909,6 +950,10 @@ var _rxjs = __webpack_require__(4);
 var _rxjs2 = _interopRequireDefault(_rxjs);
 
 var _ValidationHelpers = __webpack_require__(6);
+
+var _propTypes = __webpack_require__(7);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1183,19 +1228,19 @@ function FormElement() {
     });
 
     FormElementContainer.contextTypes = {
-      statePath: _react2.default.PropTypes.string,
-      completeStatePath: _react2.default.PropTypes.string,
-      valueChangeObs: _react2.default.PropTypes.any,
-      onStateChange: _react2.default.PropTypes.func,
-      addHandler: _react2.default.PropTypes.func,
-      uncontrolled: _react2.default.PropTypes.bool,
-      rootValueChangeObs: _react2.default.PropTypes.any
+      statePath: _propTypes2.default.string,
+      completeStatePath: _propTypes2.default.string,
+      valueChangeObs: _propTypes2.default.any,
+      onStateChange: _propTypes2.default.func,
+      addHandler: _propTypes2.default.func,
+      uncontrolled: _propTypes2.default.bool,
+      rootValueChangeObs: _propTypes2.default.any
     };
 
     FormElementContainer.childContextTypes = {
-      statePath: _react2.default.PropTypes.string,
-      completeStatePath: _react2.default.PropTypes.string,
-      uncontrolled: _react2.default.PropTypes.bool
+      statePath: _propTypes2.default.string,
+      completeStatePath: _propTypes2.default.string,
+      uncontrolled: _propTypes2.default.bool
     };
 
     return FormElementContainer;
@@ -1203,7 +1248,7 @@ function FormElement() {
 }
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1219,7 +1264,7 @@ function FormElement() {
 
 
 
-var emptyFunction = __webpack_require__(8);
+var emptyFunction = __webpack_require__(9);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -1276,7 +1321,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1287,7 +1332,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Form = __webpack_require__(16);
+var _Form = __webpack_require__(17);
 
 Object.defineProperty(exports, "Form", {
   enumerable: true,
@@ -1296,7 +1341,7 @@ Object.defineProperty(exports, "Form", {
   }
 });
 
-var _StateDispatcher = __webpack_require__(12);
+var _StateDispatcher = __webpack_require__(13);
 
 Object.defineProperty(exports, "StateDispatcher", {
   enumerable: true,
@@ -1305,7 +1350,7 @@ Object.defineProperty(exports, "StateDispatcher", {
   }
 });
 
-var _FormElement = __webpack_require__(13);
+var _FormElement = __webpack_require__(14);
 
 Object.defineProperty(exports, "FormElement", {
   enumerable: true,
@@ -1314,7 +1359,7 @@ Object.defineProperty(exports, "FormElement", {
   }
 });
 
-var _FormWatcher = __webpack_require__(17);
+var _FormWatcher = __webpack_require__(21);
 
 Object.defineProperty(exports, "FormWatcher", {
   enumerable: true,
@@ -1428,7 +1473,7 @@ Object.defineProperty(exports, "getErrorText", {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1461,9 +1506,13 @@ var _StateValueHelpers = __webpack_require__(1);
 
 var _ValidationHelpers = __webpack_require__(6);
 
-var _StateDispatcher = __webpack_require__(12);
+var _StateDispatcher = __webpack_require__(13);
 
 var _StateDispatcher2 = _interopRequireDefault(_StateDispatcher);
+
+var _propTypes = __webpack_require__(7);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1645,206 +1694,18 @@ function Form() {
     }(_react2.default.Component);
 
     FormContainer.childContextTypes = {
-      attachToForm: _react2.default.PropTypes.func
+      attachToForm: _propTypes2.default.func
     };
 
     return FormContainer;
   };
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-"use babel";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(3);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _FormEvents = __webpack_require__(5);
-
-var _rxjs = __webpack_require__(4);
-
-var _rxjs2 = _interopRequireDefault(_rxjs);
-
-var _propTypes = __webpack_require__(18);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _StateValueHelpers = __webpack_require__(1);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var NeverObservable = _rxjs2.default.Observable.never();
-
-var FormWatcher = function (_React$Component) {
-  _inherits(FormWatcher, _React$Component);
-
-  function FormWatcher(props, context) {
-    _classCallCheck(this, FormWatcher);
-
-    var _this = _possibleConstructorReturn(this, (FormWatcher.__proto__ || Object.getPrototypeOf(FormWatcher)).call(this, props));
-
-    _this.state = {
-      value: null,
-      validation: true
-    };
-
-    _this.watchPath = _this.getWatchedPath(props, context);
-    if (_this.watchPath == null) {
-      throw new Error("watchPath props is not set on FormWatcher, you have to set a statepath string on which the FormWatcher will watch");
-    }
-    _this.selectObs(props, context);
-    return _this;
-  }
-
-  _createClass(FormWatcher, [{
-    key: "getAssignedObs",
-    value: function getAssignedObs(props, context) {
-      if (context.rootValueChangeObs != null) return context.rootValueChangeObs;else return NeverObservable;
-    }
-  }, {
-    key: "selectObs",
-    value: function selectObs(props, context) {
-      var _this2 = this;
-
-      this.valueChangeObs = this.getAssignedObs(props, context).filter(function (e) {
-        if (props.__debug) {
-          console.log("FILTERING", e, "In watcher", _this2.watchPath);
-        }
-        if (e.statePath) return _this2.watchPath.startsWith(e.statePath) || e.statePath.startsWith(_this2.watchPath);else if (e.type === _FormEvents.INITIAL_CHANGE_EVENT_TYPE) return true;else if (e.type === _FormEvents.VALIDATION_FAILED_EVENT_TYPE) return true;else return false;
-      });
-    }
-  }, {
-    key: "connectsToFormController",
-    value: function connectsToFormController() {
-      var _this3 = this;
-
-      if (this.subscription) this.subscription.unsubscribe();
-      this.subscription = this.valueChangeObs.subscribe(function (e) {
-        _this3.setState({
-          value: e.value,
-          validation: e.validation
-        });
-      });
-    }
-  }, {
-    key: "getWatchedPath",
-    value: function getWatchedPath(props, context) {
-      return typeof props.watchPath === "function" ? props.watchPath(context.completeStatePath || "") : props.watchPath;
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.connectsToFormController();
-    }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps, nextContext) {
-      if (this.valueChangeObs !== this.getAssignedObs(nextProps, nextContext)) {
-        this.selectObs(nextProps, nextContext);
-        this.connectsToFormController();
-      }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      if (this.subscription) {
-        this.subscription.unsubscribe();
-        this.subscription = null;
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      if (typeof this.props.children !== "function") throw new Error("children of FormWatcher must be a function of type (stateValue, props) => React$element");
-      var watchedValidation = _typeof(this.state.validation) === "object" && this.state.validation !== null ? this.state.validation.getNestedValidation(this.watchPath) : this.state.validation;
-      return this.props.children({
-        value: this.state.value,
-        watchedValue: (0, _StateValueHelpers.getValue)(this.state.value, this.getWatchedPath(this.props, this.context)),
-        watchedStatePath: this.watchPath,
-        validation: this.state.validation,
-        watchedValidation: watchedValidation
-      }, this.props);
-    }
-  }]);
-
-  return FormWatcher;
-}(_react2.default.Component);
-
-exports.default = FormWatcher;
-
-
-FormWatcher.propTypes = {};
-
-FormWatcher.defaultProps = {
-  __debug: false
-};
-
-FormWatcher.contextTypes = {
-  rootValueChangeObs: _propTypes2.default.any,
-  completeStatePath: _propTypes2.default.string
-};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
-    Symbol.for &&
-    Symbol.for('react.element')) ||
-    0xeac7;
-
-  var isValidElement = function(object) {
-    return typeof object === 'object' &&
-      object !== null &&
-      object.$$typeof === REACT_ELEMENT_TYPE;
-  };
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(19)(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(21)();
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
@@ -1857,12 +1718,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 
-var emptyFunction = __webpack_require__(8);
-var invariant = __webpack_require__(9);
-var warning = __webpack_require__(14);
+var emptyFunction = __webpack_require__(9);
+var invariant = __webpack_require__(10);
+var warning = __webpack_require__(15);
 
-var ReactPropTypesSecret = __webpack_require__(10);
-var checkPropTypes = __webpack_require__(20);
+var ReactPropTypesSecret = __webpack_require__(11);
+var checkPropTypes = __webpack_require__(19);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -2362,7 +2223,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2378,9 +2239,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(9);
-  var warning = __webpack_require__(14);
-  var ReactPropTypesSecret = __webpack_require__(10);
+  var invariant = __webpack_require__(10);
+  var warning = __webpack_require__(15);
+  var ReactPropTypesSecret = __webpack_require__(11);
   var loggedTypeFailures = {};
 }
 
@@ -2431,7 +2292,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2446,9 +2307,9 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(8);
-var invariant = __webpack_require__(9);
-var ReactPropTypesSecret = __webpack_require__(10);
+var emptyFunction = __webpack_require__(9);
+var invariant = __webpack_require__(10);
+var ReactPropTypesSecret = __webpack_require__(11);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -2495,6 +2356,157 @@ module.exports = function() {
   return ReactPropTypes;
 };
 
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+"use babel";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FormEvents = __webpack_require__(5);
+
+var _rxjs = __webpack_require__(4);
+
+var _rxjs2 = _interopRequireDefault(_rxjs);
+
+var _propTypes = __webpack_require__(7);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _StateValueHelpers = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NeverObservable = _rxjs2.default.Observable.never();
+
+var FormWatcher = function (_React$Component) {
+  _inherits(FormWatcher, _React$Component);
+
+  function FormWatcher(props, context) {
+    _classCallCheck(this, FormWatcher);
+
+    var _this = _possibleConstructorReturn(this, (FormWatcher.__proto__ || Object.getPrototypeOf(FormWatcher)).call(this, props));
+
+    _this.state = {
+      value: null,
+      validation: true
+    };
+
+    _this.watchPath = _this.getWatchedPath(props, context);
+    if (_this.watchPath == null) {
+      throw new Error("watchPath props is not set on FormWatcher, you have to set a statepath string on which the FormWatcher will watch");
+    }
+    _this.selectObs(props, context);
+    return _this;
+  }
+
+  _createClass(FormWatcher, [{
+    key: "getAssignedObs",
+    value: function getAssignedObs(props, context) {
+      if (context.rootValueChangeObs != null) return context.rootValueChangeObs;else return NeverObservable;
+    }
+  }, {
+    key: "selectObs",
+    value: function selectObs(props, context) {
+      var _this2 = this;
+
+      this.valueChangeObs = this.getAssignedObs(props, context).filter(function (e) {
+        if (props.__debug) {
+          console.log("FILTERING", e, "In watcher", _this2.watchPath);
+        }
+        if (e.statePath) return _this2.watchPath.startsWith(e.statePath) || e.statePath.startsWith(_this2.watchPath);else if (e.type === _FormEvents.INITIAL_CHANGE_EVENT_TYPE) return true;else if (e.type === _FormEvents.VALIDATION_FAILED_EVENT_TYPE) return true;else return false;
+      });
+    }
+  }, {
+    key: "connectsToFormController",
+    value: function connectsToFormController() {
+      var _this3 = this;
+
+      if (this.subscription) this.subscription.unsubscribe();
+      this.subscription = this.valueChangeObs.subscribe(function (e) {
+        _this3.setState({
+          value: e.value,
+          validation: e.validation
+        });
+      });
+    }
+  }, {
+    key: "getWatchedPath",
+    value: function getWatchedPath(props, context) {
+      return typeof props.watchPath === "function" ? props.watchPath(context.completeStatePath || "") : props.watchPath;
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.connectsToFormController();
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps, nextContext) {
+      if (this.valueChangeObs !== this.getAssignedObs(nextProps, nextContext)) {
+        this.selectObs(nextProps, nextContext);
+        this.connectsToFormController();
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (this.subscription) {
+        this.subscription.unsubscribe();
+        this.subscription = null;
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (typeof this.props.children !== "function") throw new Error("children of FormWatcher must be a function of type (stateValue, props) => React$element");
+      var watchedValidation = _typeof(this.state.validation) === "object" && this.state.validation !== null ? this.state.validation.getNestedValidation(this.watchPath) : this.state.validation;
+      return this.props.children({
+        value: this.state.value,
+        watchedValue: (0, _StateValueHelpers.getValue)(this.state.value, this.getWatchedPath(this.props, this.context)),
+        watchedStatePath: this.watchPath,
+        validation: this.state.validation,
+        watchedValidation: watchedValidation
+      }, this.props);
+    }
+  }]);
+
+  return FormWatcher;
+}(_react2.default.Component);
+
+exports.default = FormWatcher;
+
+
+FormWatcher.propTypes = {};
+
+FormWatcher.defaultProps = {
+  __debug: false
+};
+
+FormWatcher.contextTypes = {
+  rootValueChangeObs: _propTypes2.default.any,
+  completeStatePath: _propTypes2.default.string
+};
 
 /***/ }),
 /* 22 */
